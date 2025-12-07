@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Recipe" load_steps=5 format=3 uid="uid://l46ul2w74iyt"]
+
+[ext_resource type="Resource" uid="uid://obxyh7qse187" path="res://assets/items/data/empty_lantern.tres" id="1_ihudm"]
+[ext_resource type="Script" uid="uid://m4abrvu6oul0" path="res://assets/items/data/recipes/recipe.gd" id="1_m212v"]
+[ext_resource type="Resource" uid="uid://j0j1gp072lxh" path="res://assets/items/data/tealight_lantern.tres" id="2_wdni6"]
+[ext_resource type="Resource" uid="uid://cq7e1nm4m47kh" path="res://assets/items/data/tealight_candle.tres" id="3_u8yyc"]
+
+[resource]
+script = ExtResource("1_m212v")
+left = ExtResource("1_ihudm")
+right = ExtResource("3_u8yyc")
+result = ExtResource("2_wdni6")
+metadata/_custom_type_script = "uid://m4abrvu6oul0"

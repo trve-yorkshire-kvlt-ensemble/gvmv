@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameData" load_steps=4 format=3 uid="uid://dg5gkvul3gs0c"]
+
+[ext_resource type="Script" uid="uid://m4abrvu6oul0" path="res://assets/items/data/recipes/recipe.gd" id="1_n3oos"]
+[ext_resource type="Script" uid="uid://cnp4literm7in" path="res://assets/globals/game_data.gd" id="2_8tl53"]
+[ext_resource type="Resource" uid="uid://l46ul2w74iyt" path="res://assets/items/data/recipes/tealight_lantern.tres" id="2_j1sc2"]
+
+[resource]
+script = ExtResource("2_8tl53")
+recipes = Array[ExtResource("1_n3oos")]([ExtResource("2_j1sc2")])

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://obxyh7qse187"]
+
+[ext_resource type="Script" uid="uid://ca1ecjxkvbacm" path="res://assets/items/data/item_data.gd" id="1_b27sk"]
+[ext_resource type="Texture2D" uid="uid://di00dxxf8poof" path="res://assets/items/sprites/empty_lantern.png" id="1_nom48"]
+
+[resource]
+script = ExtResource("1_b27sk")
+item_name = "Empty Lantern"
+icon = ExtResource("1_nom48")
+metadata/_custom_type_script = "uid://ca1ecjxkvbacm"

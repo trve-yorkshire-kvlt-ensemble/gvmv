@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://j0j1gp072lxh"]
+
+[ext_resource type="Script" uid="uid://ca1ecjxkvbacm" path="res://assets/items/data/item_data.gd" id="1_r3yt0"]
+[ext_resource type="Texture2D" uid="uid://bjvnlgnpeij5o" path="res://assets/items/sprites/tealight_lantern.png" id="1_rpt4b"]
+
+[resource]
+script = ExtResource("1_r3yt0")
+item_name = "Tealight Lantern"
+icon = ExtResource("1_rpt4b")
+metadata/_custom_type_script = "uid://ca1ecjxkvbacm"

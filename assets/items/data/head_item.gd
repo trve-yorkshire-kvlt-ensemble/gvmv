@@ -1,0 +1,2 @@
+class_name HeadItem
+extends ItemData

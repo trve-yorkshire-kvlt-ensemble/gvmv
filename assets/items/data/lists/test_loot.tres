@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="LootList" load_steps=6 format=3 uid="uid://cujigj74m17hp"]
+
+[ext_resource type="Script" uid="uid://ca1ecjxkvbacm" path="res://assets/items/data/item_data.gd" id="1_1c7fp"]
+[ext_resource type="Script" uid="uid://cgk5x8acollhj" path="res://assets/items/data/lists/loot_list.gd" id="2_4qh6x"]
+[ext_resource type="Resource" uid="uid://cq7e1nm4m47kh" path="res://assets/items/data/tealight_candle.tres" id="2_5h8sk"]
+[ext_resource type="Resource" uid="uid://obxyh7qse187" path="res://assets/items/data/empty_lantern.tres" id="3_tuowc"]
+[ext_resource type="Resource" uid="uid://j0j1gp072lxh" path="res://assets/items/data/tealight_lantern.tres" id="4_b251u"]
+
+[resource]
+script = ExtResource("2_4qh6x")
+minimum_gold = 1
+maximum_gold = 50
+maximum_items = 3
+loot_items = Dictionary[ExtResource("1_1c7fp"), float]({
+ExtResource("2_5h8sk"): 60.0,
+ExtResource("3_tuowc"): 30.0,
+ExtResource("4_b251u"): 10.0
+})
+metadata/_custom_type_script = "uid://cgk5x8acollhj"
