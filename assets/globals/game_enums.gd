@@ -30,3 +30,12 @@ enum MagicEffect {
 	SKREAM,
 	DREAM
 }
+
+enum InteractionType {
+	NONE,
+	TALK,
+	TRADE,
+	EXAMINE,
+	PICKUP,
+	OPEN
+}
