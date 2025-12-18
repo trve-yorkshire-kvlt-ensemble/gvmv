@@ -1,11 +1,11 @@
-[gd_scene load_steps=22 format=4 uid="uid://cp7lhce2tcwa8"]
+[gd_scene load_steps=33 format=4 uid="uid://cp7lhce2tcwa8"]
 
 [ext_resource type="Texture2D" uid="uid://g77lhue6nvte" path="res://assets/levels/sprites/tileset_mushroom.png" id="1_3ofql"]
 [ext_resource type="Script" uid="uid://bdrbnkmna0ry4" path="res://assets/player/player_movement.gd" id="2_rl2ne"]
 [ext_resource type="Script" uid="uid://bi8cinia2pil5" path="res://assets/items/inventory/ui/inventory_ui.gd" id="3_amsgl"]
 [ext_resource type="Script" uid="uid://btegn0sqm2ras" path="res://assets/items/inventory/inventory.gd" id="3_r4ofa"]
-[ext_resource type="Texture2D" uid="uid://ddbm8bdf37lmw" path="res://assets/characters/sprites/ghoul.png" id="4_3ofql"]
 [ext_resource type="PackedScene" uid="uid://dmcfh8h1iradd" path="res://assets/items/inventory/ui/inventory_slot.tscn" id="4_amsgl"]
+[ext_resource type="Texture2D" uid="uid://dk4t3i5j1vid5" path="res://assets/characters/sprites/ghvvl.png" id="4_bfm3b"]
 [ext_resource type="Resource" uid="uid://bjy5r64v3g5nq" path="res://assets/player/player_inventory.tres" id="4_rw1oi"]
 [ext_resource type="Resource" uid="uid://cujigj74m17hp" path="res://assets/items/data/lists/test_loot.tres" id="5_rw1oi"]
 [ext_resource type="Script" uid="uid://bve0ltg5vfwpy" path="res://assets/player/player_interaction.gd" id="6_xutpn"]
@@ -53,6 +53,84 @@ texture = ExtResource("1_3ofql")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ffdow")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k66vq"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pqi1"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snrar"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nywie"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27m1y"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tg2d"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4yfq"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwvxe"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg7us"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx2hj"]
+atlas = ExtResource("4_bfm3b")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ubv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k66vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pqi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snrar")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nywie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27m1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tg2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4yfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwvxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg7us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx2hj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rl2ne"]
 size = Vector2(14, 15)
 
@@ -89,10 +167,11 @@ position = Vector2(212, 138)
 motion_mode = 1
 script = ExtResource("2_rl2ne")
 speed = 80.0
-sprite = NodePath("Sprite2D")
+sprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("4_3ofql")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_7ubv4")
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1)

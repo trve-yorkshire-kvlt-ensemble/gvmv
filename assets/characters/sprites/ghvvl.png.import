@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddbm8bdf37lmw"
-path="res://.godot/imported/ghoul.png-c5f51fc0a2d5d3932cbccb3f8ded5129.ctex"
+uid="uid://dk4t3i5j1vid5"
+path="res://.godot/imported/ghvvl.png-edc5def63225279d66fdd60c00586101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/sprites/ghoul.png"
-dest_files=["res://.godot/imported/ghoul.png-c5f51fc0a2d5d3932cbccb3f8ded5129.ctex"]
+source_file="res://assets/characters/sprites/ghvvl.png"
+dest_files=["res://.godot/imported/ghvvl.png-edc5def63225279d66fdd60c00586101.ctex"]
 
 [params]
 

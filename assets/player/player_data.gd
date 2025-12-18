@@ -2,9 +2,9 @@ class_name PlayerData
 extends Resource
 
 @export var inventory: InventoryData
-@export var head_item: HeadItem
-@export var robe_item: RobeItem
-@export var lantern_item: LanternItem
+@export var head_item_worn: HeadItem
+@export var robe_item_worn: RobeItem
+@export var lantern_item_worn: LanternItem
 @export var gold: int = 0
 
 @export var health: int = 100

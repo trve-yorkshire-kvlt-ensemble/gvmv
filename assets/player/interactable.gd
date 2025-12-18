@@ -7,9 +7,10 @@ const InteractionType = preload("res://assets/globals/game_enums.gd").Interactio
 @export var prompt_text: String = "Interact" # What to show the player
 
 # Generic function that the PlayerInteraction calls
-# get_parent() will be the actual interactable object (NPC, Item, Container, etc)
 func trigger_interaction(player_root_node: Node) -> void:
+    # get_parent() will be the actual interactable object (NPC, Item, Container, etc)
     var interactable_object = get_parent()
+    
     match interaction_type:
         InteractionType.TALK:
             # The NPC needs the PlayerDialogue component
