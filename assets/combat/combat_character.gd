@@ -28,7 +28,7 @@ func take_damage(amount: int) -> int:
     current_health = max(0, current_health)
     return damage_taken
 
-func attack_target(target: Character) -> int:
+func attack_target(target: CombatCharacter) -> int:
     var damage_dealt = character_data.calculate_attack(target.character_data.defense)
     target.take_damage(damage_dealt)
     return damage_dealt
