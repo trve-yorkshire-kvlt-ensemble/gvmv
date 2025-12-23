@@ -10,8 +10,8 @@ extends Resource
 func generate_items() -> Array[ItemData]:
     var generated_items: Array[ItemData] = []
 
-    var min_count = minimum_items
-    var max_count = maximum_items
+    var min_count: int = minimum_items
+    var max_count: int = maximum_items
     var item_count: int
     if max_count <= min_count:
         item_count = min_count
@@ -21,28 +21,28 @@ func generate_items() -> Array[ItemData]:
     # Build a mutable list of available items and their weights so we can
     # perform a weighted (cumulative) roll per requested item and avoid
     # selecting duplicates by removing the chosen item from the pool.
-    var available_items: Array = loot_items.keys()
-    var available_weights: Dictionary = {}
-    for it in available_items:
+    var available_items: Array[ItemData] = loot_items.keys()
+    var available_weights: Dictionary[ItemData, float] = {}
+    for it: ItemData in available_items:
         available_weights[it] = float(loot_items[it])
 
     # Compute total weight
-    var total_weight := 0.0
-    for w in available_weights.values():
+    var total_weight: float = 0.0
+    for w: float in available_weights.values():
         total_weight += w
 
     if total_weight <= 0.0:
         return generated_items
 
-    for i in item_count:
+    for i: int in item_count:
         if available_items.is_empty():
             break
 
-        var roll := randf() * total_weight
-        var cumulative := 0.0
-        var selected_item = null
+        var roll: float = randf() * total_weight
+        var cumulative: float = 0.0
+        var selected_item: ItemData = null
 
-        for it in available_items:
+        for it: ItemData in available_items:
             cumulative += available_weights.get(it, 0.0)
             if roll <= cumulative:
                 selected_item = it

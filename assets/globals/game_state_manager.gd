@@ -8,7 +8,7 @@ const UIState = preload("res://assets/globals/game_enums.gd").UIState
 var current_state: int = UIState.OVERWORLD
 
 # Public function to request a state change
-func change_state(new_state: int):
+func change_state(new_state: int) -> void:
 	# Optional: Add error checking or transition logic here
 	if current_state == new_state:
 		return # No change needed

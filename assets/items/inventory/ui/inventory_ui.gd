@@ -19,10 +19,10 @@ func _on_ui_state_changed(new_state: int) -> void:
 		visible = false
 
 func update_ui(inventory: Inventory) -> void:
-	for i in range(slots.size()):
-		var slot = slots[i]
+	for i: int in range(slots.size()):
+		var slot: InventorySlot = slots[i]
 		if inventory.inventory.items.size() > i:
-			var entry = inventory.inventory.items[i]
+			var entry: Dictionary = inventory.inventory.items[i]
 			slot.set_item(entry.get("item", null), int(entry.get("quantity", 0)))
 		else:
 			slot.clear_slot()

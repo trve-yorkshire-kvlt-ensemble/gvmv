@@ -1,3 +1,5 @@
+## An Interactable component that goes on a child Node2D of an interactable object
+## The parent Node2D is the actual interactable object (NPC, Item, Container, etc)
 class_name Interactable
 extends Node2D
 
@@ -9,7 +11,7 @@ const InteractionType = preload("res://assets/globals/game_enums.gd").Interactio
 # Generic function that the PlayerInteraction calls
 func trigger_interaction(player_root_node: Node) -> void:
     # get_parent() will be the actual interactable object (NPC, Item, Container, etc)
-    var interactable_object = get_parent()
+    var interactable_object: Node2D = get_parent()
     
     match interaction_type:
         InteractionType.TALK:

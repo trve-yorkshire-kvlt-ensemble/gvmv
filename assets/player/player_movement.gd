@@ -2,22 +2,22 @@ class_name PlayerMovement
 extends CharacterBody2D
 
 # Movement speed (e.g., 200 pixels per second)
-@export var speed = 200.0
+@export var speed: float = 200.0
 @export var sprite: AnimatedSprite2D
 @export var sprite_flips: bool = true
 
 const UIState = preload("res://assets/globals/game_enums.gd").UIState
 var can_receive_input: bool = true
 
-func _ready():
+func _ready() -> void:
 	# Listen for state changes
 	EventBus.ui_state_changed.connect(_on_ui_state_changed)
 
-func _on_ui_state_changed(new_state: int):	
+func _on_ui_state_changed(new_state: int) -> void:	
 	# Only allow input if we are in the overworld state
 	can_receive_input = (new_state == UIState.OVERWORLD)
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	# Check for inventory toggle input
 	if Input.is_action_just_pressed("open_inventory"):
 		# Request state change through the manager
@@ -26,7 +26,7 @@ func _process(_delta):
 		else:
 			GameStateManager.change_state(UIState.OVERWORLD)
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	if !can_receive_input:
 		return # Ignore all movement/action input
 	
