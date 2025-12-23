@@ -10,7 +10,7 @@ var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
 const base_xp_needed: int = 100
 const base_xp_multiplier: float = 1.5
 
-func _ready():
+func _ready() -> void:
     if character_data:
         current_health = character_data.max_health
 
@@ -23,13 +23,13 @@ func is_alive() -> bool:
     return current_health > 0
 
 func take_damage(amount: int) -> int:
-    var damage_taken = character_data.calculate_defense(amount)
+    var damage_taken: int = character_data.calculate_defense(amount)
     current_health -= damage_taken
     current_health = max(0, current_health)
     return damage_taken
 
 func attack_target(target: CombatCharacter) -> int:
-    var damage_dealt = character_data.calculate_attack(target.character_data.defense)
+    var damage_dealt: int = character_data.calculate_attack(target.character_data.defense)
     target.take_damage(damage_dealt)
     return damage_dealt
 
@@ -49,7 +49,7 @@ func get_xp_needed_for_next_level() -> int:
     return int(base_xp_needed * pow(character_data.level, base_xp_multiplier))
 
 func level_up() -> void:
-    var xp_needed = character_data.get_xp_needed_for_next_level()
+    var xp_needed: int = character_data.get_xp_needed_for_next_level()
     
     # 1. Deduct XP and Increment Level on the Resource
     current_xp -= xp_needed

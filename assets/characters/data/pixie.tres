@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bmkyijajpu76f"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_iexhg"]
+[ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="2_spir5"]
+
+[resource]
+script = ExtResource("1_iexhg")
+name = "Pixie"
+sprite = ExtResource("2_spir5")
+attack_power = 5
+base_magic = 9
+metadata/_custom_type_script = "uid://bhbjqxn7qf0ea"
