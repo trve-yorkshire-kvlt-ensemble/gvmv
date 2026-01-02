@@ -6,6 +6,8 @@ extends Node2D
 # todo - add more overworld-specific properties like movement patterns, dialogues, etc.
 # also merchant inventory if applicable
 
+@onready var character_dialogue: CharacterDialogue = $CharacterDialogue
+
 func _ready() -> void:
 	if character_data:
 		$Sprite2D.texture = character_data.sprite
@@ -20,8 +22,10 @@ func open_trade() -> void:
 	pass
 
 func start_dialogue() -> void:
-	# Dialogue logic—uses character_data.name, etc.
-	pass
+	if character_dialogue:
+		character_dialogue.start_conversation()
+	else:
+		push_error("CharacterDialogue not found")
 
 func start_combat() -> CombatCharacter:
 	# Spawn combat version when needed

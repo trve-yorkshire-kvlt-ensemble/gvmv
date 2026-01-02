@@ -12,3 +12,8 @@ signal ui_state_changed(new_state: int)
 # Wrapper to emit the state change
 func emit_ui_state_changed(state: int) -> void:
 	ui_state_changed.emit(state)
+
+signal dialogue_started(dialogue: Dialogue)
+
+func emit_dialogue_started(dialogue: Dialogue) -> void:
+	dialogue_started.emit(dialogue)

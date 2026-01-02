@@ -5,6 +5,7 @@ enum UIState {
 	COMBAT,         # Active combat: Player/enemies take turns, movement is disabled.
 	INVENTORY,      # Inventory screen open: Player interacts with items, game paused/input locked.
 	MENU,           # General main menu, options, etc.
+	DIALOGUE        # Dialogue active: Player reads/interacts with dialogue, movement disabled.
 }
 
 enum CombatState {
