@@ -5,6 +5,7 @@ const UIState = preload("res://assets/globals/game_enums.gd").UIState
 
 @export var dialogue_text_label: Label
 @export var character_name_label: Label
+@export var options_container: VBoxContainer
 @export var character_reveal_speed: float = 0.05  # Time in seconds per character
 
 var current_dialogue: Dialogue
@@ -28,6 +29,7 @@ func _on_ui_state_changed(new_state: int) -> void:
 
 func _on_dialogue_started(dialogue: Dialogue) -> void:
 	# Initialize dialogue UI with the provided dialogue resource
+	options_container.visible = false
 	current_dialogue = dialogue
 	current_page_index = 0
 	_display_current_page()
@@ -37,6 +39,7 @@ func _display_current_page() -> void:
 		var page: DialoguePage = current_dialogue.pages[current_page_index]
 		character_name_label.text = current_dialogue.character_name
 		is_text_fully_revealed = false
+		options_container.visible = false
 		_reveal_text_sequentially(page.text)
 
 
@@ -45,7 +48,10 @@ func advance_dialogue() -> void:
 	if current_page_index < current_dialogue.pages.size():
 		_display_current_page()
 	else:
-		_end_dialogue()
+		end_dialogue()
+
+func end_dialogue() -> void:
+	GameStateManager.change_state(UIState.OVERWORLD)
 
 func _reveal_text_sequentially(text: String) -> void:
 	_kill_reveal_tween()
@@ -64,15 +70,14 @@ func _reveal_text_sequentially(text: String) -> void:
 	)
 	text_reveal_tween.tween_callback(func() -> void:
 		is_text_fully_revealed = true
+		if _is_on_last_page():
+			options_container.visible = true
 	)
 
 func _kill_reveal_tween() -> void:
 	if text_reveal_tween:
 		text_reveal_tween.kill()
 		text_reveal_tween = null
-
-func _end_dialogue() -> void:
-	GameStateManager.change_state(UIState.OVERWORLD)
 
 func _input(event: InputEvent) -> void:
 	# Only respond to input if dialogue is active
@@ -102,3 +107,8 @@ func _skip_to_end_of_text() -> void:
 	var page: DialoguePage = current_dialogue.pages[current_page_index]
 	dialogue_text_label.text = page.text
 	is_text_fully_revealed = true
+	if _is_on_last_page():
+		options_container.visible = true
+
+func _is_on_last_page() -> bool:
+	return current_dialogue and current_page_index == current_dialogue.pages.size() - 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://cp7lhce2tcwa8"]
+[gd_scene load_steps=50 format=4 uid="uid://cp7lhce2tcwa8"]
 
 [ext_resource type="Texture2D" uid="uid://g77lhue6nvte" path="res://assets/levels/sprites/tileset_mushroom.png" id="1_3ofql"]
 [ext_resource type="Script" uid="uid://bdrbnkmna0ry4" path="res://assets/player/player_movement.gd" id="2_rl2ne"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bve0ltg5vfwpy" path="res://assets/player/player_interaction.gd" id="6_xutpn"]
 [ext_resource type="Script" uid="uid://7a0vebcseeq6" path="res://assets/items/containers/item_container.gd" id="8_rlsea"]
 [ext_resource type="Script" uid="uid://cvy7rva5ovgvc" path="res://assets/dialogue/scripts/dialogue_ui.gd" id="9_e4yfq"]
+[ext_resource type="PackedScene" uid="uid://cw3ktgwg0qyb1" path="res://assets/dialogue/ui/dialogue_option_button.tscn" id="10_gwvxe"]
 [ext_resource type="Script" uid="uid://b83gg64kqfrf3" path="res://assets/player/interactable.gd" id="11_la6au"]
 [ext_resource type="Texture2D" uid="uid://diqmcxa6r84jy" path="res://assets/items/containers/sprites/chest.png" id="11_xutpn"]
 [ext_resource type="Script" uid="uid://fcemn87nwexy" path="res://assets/characters/instances/overworld_character.gd" id="13_k66vq"]
@@ -165,6 +166,22 @@ fill_from = Vector2(0.5046729, 0.4813084)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_snrar"]
 
+[sub_resource type="Resource" id="Resource_e4yfq"]
+script = ExtResource("18_gwvxe")
+text = "MEOW!!!"
+metadata/_custom_type_script = "uid://dwvh8j5q4tdco"
+
+[sub_resource type="Resource" id="Resource_gwvxe"]
+script = ExtResource("19_jg7us")
+pages = Array[ExtResource("18_gwvxe")]([SubResource("Resource_e4yfq")])
+metadata/_custom_type_script = "uid://boj5171nnkcc6"
+
+[sub_resource type="Resource" id="Resource_jg7us"]
+script = ExtResource("17_e4yfq")
+text = "Meow"
+next_dialogue = SubResource("Resource_gwvxe")
+metadata/_custom_type_script = "uid://lseuwcbb4mtw"
+
 [sub_resource type="Resource" id="Resource_kx2hj"]
 script = ExtResource("18_gwvxe")
 text = "Meow!"
@@ -184,6 +201,7 @@ metadata/_custom_type_script = "uid://dwvh8j5q4tdco"
 script = ExtResource("19_jg7us")
 character_name = "Pixie"
 pages = Array[ExtResource("18_gwvxe")]([SubResource("Resource_kx2hj"), SubResource("Resource_7ubv4"), SubResource("Resource_6ua2c")])
+options = Array[ExtResource("17_e4yfq")]([SubResource("Resource_jg7us")])
 metadata/_custom_type_script = "uid://boj5171nnkcc6"
 
 [node name="Node2D" type="Node2D"]
@@ -330,12 +348,13 @@ layout_mode = 2
 [node name="InventorySlot24" parent="InventoryLayer/InventoryContainer/GridContainer" instance=ExtResource("4_amsgl")]
 layout_mode = 2
 
-[node name="DialogueLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("dialogue_text_label", "character_name_label")]
+[node name="DialogueLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("dialogue_text_label", "character_name_label", "options_container")]
 script = ExtResource("9_e4yfq")
-dialogue_text_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/DialogueLabel")
-character_name_label = NodePath("PanelContainer/MarginContainer/VBoxContainer/CharacterNameLabel")
+dialogue_text_label = NodePath("DialogueContainer/MarginContainer/VBoxContainer/DialogueLabel")
+character_name_label = NodePath("DialogueContainer/MarginContainer/VBoxContainer/CharacterNameLabel")
+options_container = NodePath("OptionsContainer")
 
-[node name="PanelContainer" type="PanelContainer" parent="DialogueLayer"]
+[node name="DialogueContainer" type="PanelContainer" parent="DialogueLayer"]
 custom_minimum_size = Vector2(300, 0)
 anchors_preset = 7
 anchor_left = 0.5
@@ -349,21 +368,40 @@ offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="DialogueLayer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueLayer/DialogueContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DialogueLayer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DialogueLayer/DialogueContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="CharacterNameLabel" type="Label" parent="DialogueLayer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CharacterNameLabel" type="Label" parent="DialogueLayer/DialogueContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Pixie"
 
-[node name="DialogueLabel" type="Label" parent="DialogueLayer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="DialogueLabel" type="Label" parent="DialogueLayer/DialogueContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "............."
+
+[node name="OptionsContainer" type="VBoxContainer" parent="DialogueLayer"]
+custom_minimum_size = Vector2(75, 200)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -200.0
+offset_right = -85.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+alignment = 2
+
+[node name="DialogueOptionButton" parent="DialogueLayer/OptionsContainer" instance=ExtResource("10_gwvxe")]
+layout_mode = 2
 
 [node name="ItemContainers" type="Node2D" parent="."]
 
@@ -424,3 +462,4 @@ metadata/_custom_type_script = "uid://dbaljyb2wsa0h"
 
 [connection signal="body_entered" from="Player/InteractionZone" to="Player/InteractionZone" method="_on_interaction_zone_body_entered"]
 [connection signal="body_exited" from="Player/InteractionZone" to="Player/InteractionZone" method="_on_interaction_zone_body_exited"]
+[connection signal="pressed" from="DialogueLayer/OptionsContainer/DialogueOptionButton" to="DialogueLayer" method="end_dialogue"]
