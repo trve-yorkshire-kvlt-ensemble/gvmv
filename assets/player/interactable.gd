@@ -15,8 +15,9 @@ func trigger_interaction(player_root_node: Node) -> void:
 	
 	match interaction_type:
 		InteractionType.TALK:
-			interactable_object.start_dialogue()
-			print("Talking to ", interactable_object.name)
+			var character: OverworldCharacter = interactable_object as OverworldCharacter
+			character.start_dialogue()
+			print("Talking to ", character.character_data.name)
 		InteractionType.TRADE:
 			# The Merchant needs the PlayerCurrency and player's Inventory components
 			# var player_currency = player_root_node.get_node("PlayerCurrency")

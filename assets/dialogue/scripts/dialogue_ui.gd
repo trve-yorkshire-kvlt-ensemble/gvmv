@@ -6,6 +6,8 @@ const UIState = preload("res://assets/globals/game_enums.gd").UIState
 @export var dialogue_text_label: Label
 @export var character_name_label: Label
 @export var options_container: VBoxContainer
+@export var dynamic_options_container: VBoxContainer
+@export var option_button_scene: PackedScene
 @export var character_reveal_speed: float = 0.05  # Time in seconds per character
 
 var current_dialogue: Dialogue
@@ -71,7 +73,7 @@ func _reveal_text_sequentially(text: String) -> void:
 	text_reveal_tween.tween_callback(func() -> void:
 		is_text_fully_revealed = true
 		if _is_on_last_page():
-			options_container.visible = true
+			_show_options()
 	)
 
 func _kill_reveal_tween() -> void:
@@ -82,6 +84,10 @@ func _kill_reveal_tween() -> void:
 func _input(event: InputEvent) -> void:
 	# Only respond to input if dialogue is active
 	if GameStateManager.current_state == UIState.DIALOGUE:
+		# Don't handle input if options are visible (let buttons handle it)
+		if options_container.visible:
+			return
+		
 		var should_handle: bool = false
 		
 		# Check for mouse click
@@ -108,7 +114,30 @@ func _skip_to_end_of_text() -> void:
 	dialogue_text_label.text = page.text
 	is_text_fully_revealed = true
 	if _is_on_last_page():
-		options_container.visible = true
+		_show_options()
 
 func _is_on_last_page() -> bool:
 	return current_dialogue and current_page_index == current_dialogue.pages.size() - 1
+
+func _clear_options() -> void:
+	for child in dynamic_options_container.get_children():
+		child.queue_free()
+
+func _show_options() -> void:
+	_clear_options()
+	if current_dialogue:
+		for option in current_dialogue.options:
+			if not option.can_select_option(GlobalDataManager.player_data):
+				continue  # Skip options the player can't select
+			var button: Button = option_button_scene.instantiate()
+			button.text = option.text
+			# Bind the option to the signal connection to ensure proper capture
+			button.pressed.connect(_on_option_selected.bindv([option]))
+			dynamic_options_container.add_child(button)
+		options_container.visible = true
+
+func _on_option_selected(option: DialogueOption) -> void:
+	if option.next_dialogue:
+		_on_dialogue_started(option.next_dialogue)
+	else:
+		end_dialogue()

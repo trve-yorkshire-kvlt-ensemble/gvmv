@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://fxsi6d0xq8ns"]
+
+[ext_resource type="Script" uid="uid://xsu8etsrd4h4" path="res://assets/player/player_data.gd" id="1_da6rr"]
+[ext_resource type="Resource" uid="uid://bjy5r64v3g5nq" path="res://assets/player/player_inventory.tres" id="1_x56xx"]
+
+[resource]
+script = ExtResource("1_da6rr")
+inventory = ExtResource("1_x56xx")
+metadata/_custom_type_script = "uid://xsu8etsrd4h4"
