@@ -9,6 +9,6 @@ extends Resource
 @export var health: int = 100
 @export var botulism_level: int = 0
 
-# todo - party members
+@export var party_members: Array[CharacterData] = []
 # todo - current location
 # todo - quests

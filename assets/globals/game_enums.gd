@@ -40,3 +40,9 @@ enum InteractionType {
 	PICKUP,
 	OPEN
 }
+
+enum CreatureType {
+	FOE,
+	FRIEND,
+	FOEFRIEND
+}

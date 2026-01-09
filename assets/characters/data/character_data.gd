@@ -12,6 +12,7 @@ const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 @export var defense: int = 5
 @export var speed: int = 10
 @export var base_magic: MagicEffect = MagicEffect.FIRE
+@export var initially_hostile: bool = false
 
 func calculate_attack(target_defense: int) -> int:
     var damage: int = attack_power - target_defense

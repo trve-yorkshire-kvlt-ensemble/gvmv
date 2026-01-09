@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://cp7lhce2tcwa8"]
+[gd_scene load_steps=54 format=4 uid="uid://cp7lhce2tcwa8"]
 
 [ext_resource type="Texture2D" uid="uid://g77lhue6nvte" path="res://assets/levels/sprites/tileset_mushroom.png" id="1_3ofql"]
 [ext_resource type="Script" uid="uid://bdrbnkmna0ry4" path="res://assets/player/player_movement.gd" id="2_rl2ne"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://bjy5r64v3g5nq" path="res://assets/player/player_inventory.tres" id="4_rw1oi"]
 [ext_resource type="Resource" uid="uid://cujigj74m17hp" path="res://assets/items/data/lists/test_loot.tres" id="5_rw1oi"]
 [ext_resource type="Script" uid="uid://bve0ltg5vfwpy" path="res://assets/player/player_interaction.gd" id="6_xutpn"]
+[ext_resource type="Script" uid="uid://k73roasu8fxk" path="res://assets/player/interaction_prompt_ui.gd" id="7_7ubv4"]
 [ext_resource type="Script" uid="uid://7a0vebcseeq6" path="res://assets/items/containers/item_container.gd" id="8_rlsea"]
 [ext_resource type="Script" uid="uid://cvy7rva5ovgvc" path="res://assets/dialogue/scripts/dialogue_ui.gd" id="9_e4yfq"]
 [ext_resource type="PackedScene" uid="uid://cw3ktgwg0qyb1" path="res://assets/dialogue/ui/dialogue_option_button.tscn" id="10_gwvxe"]
@@ -148,6 +149,9 @@ size = Vector2(14, 15)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xutpn"]
 radius = 12.0415945
 
+[sub_resource type="LabelSettings" id="LabelSettings_7ubv4"]
+font_size = 12
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la6au"]
 size = Vector2(24, 18)
 
@@ -245,6 +249,15 @@ script = ExtResource("6_xutpn")
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_xutpn")
 
+[node name="Label" type="Label" parent="Player/InteractionZone"]
+offset_left = -20.0
+offset_top = -38.0
+offset_right = 20.0
+offset_bottom = -17.0
+label_settings = SubResource("LabelSettings_7ubv4")
+horizontal_alignment = 1
+script = ExtResource("7_7ubv4")
+
 [node name="ItemContainers" type="Node2D" parent="."]
 
 [node name="Chest" type="Node2D" parent="ItemContainers"]
@@ -290,6 +303,7 @@ character_data = ExtResource("14_snrar")
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="OverworldCharacter" groups=["interactable"]]
 script = ExtResource("11_la6au")
 interaction_type = 1
+prompt_text = "Talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldCharacter/AnimatableBody2D"]
 shape = SubResource("RectangleShape2D_snrar")
