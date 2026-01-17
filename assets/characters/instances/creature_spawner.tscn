@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://4totlyyqfnes"]
+
+[ext_resource type="Script" uid="uid://dun6adb8xgy0c" path="res://assets/characters/instances/creature_spawner.gd" id="1_vcykl"]
+[ext_resource type="Resource" uid="uid://drnjtondsox27" path="res://assets/characters/data/lists/redmires_mycelium.tres" id="2_nrlxo"]
+[ext_resource type="PackedScene" uid="uid://b6q8shk1ox8q8" path="res://assets/characters/instances/overworld_character.tscn" id="3_dex7k"]
+
+[node name="CreatureSpawner" type="Node2D"]
+script = ExtResource("1_vcykl")
+creature_list = ExtResource("2_nrlxo")
+creature_scene = ExtResource("3_dex7k")
+metadata/_custom_type_script = "uid://dun6adb8xgy0c"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://cnqqa54mhlb0j"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_kvrqo"]
+[ext_resource type="Texture2D" uid="uid://dcrnx2k0bv17w" path="res://icon.svg" id="2_urmc8"]
+
+[resource]
+script = ExtResource("1_kvrqo")
+name = "Name"
+sprite = ExtResource("2_urmc8")
+initially_hostile = true

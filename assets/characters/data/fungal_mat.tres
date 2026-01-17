@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bgoocdpt3o1ds"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_1xpd8"]
+[ext_resource type="Texture2D" uid="uid://bor7txuhveq2v" path="res://assets/characters/sprites/fungal_mat.png" id="2_fdyql"]
+
+[resource]
+script = ExtResource("1_1xpd8")
+name = "fungal mat"
+sprite = ExtResource("2_fdyql")
+initially_hostile = true

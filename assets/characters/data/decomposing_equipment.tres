@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://dcs2weelg1qd4"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_2c4ca"]
+
+[resource]
+script = ExtResource("1_2c4ca")
+name = "Decomposing Equipment"
+initially_hostile = true

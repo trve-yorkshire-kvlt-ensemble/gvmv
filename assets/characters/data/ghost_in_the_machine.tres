@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://b43xljidt3k48"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_76tds"]
+
+[resource]
+script = ExtResource("1_76tds")
+name = "Ghost in the Machine"
+initially_hostile = true

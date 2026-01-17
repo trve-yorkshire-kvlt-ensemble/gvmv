@@ -33,6 +33,10 @@ window/size/viewport_height=360
 window/size/mode=2
 window/stretch/mode="viewport"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/creature_tsv_importer/plugin.cfg")
+
 [gui]
 
 theme/custom="uid://chmwi286ggjrv"

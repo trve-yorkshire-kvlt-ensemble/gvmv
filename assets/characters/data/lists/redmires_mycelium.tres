@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CreatureList" load_steps=9 format=3 uid="uid://drnjtondsox27"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_3knhv"]
+[ext_resource type="Script" uid="uid://ddlf53elfahew" path="res://assets/characters/data/lists/creature_list.gd" id="2_57yyx"]
+[ext_resource type="Resource" uid="uid://ciuwikdymj720" path="res://assets/characters/data/giant_pholcus.tres" id="2_kgvn7"]
+[ext_resource type="Resource" uid="uid://bgoocdpt3o1ds" path="res://assets/characters/data/fungal_mat.tres" id="3_d1n04"]
+[ext_resource type="Resource" uid="uid://xtcb4n7lxr61" path="res://assets/characters/data/destroying_angel.tres" id="4_w3s2o"]
+[ext_resource type="Resource" uid="uid://dp1wpqackbpqq" path="res://assets/characters/data/owl.tres" id="5_vbryg"]
+[ext_resource type="Resource" uid="uid://p4wrxstrpdoc" path="res://assets/characters/data/stinkhorn.tres" id="6_07pte"]
+[ext_resource type="Resource" uid="uid://nv1etdytut0l" path="res://assets/characters/data/crow.tres" id="7_rltl7"]
+
+[resource]
+script = ExtResource("2_57yyx")
+creatures = Array[ExtResource("1_3knhv")]([ExtResource("2_kgvn7"), ExtResource("3_d1n04"), ExtResource("4_w3s2o"), ExtResource("5_vbryg"), ExtResource("6_07pte"), ExtResource("7_rltl7")])

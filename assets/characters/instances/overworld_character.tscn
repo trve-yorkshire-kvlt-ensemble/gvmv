@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6q8shk1ox8q8"]
+
+[ext_resource type="Script" uid="uid://fcemn87nwexy" path="res://assets/characters/instances/overworld_character.gd" id="1_q5uqk"]
+[ext_resource type="Resource" uid="uid://bmkyijajpu76f" path="res://assets/characters/data/pixie.tres" id="2_3dtq3"]
+[ext_resource type="Script" uid="uid://b83gg64kqfrf3" path="res://assets/player/interactable.gd" id="3_4ieyt"]
+[ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="4_7u7wb"]
+[ext_resource type="Script" uid="uid://dbaljyb2wsa0h" path="res://assets/dialogue/scripts/character_dialogue.gd" id="5_5u1vo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snrar"]
+
+[node name="OverworldCharacter" type="Node2D"]
+script = ExtResource("1_q5uqk")
+character_data = ExtResource("2_3dtq3")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." groups=["interactable"]]
+script = ExtResource("3_4ieyt")
+interaction_type = 1
+prompt_text = "Talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_snrar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_7u7wb")
+
+[node name="CharacterDialogue" type="Node2D" parent="."]
+script = ExtResource("5_5u1vo")
+metadata/_custom_type_script = "uid://dbaljyb2wsa0h"

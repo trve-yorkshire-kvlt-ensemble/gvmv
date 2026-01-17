@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://bwd5lpgsque2l"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_nhl44"]
+
+[resource]
+script = ExtResource("1_nhl44")
+name = "Undead Motherboard"
+initially_hostile = true

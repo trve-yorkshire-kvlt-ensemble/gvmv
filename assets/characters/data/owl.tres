@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://dp1wpqackbpqq"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_obi2k"]
+[ext_resource type="Texture2D" uid="uid://cooxs71m631nj" path="res://assets/characters/sprites/owl.png" id="2_05w4q"]
+
+[resource]
+script = ExtResource("1_obi2k")
+name = "owl"
+sprite = ExtResource("2_05w4q")

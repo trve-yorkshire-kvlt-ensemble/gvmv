@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://p4wrxstrpdoc"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_m7b0d"]
+[ext_resource type="Texture2D" uid="uid://byvjuycbast4" path="res://assets/characters/sprites/stinkhorn.png" id="2_q7rx3"]
+
+[resource]
+script = ExtResource("1_m7b0d")
+name = "stinkhorn"
+sprite = ExtResource("2_q7rx3")
+initially_hostile = true

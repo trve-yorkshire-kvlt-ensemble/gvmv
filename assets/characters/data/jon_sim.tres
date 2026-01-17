@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://c5jnu5ccto7tf"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_4q2sk"]
+
+[resource]
+script = ExtResource("1_4q2sk")
+name = "Jon Sim"
+initially_hostile = true

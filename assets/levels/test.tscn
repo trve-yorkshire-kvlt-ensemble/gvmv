@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=4 uid="uid://cp7lhce2tcwa8"]
+[gd_scene load_steps=51 format=4 uid="uid://cp7lhce2tcwa8"]
 
 [ext_resource type="Texture2D" uid="uid://g77lhue6nvte" path="res://assets/levels/sprites/tileset_mushroom.png" id="1_3ofql"]
 [ext_resource type="Script" uid="uid://bdrbnkmna0ry4" path="res://assets/player/player_movement.gd" id="2_rl2ne"]
@@ -16,10 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://c4wnbcfxoeuvi" path="res://assets/visuals/ui-general/sprites/skull_border.png" id="10_kx2hj"]
 [ext_resource type="Script" uid="uid://b83gg64kqfrf3" path="res://assets/player/interactable.gd" id="11_la6au"]
 [ext_resource type="Texture2D" uid="uid://diqmcxa6r84jy" path="res://assets/items/containers/sprites/chest.png" id="11_xutpn"]
-[ext_resource type="Script" uid="uid://fcemn87nwexy" path="res://assets/characters/instances/overworld_character.gd" id="13_k66vq"]
-[ext_resource type="Resource" uid="uid://bmkyijajpu76f" path="res://assets/characters/data/pixie.tres" id="14_snrar"]
-[ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="15_3pqi1"]
-[ext_resource type="Script" uid="uid://dbaljyb2wsa0h" path="res://assets/dialogue/scripts/character_dialogue.gd" id="16_5tg2d"]
+[ext_resource type="PackedScene" uid="uid://b6q8shk1ox8q8" path="res://assets/characters/instances/overworld_character.tscn" id="12_gwvxe"]
+[ext_resource type="PackedScene" uid="uid://4totlyyqfnes" path="res://assets/characters/instances/creature_spawner.tscn" id="16_jg7us"]
 [ext_resource type="Script" uid="uid://lseuwcbb4mtw" path="res://assets/dialogue/scripts/dialogue_option.gd" id="17_e4yfq"]
 [ext_resource type="Script" uid="uid://dwvh8j5q4tdco" path="res://assets/dialogue/scripts/dialogue_page.gd" id="18_gwvxe"]
 [ext_resource type="Script" uid="uid://boj5171nnkcc6" path="res://assets/dialogue/scripts/dialogue.gd" id="19_jg7us"]
@@ -64,6 +62,15 @@ texture = ExtResource("1_3ofql")
 [sub_resource type="TileSet" id="TileSet_rw1oi"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ffdow")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl2ne"]
+size = Vector2(14, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xutpn"]
+radius = 12.0415945
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ubv4"]
+font_size = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k66vq"]
 atlas = ExtResource("4_bfm3b")
@@ -143,15 +150,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl2ne"]
-size = Vector2(14, 15)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xutpn"]
-radius = 12.0415945
-
-[sub_resource type="LabelSettings" id="LabelSettings_7ubv4"]
-font_size = 12
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_la6au"]
 size = Vector2(24, 18)
 
@@ -166,8 +164,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_3ofql")
 fill = 1
 fill_from = Vector2(0.5046729, 0.4813084)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snrar"]
 
 [sub_resource type="Resource" id="Resource_e4yfq"]
 script = ExtResource("18_gwvxe")
@@ -225,10 +221,6 @@ script = ExtResource("2_rl2ne")
 speed = 80.0
 sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_7ubv4")
-animation = &"walk"
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_rl2ne")
@@ -257,6 +249,10 @@ offset_bottom = -17.0
 label_settings = SubResource("LabelSettings_7ubv4")
 horizontal_alignment = 1
 script = ExtResource("7_7ubv4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_7ubv4")
+animation = &"walk"
 
 [node name="ItemContainers" type="Node2D" parent="."]
 
@@ -295,26 +291,24 @@ color = Color(0.1568, 0.49, 0.3178467, 1)
 texture = SubResource("GradientTexture2D_ffdow")
 texture_scale = 1.5
 
-[node name="OverworldCharacter" type="Node2D" parent="."]
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="OverworldCharacter" parent="NPCs" instance=ExtResource("12_gwvxe")]
 position = Vector2(141, 33)
-script = ExtResource("13_k66vq")
-character_data = ExtResource("14_snrar")
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="OverworldCharacter" groups=["interactable"]]
-script = ExtResource("11_la6au")
-interaction_type = 1
-prompt_text = "Talk"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldCharacter/AnimatableBody2D"]
-shape = SubResource("RectangleShape2D_snrar")
-
-[node name="Sprite2D" type="Sprite2D" parent="OverworldCharacter"]
-texture = ExtResource("15_3pqi1")
-
-[node name="CharacterDialogue" type="Node2D" parent="OverworldCharacter"]
-script = ExtResource("16_5tg2d")
+[node name="CharacterDialogue" parent="NPCs/OverworldCharacter" index="2"]
 dialogue = SubResource("Resource_115no")
-metadata/_custom_type_script = "uid://dbaljyb2wsa0h"
+
+[node name="CreatureSpawners" type="Node2D" parent="."]
+
+[node name="CreatureSpawner" parent="CreatureSpawners" instance=ExtResource("16_jg7us")]
+position = Vector2(588, -70)
+
+[node name="CreatureSpawner2" parent="CreatureSpawners" instance=ExtResource("16_jg7us")]
+position = Vector2(370, -72)
+
+[node name="CreatureSpawner3" parent="CreatureSpawners" instance=ExtResource("16_jg7us")]
+position = Vector2(518, 55)
 
 [node name="FogLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -478,11 +472,11 @@ layout_mode = 2
 
 [node name="CharacterNameLabel" type="Label" parent="DialogueLayer/DialogueContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Pixie"
+text = "jacob"
 
 [node name="DialogueLabel" type="Label" parent="DialogueLayer/DialogueContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "............."
+text = "help me"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DialogueLayer/DialogueContainer"]
 layout_mode = 2
@@ -521,3 +515,5 @@ layout_mode = 2
 [connection signal="body_entered" from="Player/InteractionZone" to="Player/InteractionZone" method="_on_interaction_zone_body_entered"]
 [connection signal="body_exited" from="Player/InteractionZone" to="Player/InteractionZone" method="_on_interaction_zone_body_exited"]
 [connection signal="pressed" from="DialogueLayer/OptionsContainer/DialogueOptionButton" to="DialogueLayer" method="end_dialogue"]
+
+[editable path="NPCs/OverworldCharacter"]

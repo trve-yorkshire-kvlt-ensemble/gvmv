@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://ccwqhvqc3l03n"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_2km58"]
+
+[resource]
+script = ExtResource("1_2km58")
+name = "AI"
+initially_hostile = true

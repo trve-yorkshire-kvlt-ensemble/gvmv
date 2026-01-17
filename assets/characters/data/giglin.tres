@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://drpxqly7nmn5b"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_8y0c1"]
+
+[resource]
+script = ExtResource("1_8y0c1")
+name = "giglin"

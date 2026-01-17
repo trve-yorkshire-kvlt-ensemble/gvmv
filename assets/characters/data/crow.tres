@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://nv1etdytut0l"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_ayn0m"]
+[ext_resource type="Texture2D" uid="uid://cki46aa3di3tt" path="res://assets/characters/sprites/crow.png" id="2_07p7e"]
+
+[resource]
+script = ExtResource("1_ayn0m")
+name = "Crow"
+sprite = ExtResource("2_07p7e")

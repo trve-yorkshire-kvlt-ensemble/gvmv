@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://bwrpf0nvpx5sp"]
+
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_o23bm"]
+
+[resource]
+script = ExtResource("1_o23bm")
+name = "pitcoin"
+initially_hostile = true
