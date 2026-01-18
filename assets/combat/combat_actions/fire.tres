@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://bk7dupiyjebms"]
+
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_tyeld"]
+
+[resource]
+script = ExtResource("1_tyeld")
+display_name = "Fire"
+description = "Cast ur enemies into the pits of hvll"
+base_melee_damage = 10
+damage_type = "Fire"
+metadata/_custom_type_script = "uid://brwsxfkgfce7n"

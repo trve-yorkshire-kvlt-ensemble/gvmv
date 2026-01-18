@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://cimr0ocwh4nsm"]
+
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_bdf7d"]
+
+[resource]
+script = ExtResource("1_bdf7d")
+display_name = "Mist"
+description = "Shroud thy target in mist (NB not currently implemented)"
+base_weight = 150
+damage_type = "Mist"
+metadata/_custom_type_script = "uid://brwsxfkgfce7n"

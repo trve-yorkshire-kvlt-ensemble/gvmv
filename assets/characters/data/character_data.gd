@@ -15,9 +15,9 @@ const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 @export var initially_hostile: bool = false
 
 func calculate_attack(target_defense: int) -> int:
-    var damage: int = attack_power - target_defense
-    return max(1, damage)
+	var damage: int = attack_power - target_defense
+	return max(1, damage)
 
 func calculate_defense(incoming_attack: int) -> int:
-    var reduced_damage: int = incoming_attack - defense
-    return max(0, reduced_damage)
+	var reduced_damage: int = incoming_attack - defense
+	return max(0, reduced_damage)
