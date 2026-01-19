@@ -10,6 +10,7 @@ var shake_damping: float = 10.0
 func _ready() -> void:
 	var character = get_parent()
 	character.OnTakeDamage.connect(_damage_visual)
+	character.OnHeal.connect(_heal_visual)
 	
 func _process(delta):
 	var t = Time.get_unix_time_from_system()
@@ -24,6 +25,11 @@ func _damage_visual(health: int):
 	modulate = Color.DARK_RED
 	shake_intensity = 10.0
 	await get_tree().create_timer(0.1).timeout
+	modulate = Color.WHITE
+	
+func _heal_visual(health: int):
+	modulate = Color.GREEN
+	await get_tree().create_timer(0.2).timeout
 	modulate = Color.WHITE
 
 func _random_offset() -> Vector2:

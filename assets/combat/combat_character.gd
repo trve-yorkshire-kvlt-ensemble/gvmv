@@ -13,7 +13,7 @@ extends Node2D
 @export var combat_actions: Array[CombatAction]
 @export var display_name: String
 var target_scale: float = 1.0
-@onready var audio: AudioStreamPlayer
+@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
 var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 @onready var sprite: Sprite2D = $Sprite
@@ -53,11 +53,13 @@ func end_turn():
 func take_damage(amount: int):
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
+	_play_audio(take_damage_sfx)
 	
 func heal(amount: int):
 	current_health += amount
 	current_health = clamp(current_health, 0, max_health)
 	OnHeal.emit(current_health)
+	_play_audio(heal_sfx)
 	
 func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 	if action == null:
@@ -66,6 +68,10 @@ func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 		opponent.take_damage(action.base_melee_damage)
 	if action.heal_amount >0:
 		heal(action.heal_amount)
+		
+func _play_audio(stream: AudioStream):
+	audio.stream = stream
+	audio.play()
 
 #func is_alive() -> bool:
 	#return current_health > 0

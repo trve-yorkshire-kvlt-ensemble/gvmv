@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=17 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cmj7vq6y056oc" path="res://assets/combat/combat_actions_ui.gd" id="12_tjhoe"]
 [ext_resource type="Script" uid="uid://dc23l4m4tvlcb" path="res://assets/combat/combat_action_button.gd" id="13_od2cl"]
 [ext_resource type="Script" uid="uid://o8121cdsvmet" path="res://assets/combat/combat_end_screen.gd" id="13_ybpw0"]
+[ext_resource type="AudioStream" uid="uid://df2r681rl7djr" path="res://assets/combat/sfx/battle.wav" id="15_0l2pc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjhoe"]
 bg_color = Color(0.09957226, 0.23278406, 0, 1)
@@ -148,6 +149,11 @@ offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Ok (restart battle)"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_0l2pc")
+volume_db = -10.4
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndScreen/OkButton" to="CanvasLayer/CombatEndScreen" method="_on_ok_button_pressed"]
