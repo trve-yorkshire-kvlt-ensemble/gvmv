@@ -20,15 +20,15 @@ is_player = true
 max_health = 100
 
 [node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(-156, -1.9999981)
 scale = Vector2(5, 5)
 texture = ExtResource("6_krvm6")
+offset = Vector2(0, -16)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -208.0
-offset_top = 77.0
-offset_right = -100.0
-offset_bottom = 102.0
+offset_left = -56.0
+offset_top = 15.0
+offset_right = 52.0
+offset_bottom = 40.0
 theme_override_styles/background = SubResource("StyleBoxFlat_8friq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1csqr")
 value = 50.0
@@ -47,3 +47,5 @@ text = "50 / 100"
 label_settings = SubResource("LabelSettings_8friq")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

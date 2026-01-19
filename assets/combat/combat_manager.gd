@@ -19,12 +19,36 @@ var current_character: CombatCharacter
 @onready var player_ui = $CanvasLayer/CombatActionsUI
 
 var game_over: bool = false
+@onready var end_screen = $CanvasLayer/CombatEndScreen
+@onready var stats_text = $CanvasLayer/CombatEndScreen/StatsText
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player_character.OnTakeDamage.connect(_on_player_take_damage)
+	ai_character.OnTakeDamage.connect(_on_ai_take_damage)
+	
+	end_screen.visible = false
+	
 	next_turn()
 
+func _on_player_take_damage(health: int):
+	if health <= 0:
+		end_combat(ai_character)
 	
+func _on_ai_take_damage(health: int):
+	if health <= 0:
+		end_combat(player_character)
+
+func end_combat(winner: CombatCharacter):
+	game_over = true
+	end_screen.visible = true
+	if winner == player_character:
+		stats_text.visible = true
+		end_screen.set_header_text(player_character.display_name + " has defeated " + ai_character.display_name)
+	else:
+		stats_text.visible = false
+		end_screen.set_header_text("YOU HAVE BEEN DEFEATED!")
+
 func next_turn() -> void:
 	if game_over:
 		return

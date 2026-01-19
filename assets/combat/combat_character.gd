@@ -11,7 +11,9 @@ extends Node2D
 @export var current_health: int
 @export var max_health: int
 @export var combat_actions: Array[CombatAction]
-@export var test_text: String
+@export var display_name: String
+var target_scale: float = 1.0
+@onready var audio: AudioStreamPlayer
 
 
 # var current_xp: int = 0
