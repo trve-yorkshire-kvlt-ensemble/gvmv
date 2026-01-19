@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=19 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
+[ext_resource type="Script" uid="uid://bqycukfupl38p" path="res://assets/combat/moving_background.gd" id="3_06pyi"]
 [ext_resource type="PackedScene" uid="uid://bihw6a84hstb1" path="res://assets/combat/combat_character.tscn" id="3_b3ogi"]
 [ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="4_2suc4"]
 [ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="4_b3ogi"]
@@ -16,6 +17,9 @@
 [ext_resource type="Script" uid="uid://o8121cdsvmet" path="res://assets/combat/combat_end_screen.gd" id="13_ybpw0"]
 [ext_resource type="AudioStream" uid="uid://df2r681rl7djr" path="res://assets/combat/sfx/battle.wav" id="15_0l2pc"]
 
+[sub_resource type="Gradient" id="Gradient_06pyi"]
+colors = PackedColorArray(2.2356733e-05, 0.60120463, 1.92523e-05, 1, 0.43999884, 0.00013529554, 0.4401578, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjhoe"]
 bg_color = Color(0.09957226, 0.23278406, 0, 1)
 
@@ -23,13 +27,15 @@ bg_color = Color(0.09957226, 0.23278406, 0, 1)
 script = ExtResource("1_on8wl")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_left = -402.0
-offset_top = -232.0
-offset_right = 372.0
-offset_bottom = 223.0
+offset_left = -2547.0
+offset_top = -224.0
+offset_right = 349.0
+offset_bottom = 221.0
 texture = ExtResource("2_sl4ws")
 expand_mode = 3
 stretch_mode = 1
+script = ExtResource("3_06pyi")
+colour_lerp = SubResource("Gradient_06pyi")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

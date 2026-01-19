@@ -13,7 +13,7 @@ extends Node2D
 @export var combat_actions: Array[CombatAction]
 @export var display_name: String
 var target_scale: float = 1.0
-@onready var audio: AudioStreamPlayer = $AudioStreamPlayer
+@onready var audio: AudioStreamPlayer = $SFX
 var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
 var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 @onready var sprite: Sprite2D = $Sprite

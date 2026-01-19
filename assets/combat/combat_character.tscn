@@ -50,5 +50,5 @@ label_settings = SubResource("LabelSettings_8friq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = 2.836
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = 5.109
