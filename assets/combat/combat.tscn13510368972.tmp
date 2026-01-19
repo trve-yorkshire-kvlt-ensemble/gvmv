@@ -43,18 +43,6 @@ combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("9_0l2pc"), ExtResou
 position = Vector2(-18.999996, -2)
 texture = ExtResource("5_ymw0h")
 
-[node name="HealthBar" parent="AICharacter" index="1"]
-offset_left = -67.0
-offset_top = 82.0
-offset_right = 41.0
-offset_bottom = 107.0
-
-[node name="HealthText" parent="AICharacter/HealthBar" index="0"]
-offset_left = 1.0
-offset_top = -2.0
-offset_right = 1.0
-offset_bottom = -2.0
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CombatActionsUI" type="Panel" parent="CanvasLayer"]

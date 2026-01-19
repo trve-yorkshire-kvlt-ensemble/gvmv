@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/creature_tsv_importer/plugin.cfg")
 
 [gui]
 
+theme/default_font_multichannel_signed_distance_field=true
 theme/custom="uid://chmwi286ggjrv"
 theme/custom_font="uid://cvl1mq3n1cwpo"
 

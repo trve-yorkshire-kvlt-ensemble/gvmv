@@ -1,5 +1,6 @@
 # TODO: programmatic update of movesets (currently assigning manually in UI)
 # but these could/should load from character data?
+# TODO: currently just using base melee damage amount - need to add in functionality for level multiplier
 
 class_name CombatCharacter 
 extends Node2D
@@ -10,6 +11,8 @@ extends Node2D
 @export var current_health: int
 @export var max_health: int
 @export var combat_actions: Array[CombatAction]
+@export var test_text: String
+
 
 # var current_xp: int = 0
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
@@ -40,13 +43,22 @@ func end_turn():
 	pass
 	
 func take_damage(amount: int):
-	pass
+	print("taking damage amount: " + str(amount))
+	current_health -= amount
+	OnTakeDamage.emit(current_health)
 	
 func heal(amount: int):
-	pass
+	current_health += amount
+	current_health = clamp(current_health, 0, max_health)
+	OnHeal.emit(current_health)
 	
 func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
-	pass
+	if action == null:
+		return
+	if action.base_melee_damage > 0:
+		opponent.take_damage(action.base_melee_damage)
+	if action.heal_amount >0:
+		heal(action.heal_amount)
 
 #func is_alive() -> bool:
 	#return current_health > 0
