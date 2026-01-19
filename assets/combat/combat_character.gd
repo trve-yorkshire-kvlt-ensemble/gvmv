@@ -11,6 +11,8 @@ extends Node2D
 @export var is_player: bool 
 var current_health: int
 var max_health: int
+var attack_power: int
+var defense: int
 @export var combat_actions: Array[CombatAction]
 @export var display_name: String
 var target_scale: float = 1.0
@@ -33,13 +35,15 @@ signal OnHeal (health : int)
 func _ready() -> void:
 	#sprite.texture = display_texture
 	if character_data:
-		print("selected character: " + character_data.name)
 		max_health = character_data.max_health
-		print("character max health: " + str(max_health))
-		current_health = character_data.max_health # not sure about this, won't this effectively heal the character every time we load the scene?
-		print("character current health at start of battle: " + str(current_health))
+		current_health = character_data.max_health # need to change this to persistent health between battles
 		## Set the sprite based on the resource
 		sprite.texture = character_data.sprite
+		# set the characters level based on resource
+		# although probably level should be a state thing rather than on the resource
+		# (same as current health)
+		attack_power = character_data.attack_power
+		defense = character_data.defense
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
 	
@@ -55,6 +59,8 @@ func end_turn():
 	target_scale = 0.9
 	
 func take_damage(amount: int):
+	var damage_reduction: int = randi_range(0, defense)
+	amount -= damage_reduction
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
 	_play_audio(take_damage_sfx)
@@ -69,7 +75,8 @@ func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 	if action == null:
 		return
 	if action.base_melee_damage > 0:
-		opponent.take_damage(action.base_melee_damage)
+		var additional_damage = randi_range(0, attack_power)
+		opponent.take_damage(action.base_melee_damage + additional_damage)
 	if action.heal_amount >0:
 		heal(action.heal_amount)
 		
