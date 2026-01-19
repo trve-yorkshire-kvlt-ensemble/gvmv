@@ -5,7 +5,7 @@
 class_name CombatCharacter 
 extends Node2D
 
-# @export var character_data: CharacterData
+#@export var character_data: CharacterData
 
 @export var is_player: bool 
 @export var current_health: int
@@ -14,6 +14,10 @@ extends Node2D
 @export var display_name: String
 var target_scale: float = 1.0
 @onready var audio: AudioStreamPlayer
+var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
+var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
+@onready var sprite: Sprite2D = $Sprite
+@export var display_texture: Texture2D
 
 
 # var current_xp: int = 0
@@ -26,6 +30,7 @@ signal OnTakeDamage(health : int)
 signal OnHeal (health : int)
 
 func _ready() -> void:
+	sprite.texture = display_texture
 	#if character_data:
 		#current_health = character_data.max_health # not sure about this, won't this effectively heal the character every time we load the scene?
 #
@@ -33,16 +38,17 @@ func _ready() -> void:
 		#$Sprite2D.texture = character_data.sprite_texture
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
-	pass
+	
 
 func begin_turn():
+	target_scale = 1.1
 	if is_player:
 		print("Player turn has begin")
 	else:
 		print("AI turn has begun")
 
 func end_turn():
-	pass
+	target_scale = 0.9
 	
 func take_damage(amount: int):
 	print("taking damage amount: " + str(amount))

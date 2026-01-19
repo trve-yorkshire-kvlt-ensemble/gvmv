@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bihw6a84hstb1"]
+[gd_scene load_steps=8 format=3 uid="uid://bihw6a84hstb1"]
 
 [ext_resource type="Script" uid="uid://dp0tbg5240i0e" path="res://assets/combat/combat_character.gd" id="1_flfjq"]
 [ext_resource type="Script" uid="uid://cyyccscri8k5p" path="res://assets/combat/health_bar.gd" id="3_1csqr"]
+[ext_resource type="Script" uid="uid://bn4so1eb5qcif" path="res://assets/combat/combat_character_visual.gd" id="3_t5wi7"]
 [ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="6_krvm6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8friq"]
@@ -23,6 +24,7 @@ max_health = 100
 scale = Vector2(5, 5)
 texture = ExtResource("6_krvm6")
 offset = Vector2(0, -16)
+script = ExtResource("3_t5wi7")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -56.0

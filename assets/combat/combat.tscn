@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=16 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
 [ext_resource type="PackedScene" uid="uid://bihw6a84hstb1" path="res://assets/combat/combat_character.tscn" id="3_b3ogi"]
+[ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="4_2suc4"]
 [ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="4_b3ogi"]
 [ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="5_tjhoe"]
 [ext_resource type="Texture2D" uid="uid://svipopvjbj4g" path="res://assets/characters/sprites/destroying_angel.png" id="5_ymw0h"]
@@ -33,31 +34,19 @@ stretch_mode = 1
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_b3ogi")]
 position = Vector2(-197, -6)
-current_health = 1
+current_health = 100
 combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("5_tjhoe"), ExtResource("7_ybpw0"), ExtResource("6_od2cl")])
 display_name = "Pixie"
+display_texture = ExtResource("4_2suc4")
 
 [node name="AICharacter" parent="." instance=ExtResource("3_b3ogi")]
-position = Vector2(180, -80)
+position = Vector2(185, -4)
 is_player = false
-current_health = 30
-max_health = 30
+current_health = 40
+max_health = 40
 combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("9_0l2pc"), ExtResource("10_06pyi"), ExtResource("6_od2cl")])
 display_name = "Destroying Angel"
-
-[node name="Sprite" parent="AICharacter" index="0"]
-position = Vector2(13.000002, 75)
-texture = ExtResource("5_ymw0h")
-
-[node name="HealthBar" parent="AICharacter" index="1"]
-offset_left = -38.0
-offset_top = 83.0
-offset_right = 70.0
-offset_bottom = 108.0
-
-[node name="HealthText" parent="AICharacter/HealthBar" index="0"]
-offset_left = 1.0
-offset_right = 1.0
+display_texture = ExtResource("5_ymw0h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -162,5 +151,3 @@ text = "Ok (restart battle)"
 
 [connection signal="pressed" from="CanvasLayer/CombatActionsUI/ButtonContainer/PassTurnButton" to="CanvasLayer/CombatActionsUI" method="_on_pass_turn_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/CombatEndScreen/OkButton" to="CanvasLayer/CombatEndScreen" method="_on_ok_button_pressed"]
-
-[editable path="AICharacter"]
