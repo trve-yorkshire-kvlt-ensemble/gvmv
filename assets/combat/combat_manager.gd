@@ -52,13 +52,17 @@ func end_combat(winner: CombatCharacter):
 func next_turn() -> void:
 	if game_over:
 		return
+	# end previous turn
 	if current_character != null:
 		current_character.end_turn()
+	# choose next character
 	if current_character == null or current_character == ai_character:
 		# change this so that if character is null (i.e. at the start of the scene)
 		# then choose character with highest speed/initiative
 		# (so some kind of routine that chooses turn order or smth)
 		current_character = player_character
+		# force inactive state
+		ai_character.end_turn()
 	else:
 		current_character = ai_character
 		

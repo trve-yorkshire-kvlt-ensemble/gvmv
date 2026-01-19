@@ -40,18 +40,17 @@ func _ready() -> void:
 		#push_error("Character data not assigned for %s" % self.name)
 	
 
+func _process(delta):
+	scale.x = lerp(scale.x, target_scale, delta*10)
+	scale.y = lerp(scale.y, target_scale, delta*10)
+
 func begin_turn():
 	target_scale = 1.1
-	if is_player:
-		print("Player turn has begin")
-	else:
-		print("AI turn has begun")
 
 func end_turn():
 	target_scale = 0.9
 	
 func take_damage(amount: int):
-	print("taking damage amount: " + str(amount))
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
 	
