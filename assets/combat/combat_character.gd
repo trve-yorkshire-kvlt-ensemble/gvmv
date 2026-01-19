@@ -13,8 +13,9 @@ var current_health: int
 var max_health: int
 var attack_power: int
 var defense: int
+var display_name: String
 @export var combat_actions: Array[CombatAction]
-@export var display_name: String
+#@export var display_name: String
 var target_scale: float = 1.0
 @onready var audio: AudioStreamPlayer = $SFX
 var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
@@ -44,6 +45,7 @@ func _ready() -> void:
 		# (same as current health)
 		attack_power = character_data.attack_power
 		defense = character_data.defense
+		display_name = character_data.name
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
 	
