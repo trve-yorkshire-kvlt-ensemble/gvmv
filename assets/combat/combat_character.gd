@@ -1,15 +1,16 @@
 # TODO: programmatic update of movesets (currently assigning manually in UI)
 # but these could/should load from character data?
 # TODO: currently just using base melee damage amount - need to add in functionality for level multiplier
+# TODO: need to add something that persists health outside of battle - some kind of state???
 
 class_name CombatCharacter 
 extends Node2D
 
-#@export var character_data: CharacterData
+@export var character_data: CharacterData
 
 @export var is_player: bool 
-@export var current_health: int
-@export var max_health: int
+var current_health: int
+var max_health: int
 @export var combat_actions: Array[CombatAction]
 @export var display_name: String
 var target_scale: float = 1.0
@@ -31,9 +32,12 @@ signal OnHeal (health : int)
 
 func _ready() -> void:
 	sprite.texture = display_texture
-	#if character_data:
-		#current_health = character_data.max_health # not sure about this, won't this effectively heal the character every time we load the scene?
-#
+	if character_data:
+		print("selected character: " + character_data.name)
+		max_health = character_data.max_health
+		print("character max health: " + str(max_health))
+		current_health = character_data.max_health # not sure about this, won't this effectively heal the character every time we load the scene?
+		print("character current health at start of battle: " + str(current_health))
 		## Set the sprite based on the resource
 		#$Sprite2D.texture = character_data.sprite_texture
 	#else:

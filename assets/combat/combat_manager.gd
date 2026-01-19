@@ -114,27 +114,17 @@ func ai_decide_combat_action() -> CombatAction:
 	var ai_health_perc: float = float(ai.current_health) / float(ai.max_health)
 	
 	for action in actions:
-		print(action.display_name)
 		var weight: int = action.base_weight
 		if player.current_health <= action.base_melee_damage:
-			print("player health less than damage")
-			print("weight before multiplier: " + str(weight))
 			weight *= 3
-			print("weight after multiplier: " + str(weight))
 		if action.heal_amount >0:
-			print("weight before multiplier: " + str(weight))
 			weight *= 1 + (1 - ai_health_perc)
-			print("weight after multiplier: " + str(weight))
 		weights.append(weight)
-		for w in weights:
-			print("weights: "+ str(w))
 		total_weight += weight
-		print("total weight: " + str(total_weight))
 		
 	
 	var cumulative_weight = 0
 	var rand_weight = randi_range(0, total_weight)
-	print("rand weight: " + str(rand_weight))
 	
 	for i in len(actions):
 		cumulative_weight += weights[i]

@@ -31,17 +31,14 @@ func set_combat_actions(actions: Array[CombatAction]):
 		ca_buttons[i].set_combat_action(actions[i])
 
 func _button_pressed(button: CombatActionButton):
-	print("pressed")
 	combat_manager.player_cast_combat_action(button.combat_action)
 
 func _button_entered(button: CombatActionButton):
-	print("entered")
 	var ca = button.combat_action
 	description_text.text = "[b]" + ca.display_name + "[/b]\n" + ca.description
 	
 
 func _button_exited(button: CombatActionButton):
-	print("exited")
 	description_text.text = ""
 	
 func _on_pass_turn_button_pressed() -> void:

@@ -7,6 +7,7 @@
 script = ExtResource("1_iexhg")
 name = "Pixie"
 sprite = ExtResource("2_spir5")
+max_health = 80
 attack_power = 5
 base_magic = 9
 metadata/_custom_type_script = "uid://bhbjqxn7qf0ea"
