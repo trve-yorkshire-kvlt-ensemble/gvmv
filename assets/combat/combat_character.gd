@@ -31,7 +31,7 @@ signal OnTakeDamage(health : int)
 signal OnHeal (health : int)
 
 func _ready() -> void:
-	sprite.texture = display_texture
+	#sprite.texture = display_texture
 	if character_data:
 		print("selected character: " + character_data.name)
 		max_health = character_data.max_health
@@ -39,7 +39,7 @@ func _ready() -> void:
 		current_health = character_data.max_health # not sure about this, won't this effectively heal the character every time we load the scene?
 		print("character current health at start of battle: " + str(current_health))
 		## Set the sprite based on the resource
-		#$Sprite2D.texture = character_data.sprite_texture
+		sprite.texture = character_data.sprite
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
 	

@@ -1,12 +1,6 @@
 # TODO: initiative/speed to determine order of turns
 # TODO: expand for multiple characters on each team
-# TODO: add animations
-# TODO: add sfx
-# TODO: add battle music
-# TODO: not sure this is the best way to instantiate the character?
-# will need to load from somewhere with their data????
 # TODO: make the AI not shit
-# TODO: remove all the debugging printing stuff
 # TODO: enemy UI
 # TODO: display damage taken on screen
 
@@ -17,6 +11,8 @@ extends Node2D
 var current_character: CombatCharacter
 
 @onready var player_ui = $CanvasLayer/CombatActionsUI
+@onready var enemy_ui = $CanvasLayer/EnemyUI
+@onready var enemy_move_text = $CanvasLayer/EnemyUI/EnemyMoveText
 
 var game_over: bool = false
 @onready var end_screen = $CanvasLayer/CombatEndScreen
@@ -70,6 +66,7 @@ func next_turn() -> void:
 	
 	if current_character.is_player:
 		# disable AI UI if still active
+		enemy_ui.visible = false
 		# enable and set player UI
 		player_ui.visible = true
 		player_ui.set_combat_actions(player_character.combat_actions)
@@ -78,16 +75,16 @@ func next_turn() -> void:
 	else:
 		# disable player UI if still active
 		player_ui.visible = false
-		# enable AI UI - so like maybe just the name of the action the AI takes
 		# generate a wait time 
-		# add animations
-		var wait_time: float = randf_range(0.5, 1.5)
-		await get_tree().create_timer(wait_time).timeout
+		await get_tree().create_timer(0.5).timeout
 		var action_to_cast: CombatAction = ai_decide_combat_action()
 		if action_to_cast == null:
 			print("no action chosen")
 		else:
 			print("chosen action: " + action_to_cast.display_name)
+		enemy_move_text.text = "Thy enemy has used " + action_to_cast.display_name
+		# enable AI UI - so like maybe just the name of the action the AI takes
+		enemy_ui.visible = true
 		ai_character.cast_combat_action(action_to_cast, player_character)
 		await get_tree().create_timer(0.5).timeout
 		next_turn()

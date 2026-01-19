@@ -13,11 +13,8 @@ func _ready() -> void:
 		return
 	
 	max_value = character_data.max_health
-	value = max_value # this initialises health bar as full - we'll probably want to change this later
-	print("health bar max: "+str(max_value))
-	#max_value = char.max_health
-	#print("current health: " + str(char.current_health))
-	_update_value(max_value)
+	value = char.current_health
+	_update_value(value)
 	
 	char.OnTakeDamage.connect(_update_value)
 	char.OnHeal.connect(_update_value)

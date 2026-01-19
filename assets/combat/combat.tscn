@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="7_ybpw0"]
 [ext_resource type="Resource" uid="uid://cwgayo6kujsro" path="res://assets/combat/combat_actions/freeze.tres" id="9_0l2pc"]
 [ext_resource type="Resource" uid="uid://brbro22krvgfm" path="res://assets/combat/combat_actions/slime.tres" id="10_06pyi"]
-[ext_resource type="Resource" uid="uid://xtcb4n7lxr61" path="res://assets/characters/data/destroying_angel.tres" id="10_r2tfw"]
+[ext_resource type="Resource" uid="uid://dp1wpqackbpqq" path="res://assets/characters/data/owl.tres" id="11_5pw5b"]
 [ext_resource type="Script" uid="uid://cmj7vq6y056oc" path="res://assets/combat/combat_actions_ui.gd" id="12_tjhoe"]
 [ext_resource type="Script" uid="uid://dc23l4m4tvlcb" path="res://assets/combat/combat_action_button.gd" id="13_od2cl"]
 [ext_resource type="Script" uid="uid://o8121cdsvmet" path="res://assets/combat/combat_end_screen.gd" id="13_ybpw0"]
@@ -50,7 +50,7 @@ display_texture = ExtResource("4_2suc4")
 
 [node name="AICharacter" parent="." instance=ExtResource("3_b3ogi")]
 position = Vector2(185, -4)
-character_data = ExtResource("10_r2tfw")
+character_data = ExtResource("11_5pw5b")
 is_player = false
 combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("9_0l2pc"), ExtResource("10_06pyi"), ExtResource("6_od2cl")])
 display_name = "Destroying Angel"
@@ -156,6 +156,18 @@ offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Ok (restart battle)"
+
+[node name="EnemyUI" type="Panel" parent="CanvasLayer"]
+offset_left = 80.0
+offset_top = 246.0
+offset_right = 562.0
+offset_bottom = 272.0
+
+[node name="EnemyMoveText" type="Label" parent="CanvasLayer/EnemyUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 21.0
+text = "THE ENEMY HAS CAST A SHITTY MOVE"
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_0l2pc")
