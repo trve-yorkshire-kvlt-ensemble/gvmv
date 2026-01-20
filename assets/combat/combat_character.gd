@@ -5,6 +5,7 @@ class_name CombatCharacter
 extends Node2D
 
 const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
+const FLOATING_TEXT_SCENE = preload("res://assets/combat/floating_text.tscn")
 
 @export var character_data: CharacterData
 
@@ -24,6 +25,7 @@ var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
 var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 @onready var sprite: Sprite2D = $Sprite
 @export var display_texture: Texture2D
+@onready var number_spawn_pos = $NumberPos.global_position
 
 @onready var type_ui = $"../CanvasLayer/TypeUI"
 @onready var type_text = $"../CanvasLayer/TypeUI/TypeText"
@@ -78,12 +80,20 @@ func take_damage(amount: int, type):
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
 	_play_audio(take_damage_sfx)
+	var text_node = FLOATING_TEXT_SCENE.instantiate()
+	get_tree().root.add_child(text_node)
+	var text_colour = Color.RED
+	text_node.display(amount, text_colour, number_spawn_pos)
 	
 func heal(amount: int):
 	current_health += amount
 	current_health = clamp(current_health, 0, max_health)
 	OnHeal.emit(current_health)
 	_play_audio(heal_sfx)
+	var text_node = FLOATING_TEXT_SCENE.instantiate()
+	get_tree().root.add_child(text_node)
+	var text_colour = Color.GREEN
+	text_node.display(amount, text_colour, number_spawn_pos)
 	
 func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 	if action == null:
@@ -103,23 +113,9 @@ func _play_audio(stream: AudioStream):
 	audio.stream = stream
 	audio.play()
 
-#func is_alive() -> bool:
-	#return current_health > 0
 
-#func take_damage(amount: int) -> int:
-	#var damage_taken: int = character_data.calculate_defense(amount)
-	#current_health -= damage_taken
-	#current_health = max(0, current_health)
-	#return damage_taken
 
-#func attack_target(target: CombatCharacter) -> int:
-	#var damage_dealt: int = character_data.calculate_attack(target.character_data.defense)
-	#target.take_damage(damage_dealt)
-	#return damage_dealt
 
-#func heal(amount: int) -> void:
-	#current_health += amount
-	#current_health = min(current_health, character_data.max_health)
 
 #func gain_xp(amount: int) -> void:
 	#current_xp += amount
@@ -149,3 +145,23 @@ func _play_audio(stream: AudioStream):
 	#current_hp += hp_gain # Heals the character proportional to the Max HP gain
 	
 	#print("%s leveled up! New Level: %s" % [character_data.name, character_data.level])
+
+
+########## lolo's old funcs that I think are superceded ##########
+#func is_alive() -> bool:
+	#return current_health > 0
+
+#func take_damage(amount: int) -> int:
+	#var damage_taken: int = character_data.calculate_defense(amount)
+	#current_health -= damage_taken
+	#current_health = max(0, current_health)
+	#return damage_taken
+
+#func attack_target(target: CombatCharacter) -> int:
+	#var damage_dealt: int = character_data.calculate_attack(target.character_data.defense)
+	#target.take_damage(damage_dealt)
+	#return damage_dealt
+	
+#func heal(amount: int) -> void:
+	#current_health += amount
+	#current_health = min(current_health, character_data.max_health)

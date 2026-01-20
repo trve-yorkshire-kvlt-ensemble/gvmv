@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://l1u74vy10il4"]
+
+[ext_resource type="Script" uid="uid://b24etndku5oue" path="res://assets/combat/floating_text.gd" id="1_2ryt7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iss5k"]
+shadow_size = 9
+shadow_color = Color(0, 0, 0, 0.49411765)
+
+[node name="FloatingText" type="Label"]
+offset_right = 40.0
+offset_bottom = 21.0
+text = "73"
+label_settings = SubResource("LabelSettings_iss5k")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_2ryt7")

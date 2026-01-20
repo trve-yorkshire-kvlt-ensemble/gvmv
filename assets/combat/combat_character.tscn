@@ -50,3 +50,6 @@ vertical_alignment = 1
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 volume_db = 5.109
+
+[node name="NumberPos" type="Marker2D" parent="."]
+position = Vector2(-2, -104)
