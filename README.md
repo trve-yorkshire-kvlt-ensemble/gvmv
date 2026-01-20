@@ -9,4 +9,15 @@ Will you rid Yorkshire of botulism, or will you hasten its fermented demise?
 [Vvsvvn bvvrd](https://docs.google.com/presentation/d/1-gpM2aBmNoO8I_ijRu4uSzDOuXCfIwV9oML1c0HSD5E/edit?usp=drivesdk)
 
 ## TVDV
-- [ ] combat next step: UI
+- [ ] discussion RE combat!!!!
+	- [ ] should there be diff magic spells or just a "cast magick" with the magick type being set from the lantern pentangle bits??
+	- [ ] how can we use items in battle?
+	- [ ] how to deal with placeholders (e.g. background)
+	- [ ] how do we want to manage levelling (maybe just a percentage increase in stats??)
+	- [ ] how do we want to manage movesets? how do people get new moves? or maybe they don't?
+	- [ ] how can we implement party mechanics?
+	- [ ] use of global data to persist e.g. current health, xp
+	- [ ] what do we want to do about loot?
+	- [ ] how do we actually want type matchups to work
+	- [ ] how should the AI work?
+	- [ ] what battle effects do we want other than damage/heal (buffs/debuff/poison etc)

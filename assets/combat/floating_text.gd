@@ -2,15 +2,15 @@ extends Label
 
 # our merciful ai overlord gemini wrote this script
 
-func display(value: int, color: Color, start_pos: Vector2):
+func display(value: int, color: Color, start_pos: Vector2) -> void:
 	text = str(value)
 	modulate = color
 	global_position = start_pos
 	
-	var tween = create_tween().set_parallel(true)
+	var tween: Tween = create_tween().set_parallel(true)
 	
 	# 1. The "Burst" Effect: Move it up and slightly sideways
-	var move_to = start_pos + Vector2(randf_range(-20, 20), -50)
+	var move_to: Vector2 = start_pos + Vector2(randf_range(-20, 20), -50)
 	tween.tween_property(self, "global_position", move_to, 0.75).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	# 2. The Scale Effect: Start small, pop big, then settle

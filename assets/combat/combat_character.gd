@@ -1,15 +1,21 @@
 # TODO: programmatic update of movesets (currently assigning manually in chcracter_data)
 # TODO: need to add something that persists health outside of battle - some kind of state???
 # TODO: implement xp and levelling (probs need to discuss!!!)
+# TODO: implement accuracy/evasion
+# TODO: implement other move types (e.g. mist which affects accuracy? poison?? etc)
+# TODO: functionalise floating text bit rather than duplicate in heal and damage
 
 class_name CombatCharacter 
 extends Node2D
 
+# constants
 const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 const FLOATING_TEXT_SCENE = preload("res://assets/combat/floating_text.tscn")
+# const base_xp_needed: int = 100
+# const base_xp_multiplier: float = 1.5
 
+# character
 @export var character_data: CharacterData
-
 @export var is_player: bool 
 var current_health: int
 var max_health: int
@@ -19,105 +25,104 @@ var display_name: String
 var combat_actions: Array[CombatAction]
 var base_magic: MagicEffect
 var magic_weakness: MagicEffect
-#@export var display_name: String
-var target_scale: float = 1.0
-@onready var audio: AudioStreamPlayer = $SFX
-var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
-var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
-@onready var sprite: Sprite2D = $Sprite
-@export var display_texture: Texture2D
-@onready var number_spawn_pos = $NumberPos.global_position
-
-@onready var type_ui = $"../CanvasLayer/TypeUI"
-@onready var type_text = $"../CanvasLayer/TypeUI/TypeText"
-
-
 # var current_xp: int = 0
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
 
-# const base_xp_needed: int = 100
-# const base_xp_multiplier: float = 1.5
+# audio
+@onready var audio: AudioStreamPlayer = $SFX
+var take_damage_sfx: AudioStream = preload("res://assets/combat/sfx/ouch.wav")
+var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 
+# sprite visuals
+var target_scale: float = 1.0
+@onready var sprite: Sprite2D = $Sprite
+@export var display_texture: Texture2D
+
+# UI
+@onready var number_spawn_pos: Vector2 = $NumberPos.global_position
+@onready var type_ui: Panel = $"../CanvasLayer/TypeUI"
+@onready var type_text: Label = $"../CanvasLayer/TypeUI/TypeText"
+
+# signals
 signal OnTakeDamage(health : int)
 signal OnHeal (health : int)
 
 func _ready() -> void:
-	#sprite.texture = display_texture
 	if character_data:
 		max_health = character_data.max_health
 		current_health = character_data.max_health # need to change this to persistent health between battles
 		## Set the sprite based on the resource
 		sprite.texture = character_data.sprite
-		# set the characters level based on resource
-		# although probably level should be a state thing rather than on the resource
-		# (same as current health)
 		attack_power = character_data.attack_power
 		defense = character_data.defense
 		display_name = character_data.name
 		combat_actions = character_data.combat_actions
 		base_magic = character_data.base_magic
 		magic_weakness = character_data.magic_weakness
-	#else:
-		#push_error("Character data not assigned for %s" % self.name)
-	
 
-func _process(delta):
+func _process(delta: float) -> void:
 	scale.x = lerp(scale.x, target_scale, delta*10)
 	scale.y = lerp(scale.y, target_scale, delta*10)
 
-func begin_turn():
+func begin_turn() -> void:
 	target_scale = 1.1
 
-func end_turn():
+func end_turn() -> void:
 	target_scale = 0.9
 	
-func take_damage(amount: int, type):
+func take_damage(amount: int, type: MagicEffect) -> void:
+	# roll for damage reduction (based on defense stat)
 	var damage_reduction: int = randi_range(0, defense)
 	amount -= damage_reduction
+	# additional damage if weak to attack type
+	# NB. this sort of a placeholder... this isn't good logic ^_^
 	if type == magic_weakness:
 		type_ui.visible = true
 		type_text.text = character_data.name + " is weak against " + MagicEffect.keys()[type]
-		amount += damage_reduction # remove defense if weak
+		amount += damage_reduction
 	current_health -= amount
-	OnTakeDamage.emit(current_health)
+	OnTakeDamage.emit(current_health) # this triggers visuals
 	_play_audio(take_damage_sfx)
-	var text_node = FLOATING_TEXT_SCENE.instantiate()
+	# trigger floating damage label
+	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
 	get_tree().root.add_child(text_node)
-	var text_colour = Color.RED
+	var text_colour: Color = Color.RED
 	text_node.display(amount, text_colour, number_spawn_pos)
 	
-func heal(amount: int):
+func heal(amount: int) -> void:
 	current_health += amount
-	current_health = clamp(current_health, 0, max_health)
-	OnHeal.emit(current_health)
+	current_health = clamp(current_health, 0, max_health) # keep health within min/max bounds
+	OnHeal.emit(current_health) # triggers visual
 	_play_audio(heal_sfx)
-	var text_node = FLOATING_TEXT_SCENE.instantiate()
+	# trigger floating heal label
+	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
 	get_tree().root.add_child(text_node)
-	var text_colour = Color.GREEN
+	var text_colour: Color = Color.GREEN
 	text_node.display(amount, text_colour, number_spawn_pos)
 	
-func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
+func cast_combat_action(action: CombatAction, opponent: CombatCharacter) -> void:
 	if action == null:
 		return
+
 	if action.base_melee_damage > 0:
-		print("actions damage type: " + str(action.damage_type))
+		# roll for additional damage based on attack power
 		var additional_damage: int = randi_range(0, attack_power)
 		var damage: int = action.base_melee_damage + additional_damage
+		# double roll if damage type aligns with base magic
+		# could maybe roll again here instead?
+		# or could get rid of this if we are only letting characters cast their base magic
 		if action.damage_type == base_magic:
-			print(character_data.name + " casts extra powerful " + MagicEffect.keys()[action.damage_type])
-			damage += additional_damage # double additional damage if type match
+			damage += additional_damage
 		opponent.take_damage(damage, action.damage_type)
+
 	if action.heal_amount >0:
 		heal(action.heal_amount)
 		
-func _play_audio(stream: AudioStream):
+func _play_audio(stream: AudioStream) -> void:
 	audio.stream = stream
 	audio.play()
 
-
-
-
-
+########## lolo's xp stuff that we probs still want to use ##########
 #func gain_xp(amount: int) -> void:
 	#current_xp += amount
 	#
@@ -146,6 +151,9 @@ func _play_audio(stream: AudioStream):
 	#current_hp += hp_gain # Heals the character proportional to the Max HP gain
 	
 	#print("%s leveled up! New Level: %s" % [character_data.name, character_data.level])
+
+
+
 
 
 ########## lolo's old funcs that I think are superceded ##########

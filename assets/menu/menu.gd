@@ -1,6 +1,6 @@
+# TODO - actually make this good. and like do stuff.
+
 extends Control
-
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
