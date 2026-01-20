@@ -1,5 +1,6 @@
 # TODO: programmatic update of movesets (currently assigning manually in chcracter_data)
 # TODO: need to add something that persists health outside of battle - some kind of state???
+# TODO: implement xp and levelling (probs need to discuss!!!)
 
 class_name CombatCharacter 
 extends Node2D

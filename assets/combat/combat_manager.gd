@@ -1,7 +1,6 @@
 # TODO: initiative/speed to determine order of turns
 # TODO: expand for multiple characters on each team
 # TODO: make the AI not shit
-# TODO: display damage taken on screen
 
 extends Node2D
 
