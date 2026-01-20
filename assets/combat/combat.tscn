@@ -1,19 +1,13 @@
-[gd_scene load_steps=21 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=15 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
 [ext_resource type="Script" uid="uid://bqycukfupl38p" path="res://assets/combat/moving_background.gd" id="3_06pyi"]
 [ext_resource type="PackedScene" uid="uid://bihw6a84hstb1" path="res://assets/combat/combat_character.tscn" id="3_b3ogi"]
 [ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="4_2suc4"]
-[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="4_b3ogi"]
 [ext_resource type="Resource" uid="uid://bmkyijajpu76f" path="res://assets/characters/data/pixie.tres" id="5_r2tfw"]
-[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="5_tjhoe"]
 [ext_resource type="Texture2D" uid="uid://svipopvjbj4g" path="res://assets/characters/sprites/destroying_angel.png" id="5_ymw0h"]
-[ext_resource type="Resource" uid="uid://cxhkq6rginryu" path="res://assets/combat/combat_actions/heal.tres" id="6_od2cl"]
-[ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="7_ybpw0"]
-[ext_resource type="Resource" uid="uid://cwgayo6kujsro" path="res://assets/combat/combat_actions/freeze.tres" id="9_0l2pc"]
-[ext_resource type="Resource" uid="uid://brbro22krvgfm" path="res://assets/combat/combat_actions/slime.tres" id="10_06pyi"]
-[ext_resource type="Resource" uid="uid://dp1wpqackbpqq" path="res://assets/characters/data/owl.tres" id="11_5pw5b"]
+[ext_resource type="Resource" uid="uid://xtcb4n7lxr61" path="res://assets/characters/data/destroying_angel.tres" id="7_tjhoe"]
 [ext_resource type="Script" uid="uid://cmj7vq6y056oc" path="res://assets/combat/combat_actions_ui.gd" id="12_tjhoe"]
 [ext_resource type="Script" uid="uid://dc23l4m4tvlcb" path="res://assets/combat/combat_action_button.gd" id="13_od2cl"]
 [ext_resource type="Script" uid="uid://o8121cdsvmet" path="res://assets/combat/combat_end_screen.gd" id="13_ybpw0"]
@@ -44,14 +38,12 @@ colour_lerp = SubResource("Gradient_06pyi")
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_b3ogi")]
 position = Vector2(-197, -6)
 character_data = ExtResource("5_r2tfw")
-combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("5_tjhoe"), ExtResource("7_ybpw0"), ExtResource("6_od2cl")])
 display_texture = ExtResource("4_2suc4")
 
 [node name="AICharacter" parent="." instance=ExtResource("3_b3ogi")]
 position = Vector2(185, -4)
-character_data = ExtResource("11_5pw5b")
+character_data = ExtResource("7_tjhoe")
 is_player = false
-combat_actions = Array[ExtResource("4_b3ogi")]([ExtResource("9_0l2pc"), ExtResource("10_06pyi"), ExtResource("6_od2cl")])
 display_texture = ExtResource("5_ymw0h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

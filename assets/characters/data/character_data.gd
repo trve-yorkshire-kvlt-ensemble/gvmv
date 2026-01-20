@@ -12,7 +12,10 @@ const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 @export var defense: int = 5
 @export var speed: int = 10
 @export var base_magic: MagicEffect = MagicEffect.FIRE
+@export var combat_actions: Array[CombatAction]
+@export var magic_weakness: MagicEffect = MagicEffect.ICE
 @export var initially_hostile: bool = false
+
 
 
 ## I've handled for this in other combat bits but leaving here in case we need to reference it

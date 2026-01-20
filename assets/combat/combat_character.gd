@@ -6,6 +6,8 @@
 class_name CombatCharacter 
 extends Node2D
 
+const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
+
 @export var character_data: CharacterData
 
 @export var is_player: bool 
@@ -14,7 +16,9 @@ var max_health: int
 var attack_power: int
 var defense: int
 var display_name: String
-@export var combat_actions: Array[CombatAction]
+var combat_actions: Array[CombatAction]
+var base_magic: MagicEffect
+var magic_weakness: MagicEffect
 #@export var display_name: String
 var target_scale: float = 1.0
 @onready var audio: AudioStreamPlayer = $SFX
@@ -46,6 +50,9 @@ func _ready() -> void:
 		attack_power = character_data.attack_power
 		defense = character_data.defense
 		display_name = character_data.name
+		combat_actions = character_data.combat_actions
+		base_magic = character_data.base_magic
+		magic_weakness = character_data.base_magic
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
 	
@@ -60,9 +67,12 @@ func begin_turn():
 func end_turn():
 	target_scale = 0.9
 	
-func take_damage(amount: int):
+func take_damage(amount: int, type):
 	var damage_reduction: int = randi_range(0, defense)
 	amount -= damage_reduction
+	if type == magic_weakness:
+		print(character_data.name + " weak to " + type)
+		amount += damage_reduction # remove defense if weak
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
 	_play_audio(take_damage_sfx)
@@ -77,8 +87,13 @@ func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 	if action == null:
 		return
 	if action.base_melee_damage > 0:
-		var additional_damage = randi_range(0, attack_power)
-		opponent.take_damage(action.base_melee_damage + additional_damage)
+		print("actions damage type: " + str(action.damage_type))
+		var additional_damage: int = randi_range(0, attack_power)
+		var damage: int = action.base_melee_damage + additional_damage
+		if action.damage_type == base_magic:
+			print(character_data.name + " casts extra powerful " + str(action.damage_type))
+			damage += additional_damage # double additional damage if type match
+		opponent.take_damage(damage, action.damage_type)
 	if action.heal_amount >0:
 		heal(action.heal_amount)
 		

@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://cwgayo6kujsro"]
 
-[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_n0v7h"]
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_yyrss"]
 
 [resource]
-script = ExtResource("1_n0v7h")
-display_name = "Freeze"
+script = ExtResource("1_yyrss")
+display_name = "Ice"
 description = "Cast fristy frosty ice magick"
 base_melee_damage = 10
-damage_type = "Freeze"
+damage_type = 1
 metadata/_custom_type_script = "uid://brwsxfkgfce7n"

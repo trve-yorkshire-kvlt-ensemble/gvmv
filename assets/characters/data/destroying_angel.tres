@@ -1,10 +1,17 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://xtcb4n7lxr61"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://xtcb4n7lxr61"]
 
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_8cv87"]
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_iofst"]
 [ext_resource type="Texture2D" uid="uid://svipopvjbj4g" path="res://assets/characters/sprites/destroying_angel.png" id="2_1i7q3"]
+[ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="2_uwvmi"]
+[ext_resource type="Resource" uid="uid://cwgayo6kujsro" path="res://assets/combat/combat_actions/ice.tres" id="3_8cv87"]
+[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="4_u0wdx"]
 
 [resource]
 script = ExtResource("1_iofst")
 name = "destroying angel"
 sprite = ExtResource("2_1i7q3")
+base_magic = 1
+combat_actions = Array[ExtResource("1_8cv87")]([ExtResource("2_uwvmi"), ExtResource("3_8cv87"), ExtResource("4_u0wdx")])
+magic_weakness = 9
 initially_hostile = true

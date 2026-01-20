@@ -6,6 +6,7 @@
 script = ExtResource("1_wyxqy")
 display_name = "Slime"
 description = "Slippery sardines! (NB not currently implemented)"
+base_melee_damage = 10
 base_weight = 150
-damage_type = "Slime"
+damage_type = 9
 metadata/_custom_type_script = "uid://brwsxfkgfce7n"

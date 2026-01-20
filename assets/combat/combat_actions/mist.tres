@@ -7,5 +7,5 @@ script = ExtResource("1_bdf7d")
 display_name = "Mist"
 description = "Shroud thy target in mist (NB not currently implemented)"
 base_weight = 150
-damage_type = "Mist"
+damage_type = 10
 metadata/_custom_type_script = "uid://brwsxfkgfce7n"
