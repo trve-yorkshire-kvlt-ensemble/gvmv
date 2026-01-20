@@ -17,6 +17,8 @@ var game_over: bool = false
 @onready var end_screen = $CanvasLayer/CombatEndScreen
 @onready var stats_text = $CanvasLayer/CombatEndScreen/StatsText
 
+@onready var type_ui = $CanvasLayer/TypeUI
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_character.OnTakeDamage.connect(_on_player_take_damage)
@@ -35,6 +37,8 @@ func _on_ai_take_damage(health: int):
 		end_combat(player_character)
 
 func end_combat(winner: CombatCharacter):
+	type_ui.visible = false
+	enemy_ui.visible = false
 	game_over = true
 	end_screen.visible = true
 	if winner == player_character:
@@ -50,6 +54,8 @@ func next_turn() -> void:
 	# end previous turn
 	if current_character != null:
 		current_character.end_turn()
+	# hide type ui if visible
+	type_ui.visible = false
 	# choose next character
 	if current_character == null or current_character == ai_character:
 		# change this so that if character is null (i.e. at the start of the scene)

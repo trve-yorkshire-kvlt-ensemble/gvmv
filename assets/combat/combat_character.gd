@@ -1,6 +1,4 @@
-# TODO: programmatic update of movesets (currently assigning manually in UI)
-# but these could/should load from character data?
-# TODO: currently just using base melee damage amount - need to add in functionality for level multiplier
+# TODO: programmatic update of movesets (currently assigning manually in chcracter_data)
 # TODO: need to add something that persists health outside of battle - some kind of state???
 
 class_name CombatCharacter 
@@ -27,6 +25,9 @@ var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 @onready var sprite: Sprite2D = $Sprite
 @export var display_texture: Texture2D
 
+@onready var type_ui = $"../CanvasLayer/TypeUI"
+@onready var type_text = $"../CanvasLayer/TypeUI/TypeText"
+
 
 # var current_xp: int = 0
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
@@ -52,7 +53,7 @@ func _ready() -> void:
 		display_name = character_data.name
 		combat_actions = character_data.combat_actions
 		base_magic = character_data.base_magic
-		magic_weakness = character_data.base_magic
+		magic_weakness = character_data.magic_weakness
 	#else:
 		#push_error("Character data not assigned for %s" % self.name)
 	
@@ -71,7 +72,8 @@ func take_damage(amount: int, type):
 	var damage_reduction: int = randi_range(0, defense)
 	amount -= damage_reduction
 	if type == magic_weakness:
-		print(character_data.name + " weak to " + type)
+		type_ui.visible = true
+		type_text.text = character_data.name + " is weak against " + MagicEffect.keys()[type]
 		amount += damage_reduction # remove defense if weak
 	current_health -= amount
 	OnTakeDamage.emit(current_health)
@@ -91,7 +93,7 @@ func cast_combat_action(action: CombatAction, opponent: CombatCharacter):
 		var additional_damage: int = randi_range(0, attack_power)
 		var damage: int = action.base_melee_damage + additional_damage
 		if action.damage_type == base_magic:
-			print(character_data.name + " casts extra powerful " + str(action.damage_type))
+			print(character_data.name + " casts extra powerful " + MagicEffect.keys()[action.damage_type])
 			damage += additional_damage # double additional damage if type match
 		opponent.take_damage(damage, action.damage_type)
 	if action.heal_amount >0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=16 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
@@ -18,6 +18,10 @@ colors = PackedColorArray(2.2356733e-05, 0.60120463, 1.92523e-05, 1, 0.43999884,
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjhoe"]
 bg_color = Color(0.09957226, 0.23278406, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tjhoe"]
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.5568628)
 
 [node name="Combat" type="Node2D"]
 script = ExtResource("1_on8wl")
@@ -158,6 +162,25 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
 text = "THE ENEMY HAS CAST A SHITTY MOVE"
+
+[node name="TypeUI" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 197.0
+offset_top = 61.0
+offset_right = 393.0
+offset_bottom = 114.0
+
+[node name="TypeText" type="Label" parent="CanvasLayer/TypeUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.09200001
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 177.968
+offset_bottom = 52.0
+text = "Pixie is weak to ICE"
+label_settings = SubResource("LabelSettings_tjhoe")
+autowrap_mode = 2
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("15_0l2pc")
