@@ -1,9 +1,15 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://nv1etdytut0l"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://nv1etdytut0l"]
 
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_ayn0m"]
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_ek4es"]
 [ext_resource type="Texture2D" uid="uid://cki46aa3di3tt" path="res://assets/characters/sprites/crow.png" id="2_07p7e"]
+[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="2_cr45f"]
+[ext_resource type="Resource" uid="uid://cwgayo6kujsro" path="res://assets/combat/combat_actions/ice.tres" id="3_2b61q"]
+[ext_resource type="Resource" uid="uid://cxhkq6rginryu" path="res://assets/combat/combat_actions/heal.tres" id="4_ca1kp"]
 
 [resource]
 script = ExtResource("1_ayn0m")
 name = "Crow"
 sprite = ExtResource("2_07p7e")
+speed = 1
+combat_actions = Array[ExtResource("1_ek4es")]([ExtResource("2_cr45f"), ExtResource("3_2b61q"), ExtResource("4_ca1kp")])

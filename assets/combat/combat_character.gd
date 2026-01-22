@@ -25,6 +25,8 @@ var display_name: String
 var combat_actions: Array[CombatAction]
 var base_magic: MagicEffect
 var magic_weakness: MagicEffect
+var speed: int
+var character_name: String
 # var current_xp: int = 0
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
 
@@ -43,9 +45,15 @@ var target_scale: float = 1.0
 @onready var type_ui: Panel = $"../CanvasLayer/TypeUI"
 @onready var type_text: Label = $"../CanvasLayer/TypeUI/TypeText"
 
+# multi party ui stuff (suggested by our ai overlords but I don't 100% get it lol)
+@export var party_index := 0
+@export var is_enemy := false
+# this needs to be referenced in the combat_manager to dynamically determine spacing
+
 # signals
-signal OnTakeDamage(health : int)
-signal OnHeal (health : int)
+signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool)
+signal OnHeal(current_health: int, amount: int)
+signal OnDied()
 
 func _ready() -> void:
 	if character_data:
@@ -59,16 +67,21 @@ func _ready() -> void:
 		combat_actions = character_data.combat_actions
 		base_magic = character_data.base_magic
 		magic_weakness = character_data.magic_weakness
+		speed = character_data.speed
+		character_name = character_data.name
 
 func _process(delta: float) -> void:
 	scale.x = lerp(scale.x, target_scale, delta*10)
 	scale.y = lerp(scale.y, target_scale, delta*10)
 
+func is_alive() -> bool:
+	return current_health > 0
+
 func begin_turn() -> void:
-	target_scale = 1.1
+	target_scale = 0.8
 
 func end_turn() -> void:
-	target_scale = 0.9
+	target_scale = 0.6
 	
 func take_damage(amount: int, type: MagicEffect) -> void:
 	# roll for damage reduction (based on defense stat)
@@ -76,47 +89,86 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	amount -= damage_reduction
 	# additional damage if weak to attack type
 	# NB. this sort of a placeholder... this isn't good logic ^_^
+	var was_weak:= false
 	if type == magic_weakness:
-		type_ui.visible = true
-		type_text.text = character_data.name + " is weak against " + MagicEffect.keys()[type]
+		was_weak = true
+		# commenting this stuff out so can deal with it via signal instead
+		#type_ui.visible = true
+		#type_text.text = character_data.name + " is weak against " + MagicEffect.keys()[type]
 		amount += damage_reduction
 	current_health -= amount
-	OnTakeDamage.emit(current_health) # this triggers visuals
+	current_health = max(current_health, 0)
+	OnTakeDamage.emit(current_health, amount, type, was_weak) # this triggers visuals etc
 	_play_audio(take_damage_sfx)
+	
+	if current_health <= 0:
+		print("oh no, someone has died")
+		OnDied.emit()
+	# going to change the below to be triggered by the signal instead
 	# trigger floating damage label
-	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
-	get_tree().root.add_child(text_node)
-	var text_colour: Color = Color.RED
-	text_node.display(amount, text_colour, number_spawn_pos)
+	#var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
+	#get_tree().root.add_child(text_node)
+	#var text_colour: Color = Color.RED
+	#text_node.display(amount, text_colour, number_spawn_pos)
 	
 func heal(amount: int) -> void:
 	current_health += amount
 	current_health = clamp(current_health, 0, max_health) # keep health within min/max bounds
-	OnHeal.emit(current_health) # triggers visual
+	OnHeal.emit(current_health, amount) # triggers visual
 	_play_audio(heal_sfx)
 	# trigger floating heal label
 	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
 	get_tree().root.add_child(text_node)
 	var text_colour: Color = Color.GREEN
 	text_node.display(amount, text_colour, number_spawn_pos)
-	
-func cast_combat_action(action: CombatAction, opponent: CombatCharacter) -> void:
+
+func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	if action == null:
 		return
+	for target in targets:
+		if action.base_melee_damage > 0:
+			# roll for additional damage based on attack power
+			var additional_damage: int = randi_range(0, attack_power)
+			var damage: int = action.base_melee_damage + additional_damage
+			# double roll if damage type aligns with base magic
+			# could maybe roll again here instead?
+			# or could get rid of this if we are only letting characters cast their base magic
+			if action.damage_type == base_magic:
+				damage += additional_damage
+			print("dealing " + str(damage) + " damage!")
+			target.take_damage(damage, action.damage_type)
 
-	if action.base_melee_damage > 0:
-		# roll for additional damage based on attack power
-		var additional_damage: int = randi_range(0, attack_power)
-		var damage: int = action.base_melee_damage + additional_damage
-		# double roll if damage type aligns with base magic
-		# could maybe roll again here instead?
-		# or could get rid of this if we are only letting characters cast their base magic
-		if action.damage_type == base_magic:
-			damage += additional_damage
-		opponent.take_damage(damage, action.damage_type)
+		if action.heal_amount >0:
+			heal(action.heal_amount)
 
-	if action.heal_amount >0:
-		heal(action.heal_amount)
+# thinking about state of e.g. xp and health:
+# something like this?
+# need to look at lyra's global data thingie
+#func load_from_state(state):
+	#current_health = state.current_health
+#
+#func save_to_state(state):
+	#state.current_health = current_health
+
+
+# refactoring cast_combat_action for party dynamics... this is the old version:	
+#func cast_combat_action(action: CombatAction, opponent: CombatCharacter) -> void:
+	#if action == null:
+		#return
+#
+	#if action.base_melee_damage > 0:
+		## roll for additional damage based on attack power
+		#var additional_damage: int = randi_range(0, attack_power)
+		#var damage: int = action.base_melee_damage + additional_damage
+		## double roll if damage type aligns with base magic
+		## could maybe roll again here instead?
+		## or could get rid of this if we are only letting characters cast their base magic
+		#if action.damage_type == base_magic:
+			#damage += additional_damage
+		#opponent.take_damage(damage, action.damage_type)
+#
+	#if action.heal_amount >0:
+		#heal(action.heal_amount)
 		
 func _play_audio(stream: AudioStream) -> void:
 	audio.stream = stream
@@ -157,8 +209,6 @@ func _play_audio(stream: AudioStream) -> void:
 
 
 ########## lolo's old funcs that I think are superceded ##########
-#func is_alive() -> bool:
-	#return current_health > 0
 
 #func take_damage(amount: int) -> int:
 	#var damage_taken: int = character_data.calculate_defense(amount)

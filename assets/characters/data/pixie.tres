@@ -13,6 +13,7 @@ name = "Pixie"
 sprite = ExtResource("2_spir5")
 max_health = 80
 attack_power = 5
+speed = 2
 base_magic = 9
 combat_actions = Array[ExtResource("1_clpo3")]([ExtResource("2_74mk7"), ExtResource("3_t7gl5"), ExtResource("4_ochlb")])
 metadata/_custom_type_script = "uid://bhbjqxn7qf0ea"

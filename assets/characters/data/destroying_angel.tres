@@ -11,6 +11,7 @@
 script = ExtResource("1_iofst")
 name = "destroying angel"
 sprite = ExtResource("2_1i7q3")
+speed = 4
 base_magic = 1
 combat_actions = Array[ExtResource("1_8cv87")]([ExtResource("2_uwvmi"), ExtResource("3_8cv87"), ExtResource("4_u0wdx")])
 magic_weakness = 9

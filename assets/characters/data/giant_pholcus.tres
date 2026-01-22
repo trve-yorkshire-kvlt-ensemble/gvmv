@@ -1,10 +1,16 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://ciuwikdymj720"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://ciuwikdymj720"]
 
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_oc8k4"]
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_se3tb"]
 [ext_resource type="Texture2D" uid="uid://b3w7xiov0j0mr" path="res://assets/characters/sprites/pholcus.png" id="2_gmqq1"]
+[ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="2_y3upd"]
+[ext_resource type="Resource" uid="uid://brbro22krvgfm" path="res://assets/combat/combat_actions/slime.tres" id="3_umwmh"]
+[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="4_hnc48"]
 
 [resource]
 script = ExtResource("1_oc8k4")
 name = "Giant Pholcus"
 sprite = ExtResource("2_gmqq1")
+speed = 5
+combat_actions = Array[ExtResource("1_se3tb")]([ExtResource("2_y3upd"), ExtResource("3_umwmh"), ExtResource("4_hnc48")])
 initially_hostile = true

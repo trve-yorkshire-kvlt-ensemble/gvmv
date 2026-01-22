@@ -14,11 +14,11 @@ func _ready() -> void:
 	
 	max_value = character_data.max_health
 	value = character.current_health
-	_update_value(int(value))
+	_update_value(int(value), null, null, null)
 	
 	character.OnTakeDamage.connect(_update_value)
 	character.OnHeal.connect(_update_value)
 
-func _update_value(health: int) -> void:
-	value = health
-	health_text.text = str(health) + " / " + str(int(max_value))
+func _update_value(current_health: int, amount = null, type = null, was_weak = null ) -> void:
+	#value = amount
+	health_text.text = str(current_health) + " / " + str(int(max_value))

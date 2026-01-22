@@ -26,6 +26,7 @@ func set_combat_actions(actions: Array[CombatAction]) -> void:
 			
 		ca_buttons[i].visible = true
 		ca_buttons[i].set_combat_action(actions[i])
+		print("assigning combat action to button: " + str(actions[i].display_name))
 
 func _button_pressed(button: CombatActionButton) -> void:
 	combat_manager.player_cast_combat_action(button.combat_action)

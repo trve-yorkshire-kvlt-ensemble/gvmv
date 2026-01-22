@@ -1,10 +1,16 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=3 format=3 uid="uid://bgoocdpt3o1ds"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=7 format=3 uid="uid://bgoocdpt3o1ds"]
 
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_1xpd8"]
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_lqhtn"]
 [ext_resource type="Texture2D" uid="uid://bor7txuhveq2v" path="res://assets/characters/sprites/fungal_mat.png" id="2_fdyql"]
+[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="2_li1pl"]
+[ext_resource type="Resource" uid="uid://brbro22krvgfm" path="res://assets/combat/combat_actions/slime.tres" id="3_7j6hs"]
+[ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="4_ua3bt"]
 
 [resource]
 script = ExtResource("1_1xpd8")
 name = "fungal mat"
 sprite = ExtResource("2_fdyql")
+speed = 3
+combat_actions = Array[ExtResource("1_lqhtn")]([ExtResource("2_li1pl"), ExtResource("3_7j6hs"), ExtResource("4_ua3bt")])
 initially_hostile = true
