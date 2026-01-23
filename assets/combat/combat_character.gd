@@ -10,7 +10,7 @@ extends Node2D
 
 # constants
 const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
-const FLOATING_TEXT_SCENE = preload("res://assets/combat/floating_text.tscn")
+#const FLOATING_TEXT_SCENE = preload("res://assets/combat/floating_text.tscn")
 # const base_xp_needed: int = 100
 # const base_xp_multiplier: float = 1.5
 
@@ -41,7 +41,7 @@ var target_scale: float = 1.0
 @export var display_texture: Texture2D
 
 # UI
-@onready var number_spawn_pos: Vector2 = $NumberPos.global_position
+#@onready var number_spawn_pos: Vector2 = $NumberPos.global_position
 @onready var type_ui: Panel = $"../CanvasLayer/TypeUI"
 @onready var type_text: Label = $"../CanvasLayer/TypeUI/TypeText"
 
@@ -117,10 +117,10 @@ func heal(amount: int) -> void:
 	OnHeal.emit(current_health, amount) # triggers visual
 	_play_audio(heal_sfx)
 	# trigger floating heal label
-	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
-	get_tree().root.add_child(text_node)
-	var text_colour: Color = Color.GREEN
-	text_node.display(amount, text_colour, number_spawn_pos)
+	#var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
+	#get_tree().root.add_child(text_node)
+	#var text_colour: Color = Color.GREEN
+	#text_node.display(amount, text_colour, number_spawn_pos)
 
 func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	if action == null:
