@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://bdghlciw3t0wn"]
+
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_cqme7"]
+
+[resource]
+script = ExtResource("1_cqme7")
+display_name = "Fire All"
+description = "Cast ur enemies into the pits of hvll"
+base_melee_damage = 10
+target_type = 1
+metadata/_custom_type_script = "uid://brwsxfkgfce7n"

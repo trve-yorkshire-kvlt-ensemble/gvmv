@@ -13,3 +13,12 @@ const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 @export var base_weight: int = 100 # this is for the AI
 @export var damage_type: MagicEffect 
 @export var follow_up_message: String 
+
+enum TargetType {
+	SINGLE_ENEMY,
+	ALL_ENEMIES,
+	SINGLE_ALLY,
+	ALL_ALLIES
+}
+
+@export var target_type: TargetType

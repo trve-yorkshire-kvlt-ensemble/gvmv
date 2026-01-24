@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_iexhg"]
 [ext_resource type="Resource" uid="uid://brbro22krvgfm" path="res://assets/combat/combat_actions/slime.tres" id="2_74mk7"]
 [ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="2_spir5"]
-[ext_resource type="Resource" uid="uid://bk7dupiyjebms" path="res://assets/combat/combat_actions/fire.tres" id="3_t7gl5"]
+[ext_resource type="Resource" uid="uid://bso27s4bg36is" path="res://assets/combat/combat_actions/heal_all.tres" id="3_clpo3"]
 [ext_resource type="Resource" uid="uid://cxhkq6rginryu" path="res://assets/combat/combat_actions/heal.tres" id="4_ochlb"]
 
 [resource]
@@ -15,5 +15,5 @@ max_health = 80
 attack_power = 5
 speed = 2
 base_magic = 9
-combat_actions = Array[ExtResource("1_clpo3")]([ExtResource("2_74mk7"), ExtResource("3_t7gl5"), ExtResource("4_ochlb")])
+combat_actions = Array[ExtResource("1_clpo3")]([ExtResource("2_74mk7"), ExtResource("3_clpo3"), ExtResource("4_ochlb")])
 metadata/_custom_type_script = "uid://bhbjqxn7qf0ea"

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="1_obi2k"]
 [ext_resource type="Resource" uid="uid://cwgayo6kujsro" path="res://assets/combat/combat_actions/ice.tres" id="2_0mfei"]
 [ext_resource type="Texture2D" uid="uid://cooxs71m631nj" path="res://assets/characters/sprites/owl.png" id="2_05w4q"]
-[ext_resource type="Resource" uid="uid://cimr0ocwh4nsm" path="res://assets/combat/combat_actions/mist.tres" id="3_5eip5"]
+[ext_resource type="Resource" uid="uid://bdghlciw3t0wn" path="res://assets/combat/combat_actions/fire_all.tres" id="3_0mfei"]
 [ext_resource type="Resource" uid="uid://cxhkq6rginryu" path="res://assets/combat/combat_actions/heal.tres" id="4_ncf1n"]
 
 [resource]
@@ -12,4 +12,4 @@ script = ExtResource("1_obi2k")
 name = "owl"
 sprite = ExtResource("2_05w4q")
 speed = 6
-combat_actions = Array[ExtResource("1_agcxt")]([ExtResource("2_0mfei"), ExtResource("3_5eip5"), ExtResource("4_ncf1n")])
+combat_actions = Array[ExtResource("1_agcxt")]([ExtResource("2_0mfei"), ExtResource("3_0mfei"), ExtResource("4_ncf1n")])

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CombatAction" load_steps=2 format=3 uid="uid://bso27s4bg36is"]
+
+[ext_resource type="Script" uid="uid://brwsxfkgfce7n" path="res://assets/combat/combat_action.gd" id="1_oaene"]
+
+[resource]
+script = ExtResource("1_oaene")
+display_name = "Heal All"
+description = "Physician heal thyself"
+heal_amount = 10
+damage_type = 13
+target_type = 3
+metadata/_custom_type_script = "uid://brwsxfkgfce7n"

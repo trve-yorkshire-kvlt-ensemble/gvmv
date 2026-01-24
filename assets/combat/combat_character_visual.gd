@@ -37,10 +37,15 @@ func _damage_visual(_current_health: int, amount: int, _type: MagicEffect, _was_
 	var text_colour: Color = Color.RED
 	text_node.display(amount, text_colour, number_spawn_pos)
 	
-func _heal_visual(_health: int) -> void:
+func _heal_visual(_current_health: int, amount: int) -> void:
 	modulate = Color.GREEN
 	await get_tree().create_timer(0.2).timeout
 	modulate = Color.WHITE
+	# trigger floating heal label
+	var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
+	get_tree().root.add_child(text_node)
+	var text_colour: Color = Color.GREEN
+	text_node.display(amount, text_colour, number_spawn_pos)
 
 func _random_offset() -> Vector2:
 	var x: float = randf_range(-shake_intensity, shake_intensity)

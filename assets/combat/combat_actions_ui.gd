@@ -29,7 +29,7 @@ func set_combat_actions(actions: Array[CombatAction]) -> void:
 		print("assigning combat action to button: " + str(actions[i].display_name))
 
 func _button_pressed(button: CombatActionButton) -> void:
-	combat_manager.player_cast_combat_action(button.combat_action)
+	combat_manager.on_player_action_selected(button.combat_action)
 
 func _button_entered(button: CombatActionButton) -> void:
 	var ca: CombatAction = button.combat_action

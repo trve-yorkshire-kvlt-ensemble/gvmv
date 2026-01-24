@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=22 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://dc23l4m4tvlcb" path="res://assets/combat/combat_action_button.gd" id="13_od2cl"]
 [ext_resource type="Script" uid="uid://o8121cdsvmet" path="res://assets/combat/combat_end_screen.gd" id="13_ybpw0"]
 [ext_resource type="AudioStream" uid="uid://df2r681rl7djr" path="res://assets/combat/sfx/battle.wav" id="15_0l2pc"]
+[ext_resource type="Script" uid="uid://d0i7hbatxjali" path="res://assets/combat/target_ui.gd" id="15_5pw5b"]
+[ext_resource type="Script" uid="uid://b1j65ppw8ps7j" path="res://assets/combat/target_button.gd" id="16_ohty6"]
 
 [sub_resource type="Gradient" id="Gradient_06pyi"]
 colors = PackedColorArray(2.2356733e-05, 0.60120463, 1.92523e-05, 1, 0.43999884, 0.00013529554, 0.4401578, 1)
@@ -130,6 +132,47 @@ offset_top = 4.0
 offset_right = 490.0
 offset_bottom = 112.0
 bbcode_enabled = true
+
+[node name="TargetUI" type="Panel" parent="CanvasLayer"]
+visible = false
+offset_left = 74.0
+offset_top = 225.0
+offset_right = 568.0
+offset_bottom = 343.0
+script = ExtResource("15_5pw5b")
+
+[node name="TargetLabel" type="Label" parent="CanvasLayer/TargetUI"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 277.0
+offset_bottom = 25.0
+text = "Choose thine target..."
+
+[node name="TargetButtonContainer" type="VBoxContainer" parent="CanvasLayer/TargetUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.26000002
+anchor_right = -0.26000002
+offset_left = 129.44
+offset_top = 25.0
+offset_right = 405.44
+offset_bottom = 130.0
+
+[node name="TargetButton" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+layout_mode = 2
+text = "Shitty enemy"
+script = ExtResource("16_ohty6")
+
+[node name="TargetButton2" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+layout_mode = 2
+text = "Shitty enemy"
+script = ExtResource("16_ohty6")
+
+[node name="TargetButton3" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+layout_mode = 2
+text = "Shitty enemy"
+script = ExtResource("16_ohty6")
 
 [node name="CombatEndScreen" type="Panel" parent="CanvasLayer"]
 visible = false

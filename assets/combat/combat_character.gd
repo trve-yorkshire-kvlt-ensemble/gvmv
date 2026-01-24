@@ -55,6 +55,9 @@ signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_wea
 signal OnHeal(current_health: int, amount: int)
 signal OnDied()
 
+signal target_selected(character: CombatCharacter)
+@onready var target_button: Button = $TargetButton
+
 func _ready() -> void:
 	if character_data:
 		max_health = character_data.max_health
@@ -121,6 +124,27 @@ func heal(amount: int) -> void:
 	#get_tree().root.add_child(text_node)
 	#var text_colour: Color = Color.GREEN
 	#text_node.display(amount, text_colour, number_spawn_pos)
+
+#func enable_targeting(manager):
+	#$TargetArea.pressed.connect(
+		#func(_viewport, event, _shape):
+			#if event is InputEventMouseButton and event.pressed:
+				#manager.on_target_selected(self)
+	#)
+
+func enable_targeting() -> void:
+	target_button.visible=true
+	target_button.disabled = false
+	
+	if not target_button.pressed.is_connected(_on_target_pressed):
+		target_button.pressed.connect(_on_target_pressed)
+
+func disable_targeting() -> void:
+	target_button.visible = false
+	target_button.disabled = true
+
+func _on_target_pressed() -> void:
+	emit_signal("target_selected", self)
 
 func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	if action == null:
