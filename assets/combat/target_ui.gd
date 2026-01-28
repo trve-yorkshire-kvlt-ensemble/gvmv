@@ -3,7 +3,6 @@ extends Panel
 @onready var button_container: VBoxContainer = $TargetButtonContainer
 var target_buttons: Array[TargetButton]
 
-#@onready var description_text: RichTextLabel = $Description
 @onready var combat_manager: Node = $"../.."
 
 # Called when the node enters the scene tree for the first time.

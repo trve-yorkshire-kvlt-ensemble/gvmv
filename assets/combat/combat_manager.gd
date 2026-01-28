@@ -18,10 +18,6 @@ extends Node2D
 @onready var enemy_party: Array[CombatCharacter] = []
 var current_character: CombatCharacter
 
-# putting this in as a placeholder before I add target selection stuff
-#@onready var player_character: CombatCharacter = $PlayerParty/PlayerCharacterA
-#@onready var ai_character: CombatCharacter = $EnemyParty/AICharacterA
-
 # turn queue
 var turn_queue: Array[CombatCharacter] = []
 var current_turn_index := 0
@@ -69,8 +65,6 @@ func build_turn_queue() -> void:
 	var all_combatants: Array[CombatCharacter] = []
 	all_combatants.append_array(get_alive_players())
 	all_combatants.append_array(get_alive_enemies())
-	# remove dead characters
-	#all_combatants = all_combatants.filter(func(c): return c.current_health > 0)
 	
 	# sort by speed (fastest first)
 	all_combatants.sort_custom(func(a, b):

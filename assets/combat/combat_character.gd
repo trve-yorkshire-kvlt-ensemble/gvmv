@@ -10,7 +10,6 @@ extends Node2D
 
 # constants
 const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
-#const FLOATING_TEXT_SCENE = preload("res://assets/combat/floating_text.tscn")
 # const base_xp_needed: int = 100
 # const base_xp_multiplier: float = 1.5
 
@@ -56,8 +55,6 @@ signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_wea
 signal OnHeal(current_health: int, amount: int)
 signal OnDied(dead_character: CombatCharacter)
 
-#signal target_selected(character: CombatCharacter)
-#@onready var target_button: Button = $TargetButton
 
 func _ready() -> void:
 	if character_data:
