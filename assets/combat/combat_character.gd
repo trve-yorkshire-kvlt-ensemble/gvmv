@@ -53,7 +53,7 @@ var target_scale: float = 1.0
 # signals
 signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool)
 signal OnHeal(current_health: int, amount: int)
-signal OnDied()
+signal OnDied(character: CombatCharacter)
 
 signal target_selected(character: CombatCharacter)
 @onready var target_button: Button = $TargetButton
@@ -106,7 +106,7 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	
 	if current_health <= 0:
 		print("oh no, someone has died")
-		OnDied.emit()
+		OnDied.emit(self)
 	# going to change the below to be triggered by the signal instead
 	# trigger floating damage label
 	#var text_node: Label = FLOATING_TEXT_SCENE.instantiate()

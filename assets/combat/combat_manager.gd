@@ -112,20 +112,20 @@ func build_turn_queue():
 		#end_combat(player_character) # player wins
 		
 func _on_player_died(dead_character: CombatCharacter) -> void:
-	print("player " + dead_character.character_name + " has died :(")
+	print("oh no, " + dead_character.character_name + " has died :(")
 	# rebuild turn queue (handles for dead characters)
 	# turn_queue.erase(dead_character)
 	build_turn_queue()
 	# Check if all players are dead (no alive members left)
-	if player_party.count(func(c): return c.health > 0) == 0:
+	if len(get_alive_players()) <= 0:
 		end_combat("enemies")  # AI wins
 
 func _on_enemy_died(dead_character: CombatCharacter) -> void:
-	print("player " + dead_character.character_name + " has died :(")
+	print("you have killed " + dead_character.character_name + "!")
 	# rebuild turn queue (handles for dead characters)
 	build_turn_queue()
 	# Check if all players are dead (no alive members left)
-	if enemy_party.count(func(c): return c.health > 0) == 0:
+	if len(get_alive_enemies()) <= 0:
 		end_combat("players")  # AI wins
 
 func end_combat(winner: String) -> void:
