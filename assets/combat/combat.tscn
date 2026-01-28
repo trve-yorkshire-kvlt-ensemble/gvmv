@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene load_steps=24 format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
@@ -18,6 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://df2r681rl7djr" path="res://assets/combat/sfx/battle.wav" id="15_0l2pc"]
 [ext_resource type="Script" uid="uid://d0i7hbatxjali" path="res://assets/combat/target_ui.gd" id="15_5pw5b"]
 [ext_resource type="Script" uid="uid://b1j65ppw8ps7j" path="res://assets/combat/target_button.gd" id="16_ohty6"]
+[ext_resource type="Script" uid="uid://cpxwdbby378j3" path="res://assets/combat/enemy_ui.gd" id="18_ohty6"]
+[ext_resource type="Script" uid="uid://be7rbflfjtv8q" path="res://assets/combat/type_ui.gd" id="19_lkbj6"]
 
 [sub_resource type="Gradient" id="Gradient_06pyi"]
 colors = PackedColorArray(2.2356733e-05, 0.60120463, 1.92523e-05, 1, 0.43999884, 0.00013529554, 0.4401578, 1)
@@ -225,15 +227,19 @@ grow_vertical = 2
 text = "Ok (restart battle)"
 
 [node name="EnemyUI" type="Panel" parent="CanvasLayer"]
-offset_left = 80.0
-offset_top = 246.0
-offset_right = 562.0
-offset_bottom = 272.0
+visible = false
+offset_left = 311.0
+offset_top = 232.0
+offset_right = 611.0
+offset_bottom = 282.0
+script = ExtResource("18_ohty6")
 
 [node name="EnemyMoveText" type="Label" parent="CanvasLayer/EnemyUI"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 21.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 298.0
+offset_bottom = 48.0
 text = "THE ENEMY HAS CAST A SHITTY MOVE"
 
 [node name="TypeUI" type="Panel" parent="CanvasLayer"]
@@ -242,6 +248,7 @@ offset_left = 197.0
 offset_top = 61.0
 offset_right = 393.0
 offset_bottom = 114.0
+script = ExtResource("19_lkbj6")
 
 [node name="TypeText" type="Label" parent="CanvasLayer/TypeUI"]
 layout_mode = 1

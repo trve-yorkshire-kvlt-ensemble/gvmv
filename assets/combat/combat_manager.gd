@@ -36,6 +36,9 @@ var pending_action: CombatAction # not 100% sure we need this...
 @onready var stats_text: Label = $CanvasLayer/CombatEndScreen/StatsText
 @onready var type_ui: Panel = $CanvasLayer/TypeUI
 
+# signals
+signal OnEnemyAction(combat_action: CombatAction)
+
 # status
 var game_over: bool = false
 
@@ -43,12 +46,14 @@ var game_over: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# load parties
-	for character in $PlayerParty.get_children():
-		player_party.append(character as CombatCharacter)
-		character.OnDied.connect(_on_player_died)
-	for character in $EnemyParty.get_children():
-		enemy_party.append(character as CombatCharacter)
-		character.OnDied.connect(_on_enemy_died)
+	for player_character in $PlayerParty.get_children():
+		player_party.append(player_character as CombatCharacter)
+		player_character.OnDied.connect(_on_player_died)
+		player_character.OnTakeDamage.connect(type_ui._type_ui)
+	for enemy_character in $EnemyParty.get_children():
+		enemy_party.append(enemy_character as CombatCharacter)
+		enemy_character.OnDied.connect(_on_enemy_died)
+		enemy_character.OnTakeDamage.connect(type_ui._type_ui)
 	# hide end screen if visible
 	end_screen.visible = false
 	# build queue
@@ -135,10 +140,10 @@ func advance_turn() -> void:
 	next_turn()
 
 
-func start_player_turn(character: CombatCharacter) -> void:
-	enemy_ui.visible = false
+func start_player_turn(player_character: CombatCharacter) -> void:
+	#enemy_ui.visible = false
 	player_ui.visible = true
-	player_ui.set_combat_actions(character.combat_actions)
+	player_ui.set_combat_actions(player_character.combat_actions)
 
 
 func start_ai_turn(current_character: CombatCharacter) -> void:
@@ -148,16 +153,7 @@ func start_ai_turn(current_character: CombatCharacter) -> void:
 		await get_tree().create_timer(0.5).timeout
 		var action_to_cast: CombatAction = ai_decide_combat_action()
 		ai_decide_target(action_to_cast)
-		# TODO: send a signal and move the UI stuff elsewhere
-		#await get_tree().create_timer(0.5).timeout
-		#enemy_move_text.text = "Thy enemy has used " + action_to_cast.display_name
-		# enable AI UI
-		#enemy_ui.visible = true
-		#current_character.cast_combat_action(action_to_cast, [player_character])
-		# generate a wait time
-		# await get_tree().create_timer(0.5).timeout
-		# restart loop
-		# advance_turn()
+		OnEnemyAction.emit(action_to_cast, current_character)
 
 func on_player_action_selected(action: CombatAction) -> void:
 	pending_action = action

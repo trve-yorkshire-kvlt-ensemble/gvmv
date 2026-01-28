@@ -9,14 +9,8 @@ var target_buttons: Array[TargetButton]
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for child in button_container.get_children():
-		#if child is not CombatActionButton:
-			#continue
-			
 		target_buttons.append(child)
-		
 		child.pressed.connect(_button_pressed.bind(child))
-		#child.mouse_entered.connect(_button_entered.bind(child))
-		#child.mouse_exited.connect(_button_exited.bind(child))
 
 func set_targets(targets: Array[CombatCharacter]) -> void:
 	for i in len(target_buttons):

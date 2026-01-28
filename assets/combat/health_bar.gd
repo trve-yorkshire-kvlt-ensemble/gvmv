@@ -31,7 +31,7 @@ func set_health_color(health_ratio: float) -> void:
 	else:
 		fill_style.bg_color = Color.RED
 
-func _update_value(current_health: int, _amount = null, _type = null, _was_weak = null ) -> void:
+func _update_value(current_health: int, _amount = null, _type = null, _was_weak = null, _damaged_character = null ) -> void:
 	value = current_health
 	health_text.text = str(current_health) + " / " + str(int(max_value))
 	var health_ratio: float = current_health/max_value

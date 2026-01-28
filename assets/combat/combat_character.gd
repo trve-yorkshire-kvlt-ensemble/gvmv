@@ -52,12 +52,12 @@ var target_scale: float = 1.0
 
 
 # signals
-signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool)
+signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool, character_name: String)
 signal OnHeal(current_health: int, amount: int)
-signal OnDied(character: CombatCharacter)
+signal OnDied(dead_character: CombatCharacter)
 
-signal target_selected(character: CombatCharacter)
-@onready var target_button: Button = $TargetButton
+#signal target_selected(character: CombatCharacter)
+#@onready var target_button: Button = $TargetButton
 
 func _ready() -> void:
 	if character_data:
@@ -96,13 +96,10 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	var was_weak:= false
 	if type == magic_weakness:
 		was_weak = true
-		# commenting this stuff out so can deal with it via signal instead
-		#type_ui.visible = true
-		#type_text.text = character_data.name + " is weak against " + MagicEffect.keys()[type]
 		amount += damage_reduction
 	current_health -= amount
 	current_health = max(current_health, 0)
-	OnTakeDamage.emit(current_health, amount, type, was_weak) # this triggers visuals etc
+	OnTakeDamage.emit(current_health, amount, type, was_weak, character_name) # this triggers visuals etc
 	_play_audio(take_damage_sfx)
 	
 	if current_health <= 0:
@@ -135,6 +132,13 @@ func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -
 		if action.heal_amount >0:
 			target.heal(action.heal_amount)
 
+
+func _play_audio(stream: AudioStream) -> void:
+	audio.stream = stream
+	audio.play()
+
+########## lolo's xp  and health stuff that we probs still want to use ##########
+
 # thinking about state of e.g. xp and health:
 # something like this?
 # need to look at lyra's global data thingie
@@ -144,31 +148,6 @@ func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -
 #func save_to_state(state):
 	#state.current_health = current_health
 
-
-# refactoring cast_combat_action for party dynamics... this is the old version:	
-#func cast_combat_action(action: CombatAction, opponent: CombatCharacter) -> void:
-	#if action == null:
-		#return
-#
-	#if action.base_melee_damage > 0:
-		## roll for additional damage based on attack power
-		#var additional_damage: int = randi_range(0, attack_power)
-		#var damage: int = action.base_melee_damage + additional_damage
-		## double roll if damage type aligns with base magic
-		## could maybe roll again here instead?
-		## or could get rid of this if we are only letting characters cast their base magic
-		#if action.damage_type == base_magic:
-			#damage += additional_damage
-		#opponent.take_damage(damage, action.damage_type)
-#
-	#if action.heal_amount >0:
-		#heal(action.heal_amount)
-		
-func _play_audio(stream: AudioStream) -> void:
-	audio.stream = stream
-	audio.play()
-
-########## lolo's xp stuff that we probs still want to use ##########
 #func gain_xp(amount: int) -> void:
 	#current_xp += amount
 	#
