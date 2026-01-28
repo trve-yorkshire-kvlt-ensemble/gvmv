@@ -8,5 +8,5 @@ display_name = "Heal"
 description = "Physician heal thyself"
 heal_amount = 10
 damage_type = 13
-target_type = 3
+target_type = 2
 metadata/_custom_type_script = "uid://brwsxfkgfce7n"

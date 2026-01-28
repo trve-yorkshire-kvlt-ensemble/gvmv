@@ -13,6 +13,10 @@
 
 # TODO: mana????
 
+# TODO: ai targeting is currently just random
+# I think it might be nice to get the AI decision making logic from the character data somehow?
+# so that bosses etc can have unique logic
+
 extends Node2D
 
 # characters
@@ -46,15 +50,15 @@ var current_turn_index := 0
 # status
 var game_over: bool = false
 
-enum CombatState {
-	IDLE,
-	PLAYER_CHOOSE_ACTION,
-	PLAYER_CHOOSE_TARGET,
-	RESOLVING_ACTION,
-	AI_TURN
-}
+#enum CombatState {
+	#IDLE,
+	#PLAYER_CHOOSE_ACTION,
+	#PLAYER_CHOOSE_TARGET,
+	#RESOLVING_ACTION,
+	#AI_TURN
+#}
 
-var state: CombatState = CombatState.IDLE
+#var state: CombatState = CombatState.IDLE
 var pending_action: CombatAction
 var pending_actor: CombatCharacter
 
@@ -171,20 +175,20 @@ func next_turn() -> void:
 		#player_ui.set_combat_actions(current_character.combat_actions)
 	else: # run this if it's the AI's turn
 		# chat gave me this but sticking with old logic for now
-		#await start_ai_turn(current_character)
+		await start_ai_turn(current_character)
 		# disable player UI if still active
-		player_ui.visible = false
-		# generate a wait time 
-		await get_tree().create_timer(0.5).timeout
-		var action_to_cast: CombatAction = ai_decide_combat_action()
-		enemy_move_text.text = "Thy enemy has used " + action_to_cast.display_name
-		# enable AI UI
-		enemy_ui.visible = true
-		current_character.cast_combat_action(action_to_cast, [player_character])
-		# generate a wait time
-		await get_tree().create_timer(0.5).timeout
-		# restart loop
-		advance_turn()
+		#player_ui.visible = false
+		## generate a wait time 
+		#await get_tree().create_timer(0.5).timeout
+		#var action_to_cast: CombatAction = ai_decide_combat_action()
+		#enemy_move_text.text = "Thy enemy has used " + action_to_cast.display_name
+		## enable AI UI
+		#enemy_ui.visible = true
+		#current_character.cast_combat_action(action_to_cast, [player_character])
+		## generate a wait time
+		#await get_tree().create_timer(0.5).timeout
+		## restart loop
+		#advance_turn()
 
 func advance_turn() -> void:
 	current_turn_index += 1
@@ -200,6 +204,24 @@ func start_player_turn(character: CombatCharacter) -> void:
 	player_ui.visible = true
 	player_ui.set_combat_actions(character.combat_actions)
 
+func start_ai_turn(current_character: CombatCharacter):
+		# disable player UI if still active
+		player_ui.visible = false
+		pending_actor = current_character
+		# generate a wait time 
+		await get_tree().create_timer(0.5).timeout
+		var action_to_cast: CombatAction = ai_decide_combat_action()
+		ai_decide_target(action_to_cast)
+		# TODO: send a signal and move the UI stuff elsewhere
+		#enemy_move_text.text = "Thy enemy has used " + action_to_cast.display_name
+		# enable AI UI
+		#enemy_ui.visible = true
+		#current_character.cast_combat_action(action_to_cast, [player_character])
+		# generate a wait time
+		# await get_tree().create_timer(0.5).timeout
+		# restart loop
+		# advance_turn()
+
 func on_player_action_selected(action: CombatAction) -> void:
 	pending_action = action
 	print("pending action is: " + action.display_name)
@@ -211,11 +233,11 @@ func on_player_action_selected(action: CombatAction) -> void:
 			resolve_action(pending_actor, action, get_alive_enemies())
 		
 		CombatAction.TargetType.ALL_ALLIES:
-			var alive_players = get_alive_players()
-			resolve_action(pending_actor, action, alive_players)
+			#var alive_players: Array[CombatCharacter] = get_alive_players()
+			resolve_action(pending_actor, action, get_alive_players())
 		
 		CombatAction.TargetType.SINGLE_ENEMY:
-			var alive_enemies = get_alive_enemies()
+			var alive_enemies: Array[CombatCharacter] = get_alive_enemies()
 			target_ui.visible = true
 			target_ui.set_targets(alive_enemies)
 			#resolve_action(pending_actor, action, get_alive_players())
@@ -245,6 +267,29 @@ func on_player_action_selected(action: CombatAction) -> void:
 #
 	#for c in valid_targets:
 		#c.enable_targeting()
+		
+func ai_decide_target(action: CombatAction) -> void:
+	match action.target_type:
+		
+		CombatAction.TargetType.ALL_ENEMIES:
+			# NB if an enemy is targeting all enemies, this needs to 
+			# impact player characters (and vice versa)
+			resolve_action(pending_actor, action, get_alive_players())
+		
+		CombatAction.TargetType.ALL_ALLIES:
+			#var alive_players = get_alive_players()
+			resolve_action(pending_actor, action, get_alive_enemies())
+		
+		CombatAction.TargetType.SINGLE_ENEMY:
+			var alive_targets: Array[CombatCharacter] = get_alive_players()
+			var selected_target: Array[CombatCharacter] = [alive_targets[randi_range(0,len(alive_targets)-1)]]
+			resolve_action(pending_actor, action, selected_target)
+			
+		CombatAction.TargetType.SINGLE_ALLY:
+			var alive_targets: Array[CombatCharacter] = get_alive_enemies()
+			var selected_target: Array[CombatCharacter] = [alive_targets[randi_range(0,len(alive_targets)-1)]]
+			resolve_action(pending_actor, action, selected_target)
+			#resolve_action(pending_actor, action, get_alive_players())
 
 func on_target_selected(target: CombatCharacter) -> void:
 	#clear_targeting()
@@ -272,15 +317,15 @@ func resolve_action(actor: CombatCharacter, action: CombatAction, targets: Array
 	target_ui.visible = false
 	advance_turn()
 
-func player_cast_combat_action(action: CombatAction) -> void:
-	print("player casting " + action.display_name + " against " + ai_character.name)
-	player_character.cast_combat_action(action, [ai_character])
-	# disable player UI
-	player_ui.visible = false
-	# create a wait time
-	await get_tree().create_timer(0.5).timeout
-	# restart loop
-	advance_turn()
+#func player_cast_combat_action(action: CombatAction) -> void:
+	#print("player casting " + action.display_name + " against " + ai_character.name)
+	#player_character.cast_combat_action(action, [ai_character])
+	## disable player UI
+	#player_ui.visible = false
+	## create a wait time
+	#await get_tree().create_timer(0.5).timeout
+	## restart loop
+	#advance_turn()
 
 func ai_decide_combat_action() -> CombatAction:	
 	var ai: CombatCharacter = ai_character # shortnaming

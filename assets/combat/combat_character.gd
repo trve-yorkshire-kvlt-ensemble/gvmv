@@ -163,7 +163,7 @@ func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -
 			target.take_damage(damage, action.damage_type)
 
 		if action.heal_amount >0:
-			heal(action.heal_amount)
+			target.heal(action.heal_amount)
 
 # thinking about state of e.g. xp and health:
 # something like this?
