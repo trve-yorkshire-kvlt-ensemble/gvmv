@@ -26,7 +26,6 @@ func set_combat_actions(actions: Array[CombatAction]) -> void:
 			
 		ca_buttons[i].visible = true
 		ca_buttons[i].set_combat_action(actions[i])
-		print("assigning combat action to button: " + str(actions[i].display_name))
 
 func _button_pressed(button: CombatActionButton) -> void:
 	combat_manager.on_player_action_selected(button.combat_action)
@@ -39,4 +38,4 @@ func _button_exited(_button: CombatActionButton) -> void:
 	description_text.text = ""
 	
 func _on_pass_turn_button_pressed() -> void:
-	combat_manager.next_turn()
+	combat_manager.advance_turn()

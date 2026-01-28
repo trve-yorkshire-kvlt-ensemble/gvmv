@@ -15,7 +15,7 @@ Will you rid Yorkshire of botulism, or will you hasten its fermented demise?
 	- [ ] how to deal with placeholders (e.g. background)
 	- [ ] how do we want to manage levelling (maybe just a percentage increase in stats??)
 	- [ ] how do we want to manage movesets? how do people get new moves? or maybe they don't?
-	- [ ] how can we implement party mechanics?
+	- [x] how can we implement party mechanics?
 	- [ ] use of global data to persist e.g. current health, xp
 	- [ ] what do we want to do about loot?
 	- [ ] how do we actually want type matchups to work

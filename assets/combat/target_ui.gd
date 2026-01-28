@@ -26,17 +26,6 @@ func set_targets(targets: Array[CombatCharacter]) -> void:
 			
 		target_buttons[i].visible = true
 		target_buttons[i].set_target(targets[i])
-		print("assigning target to button: " + str(targets[i].character_name))
 
 func _button_pressed(button: TargetButton) -> void:
 	combat_manager.on_target_selected(button.target)
-
-#func _button_entered(button: CombatActionButton) -> void:
-	#var ca: CombatAction = button.combat_action
-	#description_text.text = "[b]" + ca.display_name + "[/b]\n" + ca.description
-#
-#func _button_exited(_button: CombatActionButton) -> void:
-	#description_text.text = ""
-	#
-#func _on_pass_turn_button_pressed() -> void:
-	#combat_manager.next_turn()

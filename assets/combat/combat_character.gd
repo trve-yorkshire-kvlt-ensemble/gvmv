@@ -46,9 +46,10 @@ var target_scale: float = 1.0
 @onready var type_text: Label = $"../CanvasLayer/TypeUI/TypeText"
 
 # multi party ui stuff (suggested by our ai overlords but I don't 100% get it lol)
-@export var party_index := 0
-@export var is_enemy := false
-# this needs to be referenced in the combat_manager to dynamically determine spacing
+# this needs to be referenced in the combat_manager to dynamically determine spacing of sprites
+#@export var party_index := 0
+#@export var is_enemy := false
+
 
 # signals
 signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool)
@@ -105,46 +106,15 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	_play_audio(take_damage_sfx)
 	
 	if current_health <= 0:
-		print("oh no, someone has died")
 		OnDied.emit(self)
-	# going to change the below to be triggered by the signal instead
-	# trigger floating damage label
-	#var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
-	#get_tree().root.add_child(text_node)
-	#var text_colour: Color = Color.RED
-	#text_node.display(amount, text_colour, number_spawn_pos)
-	
+
+
 func heal(amount: int) -> void:
 	current_health += amount
 	current_health = clamp(current_health, 0, max_health) # keep health within min/max bounds
 	OnHeal.emit(current_health, amount) # triggers visual
 	_play_audio(heal_sfx)
-	# trigger floating heal label
-	#var text_node: Label = FLOATING_TEXT_SCENE.instantiate()
-	#get_tree().root.add_child(text_node)
-	#var text_colour: Color = Color.GREEN
-	#text_node.display(amount, text_colour, number_spawn_pos)
 
-#func enable_targeting(manager):
-	#$TargetArea.pressed.connect(
-		#func(_viewport, event, _shape):
-			#if event is InputEventMouseButton and event.pressed:
-				#manager.on_target_selected(self)
-	#)
-
-func enable_targeting() -> void:
-	target_button.visible=true
-	target_button.disabled = false
-	
-	if not target_button.pressed.is_connected(_on_target_pressed):
-		target_button.pressed.connect(_on_target_pressed)
-
-func disable_targeting() -> void:
-	target_button.visible = false
-	target_button.disabled = true
-
-func _on_target_pressed() -> void:
-	emit_signal("target_selected", self)
 
 func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	if action == null:
@@ -227,24 +197,3 @@ func _play_audio(stream: AudioStream) -> void:
 	#current_hp += hp_gain # Heals the character proportional to the Max HP gain
 	
 	#print("%s leveled up! New Level: %s" % [character_data.name, character_data.level])
-
-
-
-
-
-########## lolo's old funcs that I think are superceded ##########
-
-#func take_damage(amount: int) -> int:
-	#var damage_taken: int = character_data.calculate_defense(amount)
-	#current_health -= damage_taken
-	#current_health = max(0, current_health)
-	#return damage_taken
-
-#func attack_target(target: CombatCharacter) -> int:
-	#var damage_dealt: int = character_data.calculate_attack(target.character_data.defense)
-	#target.take_damage(damage_dealt)
-	#return damage_dealt
-	
-#func heal(amount: int) -> void:
-	#current_health += amount
-	#current_health = min(current_health, character_data.max_health)

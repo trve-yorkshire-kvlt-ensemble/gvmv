@@ -69,21 +69,18 @@ position = Vector2(185, -4)
 character_data = ExtResource("7_tjhoe")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
-is_enemy = true
 
 [node name="AICharacterB" parent="EnemyParty" instance=ExtResource("3_b3ogi")]
 position = Vector2(273, -35)
 character_data = ExtResource("11_5pw5b")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
-is_enemy = true
 
 [node name="AICharacterC" parent="EnemyParty" instance=ExtResource("3_b3ogi")]
 position = Vector2(103, -38)
 character_data = ExtResource("12_ohty6")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
-is_enemy = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
