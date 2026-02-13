@@ -21,3 +21,11 @@ Will you rid Yorkshire of botulism, or will you hasten its fermented demise?
 	- [ ] how do we actually want type matchups to work
 	- [ ] how should the AI work?
 	- [ ] what battle effects do we want other than damage/heal (buffs/debuff/poison etc)
+
+Persistent stats notes
+- PartyMember class which initialises from character_data when character joins party
+- This holds various stats which are updated in memory etc
+- [ ] Update combatcharacter to read/load from partymember rather than character data
+- [ ] Update PartyMember to contain all relevant stats
+- [ ] Add movesets to partymember?
+- [ ] Load partymembers on player_data global??? (need some sort of "join party" routine)

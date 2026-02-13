@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://h3oehwt6gbaq"]
+[gd_scene format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
@@ -31,10 +31,10 @@ bg_color = Color(0.09957226, 0.23278406, 0, 1)
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.5568628)
 
-[node name="Combat" type="Node2D"]
+[node name="Combat" type="Node2D" unique_id=217081279]
 script = ExtResource("1_on8wl")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=256161750]
 offset_left = -2547.0
 offset_top = -224.0
 offset_right = 349.0
@@ -45,48 +45,48 @@ stretch_mode = 1
 script = ExtResource("3_06pyi")
 colour_lerp = SubResource("Gradient_06pyi")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1078930646]
 
-[node name="PlayerParty" type="Node2D" parent="."]
+[node name="PlayerParty" type="Node2D" parent="." unique_id=1278081911]
 
-[node name="PlayerCharacterA" parent="PlayerParty" instance=ExtResource("3_b3ogi")]
+[node name="PlayerCharacterA" parent="PlayerParty" unique_id=1951656888 instance=ExtResource("3_b3ogi")]
 position = Vector2(-192, -13)
 character_data = ExtResource("5_r2tfw")
 display_texture = ExtResource("4_2suc4")
 
-[node name="PlayerCharacterB" parent="PlayerParty" instance=ExtResource("3_b3ogi")]
+[node name="PlayerCharacterB" parent="PlayerParty" unique_id=1384230845 instance=ExtResource("3_b3ogi")]
 position = Vector2(-99, -36)
 character_data = ExtResource("7_06pyi")
 display_texture = ExtResource("4_2suc4")
 
-[node name="PlayerCharacterC" parent="PlayerParty" instance=ExtResource("3_b3ogi")]
+[node name="PlayerCharacterC" parent="PlayerParty" unique_id=9037864 instance=ExtResource("3_b3ogi")]
 position = Vector2(-273, -35)
 character_data = ExtResource("8_r2tfw")
 display_texture = ExtResource("4_2suc4")
 
-[node name="EnemyParty" type="Node2D" parent="."]
+[node name="EnemyParty" type="Node2D" parent="." unique_id=435089561]
 
-[node name="AICharacterA" parent="EnemyParty" instance=ExtResource("3_b3ogi")]
+[node name="AICharacterA" parent="EnemyParty" unique_id=798214560 instance=ExtResource("3_b3ogi")]
 position = Vector2(185, -4)
 character_data = ExtResource("7_tjhoe")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
 
-[node name="AICharacterB" parent="EnemyParty" instance=ExtResource("3_b3ogi")]
+[node name="AICharacterB" parent="EnemyParty" unique_id=1099153477 instance=ExtResource("3_b3ogi")]
 position = Vector2(273, -35)
 character_data = ExtResource("11_5pw5b")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
 
-[node name="AICharacterC" parent="EnemyParty" instance=ExtResource("3_b3ogi")]
+[node name="AICharacterC" parent="EnemyParty" unique_id=25900401 instance=ExtResource("3_b3ogi")]
 position = Vector2(103, -38)
 character_data = ExtResource("12_ohty6")
 is_player = false
 display_texture = ExtResource("5_ymw0h")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=727707734]
 
-[node name="CombatActionsUI" type="Panel" parent="CanvasLayer"]
+[node name="CombatActionsUI" type="Panel" parent="CanvasLayer" unique_id=1117955642]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -100,31 +100,31 @@ grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("12_tjhoe")
 
-[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/CombatActionsUI"]
+[node name="ButtonContainer" type="VBoxContainer" parent="CanvasLayer/CombatActionsUI" unique_id=949160681]
 layout_mode = 0
 offset_right = 180.0
 offset_bottom = 80.0
 
-[node name="CombatActionButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+[node name="CombatActionButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer" unique_id=501915880]
 layout_mode = 2
 text = "Fire"
 script = ExtResource("13_od2cl")
 
-[node name="CombatActionButton2" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+[node name="CombatActionButton2" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer" unique_id=921141949]
 layout_mode = 2
 text = "Fire"
 script = ExtResource("13_od2cl")
 
-[node name="CombatActionButton3" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+[node name="CombatActionButton3" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer" unique_id=9922579]
 layout_mode = 2
 text = "Fire"
 script = ExtResource("13_od2cl")
 
-[node name="PassTurnButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer"]
+[node name="PassTurnButton" type="Button" parent="CanvasLayer/CombatActionsUI/ButtonContainer" unique_id=1953037458]
 layout_mode = 2
 text = "Do nothing..."
 
-[node name="Description" type="RichTextLabel" parent="CanvasLayer/CombatActionsUI"]
+[node name="Description" type="RichTextLabel" parent="CanvasLayer/CombatActionsUI" unique_id=926149238]
 layout_mode = 0
 offset_left = 185.0
 offset_top = 4.0
@@ -132,7 +132,7 @@ offset_right = 490.0
 offset_bottom = 112.0
 bbcode_enabled = true
 
-[node name="TargetUI" type="Panel" parent="CanvasLayer"]
+[node name="TargetUI" type="Panel" parent="CanvasLayer" unique_id=1179000841]
 visible = false
 offset_left = 74.0
 offset_top = 225.0
@@ -140,7 +140,7 @@ offset_right = 568.0
 offset_bottom = 343.0
 script = ExtResource("15_5pw5b")
 
-[node name="TargetLabel" type="Label" parent="CanvasLayer/TargetUI"]
+[node name="TargetLabel" type="Label" parent="CanvasLayer/TargetUI" unique_id=764427691]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 4.0
@@ -148,7 +148,7 @@ offset_right = 277.0
 offset_bottom = 25.0
 text = "Choose thine target..."
 
-[node name="TargetButtonContainer" type="VBoxContainer" parent="CanvasLayer/TargetUI"]
+[node name="TargetButtonContainer" type="VBoxContainer" parent="CanvasLayer/TargetUI" unique_id=209038261]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.26000002
@@ -158,22 +158,22 @@ offset_top = 25.0
 offset_right = 405.44
 offset_bottom = 130.0
 
-[node name="TargetButton" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+[node name="TargetButton" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer" unique_id=402565882]
 layout_mode = 2
 text = "Shitty enemy"
 script = ExtResource("16_ohty6")
 
-[node name="TargetButton2" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+[node name="TargetButton2" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer" unique_id=1069899123]
 layout_mode = 2
 text = "Shitty enemy"
 script = ExtResource("16_ohty6")
 
-[node name="TargetButton3" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer"]
+[node name="TargetButton3" type="Button" parent="CanvasLayer/TargetUI/TargetButtonContainer" unique_id=144014575]
 layout_mode = 2
 text = "Shitty enemy"
 script = ExtResource("16_ohty6")
 
-[node name="CombatEndScreen" type="Panel" parent="CanvasLayer"]
+[node name="CombatEndScreen" type="Panel" parent="CanvasLayer" unique_id=1319058368]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -183,7 +183,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tjhoe")
 script = ExtResource("13_ybpw0")
 
-[node name="HeaderText" type="Label" parent="CanvasLayer/CombatEndScreen"]
+[node name="HeaderText" type="Label" parent="CanvasLayer/CombatEndScreen" unique_id=1566857547]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -201,7 +201,7 @@ text = "Pixie has defeated destroying angel!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsText" type="Label" parent="CanvasLayer/CombatEndScreen"]
+[node name="StatsText" type="Label" parent="CanvasLayer/CombatEndScreen" unique_id=745899467]
 layout_mode = 0
 offset_left = 189.0
 offset_top = 156.0
@@ -211,7 +211,7 @@ text = "Loot: 5gp
 XP: 100XP
 (this is just a placeholder)"
 
-[node name="OkButton" type="Button" parent="CanvasLayer/CombatEndScreen"]
+[node name="OkButton" type="Button" parent="CanvasLayer/CombatEndScreen" unique_id=366564192]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -226,7 +226,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Ok (restart battle)"
 
-[node name="EnemyUI" type="Panel" parent="CanvasLayer"]
+[node name="EnemyUI" type="Panel" parent="CanvasLayer" unique_id=317624948]
 visible = false
 offset_left = 311.0
 offset_top = 232.0
@@ -234,7 +234,7 @@ offset_right = 611.0
 offset_bottom = 282.0
 script = ExtResource("18_ohty6")
 
-[node name="EnemyMoveText" type="Label" parent="CanvasLayer/EnemyUI"]
+[node name="EnemyMoveText" type="Label" parent="CanvasLayer/EnemyUI" unique_id=993217520]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 3.0
@@ -242,7 +242,7 @@ offset_right = 298.0
 offset_bottom = 48.0
 text = "THE ENEMY HAS CAST A SHITTY MOVE"
 
-[node name="TypeUI" type="Panel" parent="CanvasLayer"]
+[node name="TypeUI" type="Panel" parent="CanvasLayer" unique_id=1497943753]
 visible = false
 offset_left = 197.0
 offset_top = 61.0
@@ -250,7 +250,7 @@ offset_right = 393.0
 offset_bottom = 114.0
 script = ExtResource("19_lkbj6")
 
-[node name="TypeText" type="Label" parent="CanvasLayer/TypeUI"]
+[node name="TypeText" type="Label" parent="CanvasLayer/TypeUI" unique_id=1772644933]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.09200001
@@ -262,7 +262,7 @@ text = "Pixie is weak to ICE"
 label_settings = SubResource("LabelSettings_tjhoe")
 autowrap_mode = 2
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=584676028]
 stream = ExtResource("15_0l2pc")
 volume_db = -10.4
 autoplay = true
