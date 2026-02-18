@@ -84,11 +84,8 @@ func _kill_reveal_tween() -> void:
 func _input(event: InputEvent) -> void:
 	# Only respond to input if dialogue is active
 	if GameStateManager.current_state == UIState.DIALOGUE:
-		# Don't handle input if options are visible (let buttons handle it)
-		if options_container.visible:
-			return
-		
 		var should_handle: bool = false
+		var is_interact_action: bool = false
 		
 		# Check for mouse click
 		if event is InputEventMouseButton:
@@ -98,11 +95,20 @@ func _input(event: InputEvent) -> void:
 		# Check for keyboard input
 		elif event.is_action_pressed("interact"):  # Space/E keys
 			should_handle = true
+			is_interact_action = true
 		
 		if should_handle:
+			# Don't handle interact action if options are visible (let buttons handle it)
+			if options_container.visible:
+				if is_interact_action:
+					get_tree().root.set_input_as_handled()  # Consume interact to prevent restart
+				return
+			
 			if is_text_fully_revealed:
-				# Text is fully shown, advance to next page
-				advance_dialogue()
+				# Text is fully shown, only advance if not on last page
+				if not _is_on_last_page():
+					advance_dialogue()
+				# If on last page, do nothing (options will be shown)
 			else:
 				# Text is still revealing, skip to end
 				_skip_to_end_of_text()
