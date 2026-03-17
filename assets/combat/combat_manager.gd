@@ -121,7 +121,7 @@ func next_turn() -> void:
 	# set current character based on turn queue
 	current_character = turn_queue[current_turn_index]
 	# skip dead characters :(
-	if current_character.current_health <= 0:
+	if not current_character.is_alive():
 		advance_turn()
 		return
 	current_character.begin_turn()
@@ -205,10 +205,10 @@ func on_target_selected(target: CombatCharacter) -> void:
 	resolve_action(current_character, pending_action, selected_target)
 
 func get_alive_players() -> Array[CombatCharacter]:
-	return player_party.filter(func(c: CombatCharacter) -> bool: return c.current_health > 0)
+	return player_party.filter(func(c: CombatCharacter) -> bool: return c.is_alive())
 
 func get_alive_enemies() -> Array[CombatCharacter]:
-	return enemy_party.filter(func(c: CombatCharacter) -> bool: return c.current_health > 0)
+	return enemy_party.filter(func(c: CombatCharacter) -> bool: return c.is_alive())
 
 func resolve_action(actor: CombatCharacter, action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	actor.cast_combat_action(action, targets)
@@ -227,7 +227,7 @@ func ai_decide_combat_action() -> CombatAction:
 	
 	for action in actions:
 		var weight: int = action.base_weight
-		if action.heal_amount >0:
+		if action.heal_amount > 0:
 			weight *= 1 + (1 - ai_health_perc)
 		weights.append(weight)
 		total_weight += weight

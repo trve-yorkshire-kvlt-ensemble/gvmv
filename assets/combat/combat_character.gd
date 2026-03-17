@@ -95,7 +95,7 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	OnTakeDamage.emit(current_health, amount, type, was_weak, character_name) # this triggers visuals etc
 	_play_audio(take_damage_sfx)
 	
-	if current_health <= 0:
+	if not is_alive():
 		OnDied.emit(self)
 
 
