@@ -11,11 +11,16 @@
 # I think it might be nice to get the AI decision making logic from the character data somehow?
 # so that bosses etc can have unique logic
 
+class_name CombatManager
 extends Node2D
 
+# party loading
+@export var player_data: PlayerData
+@export var combat_character_scene: PackedScene
+
 # characters
-@onready var player_party: Array[CombatCharacter] = []
-@onready var enemy_party: Array[CombatCharacter] = []
+var player_party: Array[CombatCharacter] = []
+var enemy_party: Array[CombatCharacter] = []
 var current_character: CombatCharacter
 
 # turn queue
@@ -67,7 +72,7 @@ func build_turn_queue() -> void:
 	all_combatants.append_array(get_alive_enemies())
 	
 	# sort by speed (fastest first)
-	all_combatants.sort_custom(func(a, b):
+	all_combatants.sort_custom(func(a: CombatCharacter, b: CombatCharacter) -> bool:
 		return a.speed > b.speed
 		)
 	
@@ -140,14 +145,14 @@ func start_player_turn(player_character: CombatCharacter) -> void:
 	player_ui.set_combat_actions(player_character.combat_actions)
 
 
-func start_ai_turn(current_character: CombatCharacter) -> void:
+func start_ai_turn(p_current_character: CombatCharacter) -> void:
 		# disable player UI if still active
 		player_ui.visible = false
 		# generate a wait time 
 		await get_tree().create_timer(0.5).timeout
 		var action_to_cast: CombatAction = ai_decide_combat_action()
 		ai_decide_target(action_to_cast)
-		OnEnemyAction.emit(action_to_cast, current_character)
+		OnEnemyAction.emit(action_to_cast, p_current_character)
 
 func on_player_action_selected(action: CombatAction) -> void:
 	pending_action = action
@@ -200,10 +205,10 @@ func on_target_selected(target: CombatCharacter) -> void:
 	resolve_action(current_character, pending_action, selected_target)
 
 func get_alive_players() -> Array[CombatCharacter]:
-	return player_party.filter(func(c): return c.current_health > 0)
+	return player_party.filter(func(c: CombatCharacter) -> bool: return c.current_health > 0)
 
 func get_alive_enemies() -> Array[CombatCharacter]:
-	return enemy_party.filter(func(c): return c.current_health > 0)
+	return enemy_party.filter(func(c: CombatCharacter) -> bool: return c.current_health > 0)
 
 func resolve_action(actor: CombatCharacter, action: CombatAction, targets: Array[CombatCharacter]) -> void:
 	actor.cast_combat_action(action, targets)
@@ -217,7 +222,7 @@ func ai_decide_combat_action() -> CombatAction:
 	#var player: CombatCharacter = player_character
 	var actions: Array[CombatAction] = current_character.combat_actions
 	var weights: Array[int] = []
-	var total_weight = 0
+	var total_weight: int = 0
 	var ai_health_perc: float = float(current_character.current_health) / float(current_character.max_health)
 	
 	for action in actions:
@@ -227,8 +232,8 @@ func ai_decide_combat_action() -> CombatAction:
 		weights.append(weight)
 		total_weight += weight
 	
-	var cumulative_weight = 0
-	var rand_weight = randi_range(0, total_weight)
+	var cumulative_weight: int = 0
+	var rand_weight: int = randi_range(0, total_weight)
 	
 	for i in len(actions):
 		cumulative_weight += weights[i]

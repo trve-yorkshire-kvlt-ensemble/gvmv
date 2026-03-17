@@ -10,8 +10,6 @@ extends Node2D
 
 # constants
 const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
-# const base_xp_needed: int = 100
-# const base_xp_multiplier: float = 1.5
 
 # character
 @export var character_data: CharacterData
@@ -26,7 +24,6 @@ var base_magic: MagicEffect
 var magic_weakness: MagicEffect
 var speed: int
 var character_name: String
-# var current_xp: int = 0
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
 
 # audio
@@ -37,12 +34,11 @@ var heal_sfx: AudioStream = preload("res://assets/combat/sfx/ahh.wav")
 # sprite visuals
 var target_scale: float = 1.0
 @onready var sprite: Sprite2D = $Sprite
-@export var display_texture: Texture2D
 
 # UI
 #@onready var number_spawn_pos: Vector2 = $NumberPos.global_position
-@onready var type_ui: Panel = $"../CanvasLayer/TypeUI"
-@onready var type_text: Label = $"../CanvasLayer/TypeUI/TypeText"
+@onready var type_ui: Panel = $"../../CanvasLayer/TypeUI"
+@onready var type_text: Label = $"../../CanvasLayer/TypeUI/TypeText"
 
 # multi party ui stuff (suggested by our ai overlords but I don't 100% get it lol)
 # this needs to be referenced in the combat_manager to dynamically determine spacing of sprites
@@ -90,7 +86,7 @@ func take_damage(amount: int, type: MagicEffect) -> void:
 	amount -= damage_reduction
 	# additional damage if weak to attack type
 	# NB. this sort of a placeholder... this isn't good logic ^_^
-	var was_weak:= false
+	var was_weak := false
 	if type == magic_weakness:
 		was_weak = true
 		amount += damage_reduction
@@ -126,7 +122,7 @@ func cast_combat_action(action: CombatAction, targets: Array[CombatCharacter]) -
 			print("dealing " + str(damage) + " damage!")
 			target.take_damage(damage, action.damage_type)
 
-		if action.heal_amount >0:
+		if action.heal_amount > 0:
 			target.heal(action.heal_amount)
 
 
@@ -134,7 +130,7 @@ func _play_audio(stream: AudioStream) -> void:
 	audio.stream = stream
 	audio.play()
 
-########## lolo's xp  and health stuff that we probs still want to use ##########
+########## lolo's xp and health stuff has mostly moved to PartyMember ##########
 
 # thinking about state of e.g. xp and health:
 # something like this?
@@ -144,32 +140,3 @@ func _play_audio(stream: AudioStream) -> void:
 #
 #func save_to_state(state):
 	#state.current_health = current_health
-
-#func gain_xp(amount: int) -> void:
-	#current_xp += amount
-	#
-	## Check for level up after gaining XP
-	#while current_xp >= character_data.get_xp_needed_for_next_level():
-		#level_up()
-
-#func get_xp_needed_for_next_level() -> int:
-	## Example formula: Base XP * (Level ^ Multiplier)
-	#return int(base_xp_needed * pow(character_data.level, base_xp_multiplier))
-
-#func level_up() -> void:
-	#var xp_needed: int = character_data.get_xp_needed_for_next_level()
-	#
-	## 1. Deduct XP and Increment Level on the Resource
-	#current_xp -= xp_needed
-	#character_data.level += 1
-	
-	# 2. Update Stats (Mutate the Resource data)
-	#var old_max_hp = character_data.max_hp
-	#character_data.max_hp = character_data.calculate_new_max_hp()
-	#character_data.attack_power = character_data.calculate_new_attack()
-	
-	# 3. Handle Current HP (Heal/Increase Max HP)
-	#var hp_gain = character_data.max_hp - old_max_hp
-	#current_hp += hp_gain # Heals the character proportional to the Max HP gain
-	
-	#print("%s leveled up! New Level: %s" % [character_data.name, character_data.level])

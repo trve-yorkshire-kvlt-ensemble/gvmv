@@ -4,9 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
 [ext_resource type="Script" uid="uid://bqycukfupl38p" path="res://assets/combat/moving_background.gd" id="3_06pyi"]
 [ext_resource type="PackedScene" uid="uid://bihw6a84hstb1" path="res://assets/combat/combat_character.tscn" id="3_b3ogi"]
-[ext_resource type="Texture2D" uid="uid://brcja7mlyhokf" path="res://assets/characters/sprites/pixil.png" id="4_2suc4"]
 [ext_resource type="Resource" uid="uid://bmkyijajpu76f" path="res://assets/characters/data/pixie.tres" id="5_r2tfw"]
-[ext_resource type="Texture2D" uid="uid://svipopvjbj4g" path="res://assets/characters/sprites/destroying_angel.png" id="5_ymw0h"]
 [ext_resource type="Resource" uid="uid://bgoocdpt3o1ds" path="res://assets/characters/data/fungal_mat.tres" id="7_06pyi"]
 [ext_resource type="Resource" uid="uid://xtcb4n7lxr61" path="res://assets/characters/data/destroying_angel.tres" id="7_tjhoe"]
 [ext_resource type="Resource" uid="uid://dp1wpqackbpqq" path="res://assets/characters/data/owl.tres" id="8_r2tfw"]
@@ -52,17 +50,14 @@ colour_lerp = SubResource("Gradient_06pyi")
 [node name="PlayerCharacterA" parent="PlayerParty" unique_id=1951656888 instance=ExtResource("3_b3ogi")]
 position = Vector2(-192, -13)
 character_data = ExtResource("5_r2tfw")
-display_texture = ExtResource("4_2suc4")
 
 [node name="PlayerCharacterB" parent="PlayerParty" unique_id=1384230845 instance=ExtResource("3_b3ogi")]
 position = Vector2(-99, -36)
 character_data = ExtResource("7_06pyi")
-display_texture = ExtResource("4_2suc4")
 
 [node name="PlayerCharacterC" parent="PlayerParty" unique_id=9037864 instance=ExtResource("3_b3ogi")]
 position = Vector2(-273, -35)
 character_data = ExtResource("8_r2tfw")
-display_texture = ExtResource("4_2suc4")
 
 [node name="EnemyParty" type="Node2D" parent="." unique_id=435089561]
 
@@ -70,19 +65,16 @@ display_texture = ExtResource("4_2suc4")
 position = Vector2(185, -4)
 character_data = ExtResource("7_tjhoe")
 is_player = false
-display_texture = ExtResource("5_ymw0h")
 
 [node name="AICharacterB" parent="EnemyParty" unique_id=1099153477 instance=ExtResource("3_b3ogi")]
 position = Vector2(273, -35)
 character_data = ExtResource("11_5pw5b")
 is_player = false
-display_texture = ExtResource("5_ymw0h")
 
 [node name="AICharacterC" parent="EnemyParty" unique_id=25900401 instance=ExtResource("3_b3ogi")]
 position = Vector2(103, -38)
 character_data = ExtResource("12_ohty6")
 is_player = false
-display_texture = ExtResource("5_ymw0h")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=727707734]
 

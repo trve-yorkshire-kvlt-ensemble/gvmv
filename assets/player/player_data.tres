@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="PlayerData" load_steps=3 format=3 uid="uid://fxsi6d0xq8ns"]
+[gd_resource type="Resource" script_class="PlayerData" format=3 uid="uid://fxsi6d0xq8ns"]
 
 [ext_resource type="Script" uid="uid://xsu8etsrd4h4" path="res://assets/player/player_data.gd" id="1_da6rr"]
 [ext_resource type="Resource" uid="uid://bjy5r64v3g5nq" path="res://assets/player/player_inventory.tres" id="1_x56xx"]
+[ext_resource type="Script" uid="uid://bhbjqxn7qf0ea" path="res://assets/characters/data/character_data.gd" id="3_p8wmi"]
+[ext_resource type="Resource" uid="uid://bmkyijajpu76f" path="res://assets/characters/data/pixie.tres" id="4_b16eb"]
+[ext_resource type="Resource" uid="uid://bgoocdpt3o1ds" path="res://assets/characters/data/fungal_mat.tres" id="5_uo2ou"]
+[ext_resource type="Resource" uid="uid://dp1wpqackbpqq" path="res://assets/characters/data/owl.tres" id="6_ewlk1"]
 
 [resource]
 script = ExtResource("1_da6rr")
 inventory = ExtResource("1_x56xx")
+starting_characters = Array[ExtResource("3_p8wmi")]([ExtResource("4_b16eb"), ExtResource("5_uo2ou"), ExtResource("6_ewlk1")])
 metadata/_custom_type_script = "uid://xsu8etsrd4h4"
