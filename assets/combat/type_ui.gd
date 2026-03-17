@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var combat_character: CombatCharacter = $"../../PlayerParty/PlayerCharacterA"
+#@onready var combat_character: CombatCharacter = $"../../PlayerParty/PlayerCharacterA"
 @onready var type_match_text: Label = $TypeText
 
 # constants

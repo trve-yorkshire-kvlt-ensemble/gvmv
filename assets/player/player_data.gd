@@ -14,7 +14,7 @@ var party_members: Array[PartyMember] = []
 # todo - current location
 # todo - quests
 
-func _init() -> void:
+func initialize() -> void:
 	# Initialize available party members based on starting characters
 	for character_data in starting_characters:
 		var new_member: PartyMember = PartyMember.new(character_data)

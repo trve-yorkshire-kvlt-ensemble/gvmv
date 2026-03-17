@@ -15,8 +15,8 @@ class_name CombatManager
 extends Node2D
 
 # party loading
-@export var player_data: PlayerData
 @export var combat_character_scene: PackedScene
+@export var player_spawn_locations: Array[Node2D]
 
 # characters
 var player_party: Array[CombatCharacter] = []
@@ -47,10 +47,18 @@ var game_over: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# load parties
-	for player_character in $PlayerParty.get_children():
-		player_party.append(player_character as CombatCharacter)
-		player_character.OnDied.connect(_on_player_died)
-		player_character.OnTakeDamage.connect(type_ui._type_ui)
+	var player_index: int = 0
+	var player_party_container: Node2D = $PlayerParty
+	for player_character in GlobalDataManager.player_data.party_members:
+		var combat_character: CombatCharacter = combat_character_scene.instantiate()
+		combat_character.character_data = player_character.character_data
+		combat_character.is_player = true
+		combat_character.position = player_spawn_locations[player_index].position
+		player_party.append(combat_character)
+		player_party_container.add_child(combat_character)
+		player_index += 1
+		combat_character.OnDied.connect(_on_player_died)
+		combat_character.OnTakeDamage.connect(type_ui._type_ui)
 	for enemy_character in $EnemyParty.get_children():
 		enemy_party.append(enemy_character as CombatCharacter)
 		enemy_character.OnDied.connect(_on_enemy_died)
