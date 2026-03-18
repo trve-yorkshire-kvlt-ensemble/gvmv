@@ -172,6 +172,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tjhoe")
 script = ExtResource("13_ybpw0")
+debug_mode = true
 
 [node name="HeaderText" type="Label" parent="CanvasLayer/CombatEndScreen" unique_id=1566857547]
 layout_mode = 1

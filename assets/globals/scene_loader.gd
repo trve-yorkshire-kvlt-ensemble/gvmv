@@ -25,6 +25,13 @@ func load_scene(path: String) -> void:
     
     start_loading()
 
+func reload_current_scene() -> void:
+    var current_scene_path: String = get_tree().current_scene.scene_file_path
+    if current_scene_path:
+        load_scene(current_scene_path)
+    else:
+        push_error("Could not get current scene path for reload")
+
 func start_loading() -> void:
     var state: int = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)
     if state == OK:
