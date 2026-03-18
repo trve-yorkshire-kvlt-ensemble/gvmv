@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://h3oehwt6gbaq"]
 
 [ext_resource type="Script" uid="uid://ovparlicgooj" path="res://assets/combat/combat_manager.gd" id="1_on8wl"]
-[ext_resource type="Resource" uid="uid://fxsi6d0xq8ns" path="res://assets/player/player_data.tres" id="2_ohty6"]
 [ext_resource type="Texture2D" uid="uid://cn4t2wxi6lbdr" path="res://assets/combat/sprites/fake-battle-background.jpg" id="2_sl4ws"]
 [ext_resource type="Script" uid="uid://bqycukfupl38p" path="res://assets/combat/moving_background.gd" id="3_06pyi"]
 [ext_resource type="PackedScene" uid="uid://bihw6a84hstb1" path="res://assets/combat/combat_character.tscn" id="3_b3ogi"]
@@ -29,7 +28,6 @@ shadow_color = Color(0, 0, 0, 0.5568628)
 
 [node name="Combat" type="Node2D" unique_id=217081279 node_paths=PackedStringArray("player_spawn_locations")]
 script = ExtResource("1_on8wl")
-player_data = ExtResource("2_ohty6")
 combat_character_scene = ExtResource("3_b3ogi")
 player_spawn_locations = [NodePath("PlayerSpawnLocations/PlayerPositionA"), NodePath("PlayerSpawnLocations/PlayerPositionB"), NodePath("PlayerSpawnLocations/PlayerPositionC")]
 

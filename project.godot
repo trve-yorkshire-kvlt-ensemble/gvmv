@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 EventBus="*res://assets/globals/event_bus.gd"
 GameStateManager="*res://assets/globals/game_state_manager.gd"
 GlobalDataManager="*res://assets/globals/global_data_manager.gd"
+SceneLoader="*uid://c3q2itbrj8yf0"
 
 [debug]
 

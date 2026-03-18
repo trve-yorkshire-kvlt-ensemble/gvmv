@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhwoicyd24fwh"]
+[gd_scene format=3 uid="uid://bhwoicyd24fwh"]
 
-[ext_resource type="Texture2D" uid="uid://mpvh7fnmufoa" path="res://assets/menu/sprites/Candle with no black.png" id="1_gnb8q"]
+[ext_resource type="Texture2D" uid="uid://dlfkad03a1spl" path="res://assets/menu/sprites/Candle with no black.png" id="1_gnb8q"]
 [ext_resource type="Script" uid="uid://1hxl1nffmoc5" path="res://assets/menu/menu.gd" id="1_jf5vr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gnb8q"]
@@ -8,7 +8,7 @@ font_size = 45
 shadow_size = 13
 shadow_color = Color(0, 0, 0, 0.6901961)
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=817980920]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,8 +16,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jf5vr")
+overworld_scene_path = "res://assets/levels/test.tscn"
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=454793742]
 layout_mode = 0
 offset_left = -642.0
 offset_top = -799.0
@@ -26,7 +27,7 @@ offset_bottom = 1953.0
 texture = ExtResource("1_gnb8q")
 stretch_mode = 2
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." unique_id=1619456866]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -42,24 +43,24 @@ label_settings = SubResource("LabelSettings_gnb8q")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1740406148]
 layout_mode = 0
 offset_left = 85.0
 offset_top = 261.0
 offset_right = 347.0
 offset_bottom = 310.0
 
-[node name="NewGame" type="Button" parent="HBoxContainer"]
+[node name="NewGame" type="Button" parent="HBoxContainer" unique_id=1592936132]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "New game"
 
-[node name="Load" type="Button" parent="HBoxContainer"]
+[node name="Load" type="Button" parent="HBoxContainer" unique_id=1497775512]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Load"
 
-[node name="Quit" type="Button" parent="HBoxContainer"]
+[node name="Quit" type="Button" parent="HBoxContainer" unique_id=925031]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit"
