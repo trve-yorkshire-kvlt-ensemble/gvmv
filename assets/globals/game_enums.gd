@@ -1,4 +1,4 @@
-extends Node
+class_name GameEnums
 
 enum UIState {
 	OVERWORLD,      # Default state: Player can move in the world.

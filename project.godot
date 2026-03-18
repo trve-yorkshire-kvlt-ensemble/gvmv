@@ -21,7 +21,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameEnums="*res://assets/globals/game_enums.gd"
 EventBus="*res://assets/globals/event_bus.gd"
 GameStateManager="*res://assets/globals/game_state_manager.gd"
 GlobalDataManager="*res://assets/globals/global_data_manager.gd"

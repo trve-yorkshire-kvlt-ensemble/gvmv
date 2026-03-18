@@ -8,9 +8,6 @@
 class_name CombatCharacter 
 extends Node2D
 
-# constants
-const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
-
 # character
 @export var character_data: CharacterData
 @export var is_player: bool 
@@ -20,8 +17,8 @@ var attack_power: int
 var defense: int
 var display_name: String
 var combat_actions: Array[CombatAction]
-var base_magic: MagicEffect
-var magic_weakness: MagicEffect
+var base_magic: GameEnums.MagicEffect
+var magic_weakness: GameEnums.MagicEffect
 var speed: int
 var character_name: String
 # var accuracy: float = 1.0   # Chance to hit, can be modified by buffs/debuffs
@@ -47,7 +44,7 @@ var target_scale: float = 1.0
 
 
 # signals
-signal OnTakeDamage(current_health: int, amount: int, type: MagicEffect, was_weak: bool, character_name: String)
+signal OnTakeDamage(current_health: int, amount: int, type: GameEnums.MagicEffect, was_weak: bool, character_name: String)
 signal OnHeal(current_health: int, amount: int)
 signal OnDied(dead_character: CombatCharacter)
 
@@ -80,7 +77,7 @@ func begin_turn() -> void:
 func end_turn() -> void:
 	target_scale = 0.6
 	
-func take_damage(amount: int, type: MagicEffect) -> void:
+func take_damage(amount: int, type: GameEnums.MagicEffect) -> void:
 	# roll for damage reduction (based on defense stat)
 	var damage_reduction: int = randi_range(0, defense)
 	amount -= damage_reduction

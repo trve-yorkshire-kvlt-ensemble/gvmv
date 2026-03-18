@@ -1,8 +1,6 @@
 class_name CharacterData
 extends Resource
 
-const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
-
 @export var name: String = "Unnamed Character"
 @export var sprite: Texture2D
 
@@ -11,9 +9,9 @@ const MagicEffect = preload("res://assets/globals/game_enums.gd").MagicEffect
 @export var attack_power: int = 10
 @export var defense: int = 5
 @export var speed: int = 10
-@export var base_magic: MagicEffect = MagicEffect.FIRE
+@export var base_magic: GameEnums.MagicEffect = GameEnums.MagicEffect.FIRE
 @export var combat_actions: Array[CombatAction]
-@export var magic_weakness: MagicEffect = MagicEffect.ICE
+@export var magic_weakness: GameEnums.MagicEffect = GameEnums.MagicEffect.ICE
 @export var initially_hostile: bool = false
 
 

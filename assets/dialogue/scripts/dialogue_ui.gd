@@ -1,8 +1,6 @@
 class_name DialogueUI
 extends CanvasLayer
 
-const UIState = preload("res://assets/globals/game_enums.gd").UIState
-
 @export var dialogue_text_label: Label
 @export var character_name_label: Label
 @export var options_container: VBoxContainer
@@ -21,7 +19,7 @@ func _ready() -> void:
 	visible = false
 
 func _on_ui_state_changed(new_state: int) -> void:
-	if new_state == UIState.DIALOGUE:
+	if new_state == GameEnums.UIState.DIALOGUE:
 		visible = true
 	else:
 		visible = false
@@ -53,7 +51,7 @@ func advance_dialogue() -> void:
 		end_dialogue()
 
 func end_dialogue() -> void:
-	GameStateManager.change_state(UIState.OVERWORLD)
+	GameStateManager.change_state(GameEnums.UIState.OVERWORLD)
 
 func _reveal_text_sequentially(text: String) -> void:
 	_kill_reveal_tween()
@@ -83,7 +81,7 @@ func _kill_reveal_tween() -> void:
 
 func _input(event: InputEvent) -> void:
 	# Only respond to input if dialogue is active
-	if GameStateManager.current_state == UIState.DIALOGUE:
+	if GameStateManager.current_state == GameEnums.UIState.DIALOGUE:
 		var should_handle: bool = false
 		var is_interact_action: bool = false
 		
