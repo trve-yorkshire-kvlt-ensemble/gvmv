@@ -34,7 +34,6 @@ var pending_action: CombatAction # not 100% sure we need this...
 @onready var enemy_ui: Panel = $CanvasLayer/EnemyUI
 @onready var enemy_move_text: Label = $CanvasLayer/EnemyUI/EnemyMoveText
 @onready var end_screen: Panel = $CanvasLayer/CombatEndScreen
-@onready var stats_text: Label = $CanvasLayer/CombatEndScreen/StatsText
 @onready var type_ui: Panel = $CanvasLayer/TypeUI
 
 # signals
@@ -42,6 +41,8 @@ signal OnEnemyAction(combat_action: CombatAction)
 
 # status
 var game_over: bool = false
+var xp_gained: int = 0
+var gold_gained: int = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -52,6 +53,7 @@ func _ready() -> void:
 	for player_character in GlobalDataManager.player_data.party_members:
 		var combat_character: CombatCharacter = combat_character_scene.instantiate()
 		combat_character.character_data = player_character.character_data
+		combat_character.party_member = player_character  # Pass the persistent party member data
 		combat_character.is_player = true
 		combat_character.position = player_spawn_locations[player_index].position
 		player_party.append(combat_character)
@@ -102,9 +104,11 @@ func _on_player_died(dead_character: CombatCharacter) -> void:
 
 func _on_enemy_died(dead_character: CombatCharacter) -> void:
 	print("you have killed " + dead_character.character_name + "!")
-	# Check if all players are dead (no alive members left)
+	xp_gained += dead_character.get_death_xp() # placeholder xp calculation for now
+	gold_gained += randi_range(5,15) # placeholder gold calculation
+	# Check if all enemies are dead (no alive members left)
 	if len(get_alive_enemies()) <= 0:
-		end_combat("players")  # AI wins
+		end_combat("players")  # player wins
 
 
 func end_combat(winner: String) -> void:
@@ -116,10 +120,11 @@ func end_combat(winner: String) -> void:
 	game_over = true
 	if winner == "players":
 		# show XP and loot screen
-		stats_text.visible = true
 		end_screen.set_header_text("You are victorious!")
+		end_screen.stats_text.visible = true
+		end_screen.set_stats_text(xp_gained, gold_gained)
 	else:
-		stats_text.visible = false
+		end_screen.stats_text.visible = false
 		end_screen.set_header_text("YOU HAVE BEEN DEFEATED!")
 
 
