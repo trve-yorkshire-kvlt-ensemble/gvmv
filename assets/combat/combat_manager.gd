@@ -120,9 +120,14 @@ func end_combat(winner: String) -> void:
 	game_over = true
 	if winner == "players":
 		# show XP and loot screen
-		end_screen.set_header_text("You are victorious!")
 		end_screen.stats_text.visible = true
 		end_screen.set_stats_text(xp_gained, gold_gained)
+		end_screen.set_header_text("You are victorious!")
+		# apply xp and loot to player data
+		for player_character in player_party:
+			if player_character.is_alive():
+				player_character.party_member.gain_xp(xp_gained) # persist XP gain to PartyMember data
+		GlobalDataManager.player_data.gold += gold_gained # persist gold gain to
 	else:
 		end_screen.stats_text.visible = false
 		end_screen.set_header_text("YOU HAVE BEEN DEFEATED!")

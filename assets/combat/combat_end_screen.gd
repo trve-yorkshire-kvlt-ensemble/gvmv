@@ -3,6 +3,7 @@ class_name CombatEndScreen
 extends Panel
 
 @export var debug_mode: bool = false
+@export var overworld_scene_path: String = "res://assets/levels/test.tscn"
 
 @onready var header_text: Label = $HeaderText
 @onready var stats_text: Label = $StatsText
@@ -17,5 +18,4 @@ func _on_ok_button_pressed() -> void:
 	if debug_mode:
 		SceneLoader.reload_current_scene()
 	else:
-		# load overworld
-		pass
+		SceneLoader.load_scene(overworld_scene_path)

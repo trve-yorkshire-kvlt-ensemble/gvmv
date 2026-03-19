@@ -199,8 +199,7 @@ offset_top = 156.0
 offset_right = 462.0
 offset_bottom = 237.0
 text = "Loot: 5gp
-XP: 100XP
-(this is just a placeholder)"
+XP: 100XP"
 
 [node name="OkButton" type="Button" parent="CanvasLayer/CombatEndScreen" unique_id=366564192]
 layout_mode = 1
