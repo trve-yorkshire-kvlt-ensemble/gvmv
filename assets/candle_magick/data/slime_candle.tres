@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CandleData" format=3 uid="uid://byjkeljbe2whi"]
+
+[ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="1_600un"]
+[ext_resource type="Texture2D" uid="uid://bu6xnlcm3mn07" path="res://assets/candle_magick/sprites/slime_candle.png" id="2_600un"]
+
+[resource]
+script = ExtResource("1_600un")
+name = "SlimeCandle"
+color = Color(0.4, 0.8117647, 0.14509805, 1)
+base_magic = 9
+texture = ExtResource("2_600un")
+metadata/_custom_type_script = "uid://bbpr18may55gk"

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c8u23bfn7dba4"]
+
+[ext_resource type="Script" uid="uid://cm2apmpclgcws" path="res://assets/candle_magick/candle_selector_ui.gd" id="1_uowce"]
+[ext_resource type="PackedScene" uid="uid://b5eg120ns2t7k" path="res://assets/candle_magick/candle_item_button.tscn" id="2_c2h5k"]
+
+[node name="CandleSelectorUI" type="Control" unique_id=1391713472]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uowce")
+button_scene = ExtResource("2_c2h5k")
+
+[node name="CandleContainer" type="PanelContainer" parent="." unique_id=354895869]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CandleContainer" unique_id=1885027935]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CandleContainer/VBoxContainer" unique_id=2017620629]
+layout_mode = 2
+theme_override_font_sizes/font_size = 43
+text = "CHVVSV THY CVNDLV"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CandleContainer/VBoxContainer" unique_id=10615850]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="CandleContainer/VBoxContainer/ScrollContainer" unique_id=1501798656]
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3

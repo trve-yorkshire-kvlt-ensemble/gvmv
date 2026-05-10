@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bk8r8egnwctxb"]
+
+[ext_resource type="Texture2D" uid="uid://dkpc4fcu4vyes" path="res://assets/candle_magick/sprites/slot_glow.png" id="1_0s28j"]
+[ext_resource type="Script" uid="uid://bl24y227bghky" path="res://assets/candle_magick/candle_slot.gd" id="1_8b6dk"]
+[ext_resource type="Texture2D" uid="uid://xmq81ma5o0b6" path="res://assets/candle_magick/sprites/blank_candle.png" id="1_lslqr"]
+
+[node name="CandleSlot" type="TextureButton" unique_id=806310310]
+offset_left = -7.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 8.0
+texture_normal = ExtResource("1_lslqr")
+script = ExtResource("1_8b6dk")
+
+[node name="SlotGlow" type="Sprite2D" parent="." unique_id=515826492]
+position = Vector2(7, 8)
+scale = Vector2(0.031636413, 0.031636413)
+texture = ExtResource("1_0s28j")
+
+[node name="SlotMarker" type="Marker2D" parent="." unique_id=682751452]
+
+[node name="CandleSprite" type="Sprite2D" parent="." unique_id=210456904]

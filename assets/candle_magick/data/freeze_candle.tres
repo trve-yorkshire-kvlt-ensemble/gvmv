@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CandleData" format=3 uid="uid://cxkjfs13tvg1"]
+
+[ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="1_dyta7"]
+[ext_resource type="Texture2D" uid="uid://cv6gygd8wj6tm" path="res://assets/candle_magick/sprites/ice_candle.png" id="2_dyta7"]
+
+[resource]
+script = ExtResource("1_dyta7")
+name = "FreezeCandle"
+color = Color(0.23383144, 0.8286071, 1, 1)
+base_magic = 1
+texture = ExtResource("2_dyta7")
+metadata/_custom_type_script = "uid://bbpr18may55gk"

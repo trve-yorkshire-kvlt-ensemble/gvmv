@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bk8r8egnwctxb"]
+
+[ext_resource type="Texture2D" uid="uid://dkpc4fcu4vyes" path="res://assets/candle_magick/sprites/slot_glow.png" id="1_0s28j"]
+
+[sub_resource type="GDScript" id="GDScript_s302x"]
+script/source = "class_name CandleSlot
+extends TextureButton
+
+@export var current_candle : CandleData = null
+
+@onready var candle_sprite = $CandleSprite
+
+signal slot_clicked(node_ref) # idk wtf this is, gemini is helping me
+
+func _pressed() -> void:
+	slot_clicked.emit(self) # signal that this slot has been clicked
+	
+func set_candle(data: CandleData):
+	current_candle = data
+	candle_sprite.texture = data.texture
+	candle_sprite.show()
+	# TODO play a sound effect or smth
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="CandleSlot" type="TextureButton" unique_id=806310310]
+script = SubResource("GDScript_s302x")
+
+[node name="SlotGlow" type="Sprite2D" parent="." unique_id=515826492]
+position = Vector2(7.6293945e-06, -0.9999924)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_0s28j")
+
+[node name="SlotMarker" type="Marker2D" parent="." unique_id=682751452]
+
+[node name="CandleSprite" type="Sprite2D" parent="." unique_id=210456904]

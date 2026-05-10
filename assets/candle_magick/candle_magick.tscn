@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dvpd063l58ohb"]
+
+[ext_resource type="Script" uid="uid://dhsq6pegr1mxh" path="res://assets/candle_magick/candle_magick.gd" id="1_lsdih"]
+[ext_resource type="Texture2D" uid="uid://1bur0hwafajl" path="res://assets/candle_magick/sprites/black_rose.png" id="2_fbakr"]
+[ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="2_kqbyg"]
+[ext_resource type="PackedScene" uid="uid://bk8r8egnwctxb" path="res://assets/candle_magick/candle_slot.tscn" id="3_dm615"]
+[ext_resource type="Resource" uid="uid://cvb811kejd24h" path="res://assets/candle_magick/data/fire_candle.tres" id="3_oijwu"]
+[ext_resource type="Resource" uid="uid://cxkjfs13tvg1" path="res://assets/candle_magick/data/freeze_candle.tres" id="4_fbirs"]
+[ext_resource type="Resource" uid="uid://cvv387pey7n6c" path="res://assets/candle_magick/data/hex_candle.tres" id="5_om30t"]
+[ext_resource type="Resource" uid="uid://byjkeljbe2whi" path="res://assets/candle_magick/data/slime_candle.tres" id="6_6mrca"]
+[ext_resource type="Resource" uid="uid://ci38bvq4r537l" path="res://assets/candle_magick/data/volts_candle.tres" id="7_tep6o"]
+[ext_resource type="PackedScene" uid="uid://c8u23bfn7dba4" path="res://assets/candle_magick/candle_selector_ui.tscn" id="8_oijwu"]
+
+[node name="CandleMagick" type="Node2D" unique_id=10537370 node_paths=PackedStringArray("candle_selector_ui")]
+script = ExtResource("1_lsdih")
+available_candles = Array[ExtResource("2_kqbyg")]([ExtResource("3_oijwu"), ExtResource("4_fbirs"), ExtResource("5_om30t"), ExtResource("6_6mrca"), ExtResource("7_tep6o")])
+candle_selector_ui = NodePath("CandleSelectorUI")
+
+[node name="BlackRose" type="Sprite2D" parent="." unique_id=1040182648]
+position = Vector2(182, 176)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_fbakr")
+
+[node name="CandleSelectorUI" parent="." unique_id=1391713472 instance=ExtResource("8_oijwu")]
+offset_left = 330.0
+offset_top = 41.0
+offset_right = 330.0
+offset_bottom = 41.0
+scale = Vector2(0.45530134, 0.45530134)
+
+[node name="CandleSlot1" parent="." unique_id=806310310 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 89.99997
+offset_top = 57.0
+offset_right = 105.99997
+offset_bottom = 73.0
+scale = Vector2(3.0248451, 3.0248451)
+
+[node name="CandleSlot2" parent="." unique_id=851196032 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 226.99998
+offset_top = 57.0
+offset_right = 242.99998
+offset_bottom = 73.0
+scale = Vector2(3.1139116, 3.1139116)
+
+[node name="CandleSlot3" parent="." unique_id=1837804998 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 269.00003
+offset_top = 182.00002
+offset_right = 285.00003
+offset_bottom = 198.00002
+scale = Vector2(2.946065, 2.946065)
+
+[node name="CandleSlot4" parent="." unique_id=1366370025 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 157.0
+offset_top = 267.0
+offset_right = 173.0
+offset_bottom = 283.0
+scale = Vector2(3.3486052, 3.3486052)
+
+[node name="CandleSlot5" parent="." unique_id=1630867790 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 53.0
+offset_top = 193.0
+offset_right = 69.0
+offset_bottom = 209.0
+scale = Vector2(2.3698022, 2.3698022)

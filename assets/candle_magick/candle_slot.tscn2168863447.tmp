@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bk8r8egnwctxb"]
+
+[ext_resource type="Script" uid="uid://bma70k058nb0u" path="res://assets/candle_magick/candle_slot.gd" id="1_0s28j"]
+[ext_resource type="Texture2D" uid="uid://dkpc4fcu4vyes" path="res://assets/candle_magick/sprites/slot_glow.png" id="2_8b6dk"]
+
+[node name="CandleSlot" type="TextureButton" unique_id=806310310]
+script = ExtResource("1_0s28j")
+
+[node name="SlotGlow" type="Sprite2D" parent="." unique_id=515826492]
+position = Vector2(7.6293945e-06, -0.9999924)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_8b6dk")
+
+[node name="SlotMarker" type="Marker2D" parent="." unique_id=682751452]
+
+[node name="CandleSprite" type="Sprite2D" parent="." unique_id=210456904]

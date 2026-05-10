@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="CandleData" format=3 uid="uid://ci38bvq4r537l"]
+
+[ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="1_0ejxj"]
+[ext_resource type="Texture2D" uid="uid://nbvqcqblo0m1" path="res://assets/candle_magick/sprites/volts_candle.png" id="2_0ejxj"]
+
+[resource]
+script = ExtResource("1_0ejxj")
+name = "VoltsCandle"
+color = Color(0.8308201, 0.6800092, 0.11336545, 1)
+base_magic = 9
+texture = ExtResource("2_0ejxj")
+metadata/_custom_type_script = "uid://bbpr18may55gk"
