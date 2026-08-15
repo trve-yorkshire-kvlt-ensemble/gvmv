@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c4a45wx73ujb7"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c4a45wx73ujb7"]
 
 [ext_resource type="Shader" uid="uid://dbnavfov6w63n" path="res://assets/visuals/fog.gdshader" id="1_yka2a"]
 

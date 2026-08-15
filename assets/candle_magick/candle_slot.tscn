@@ -5,18 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://xmq81ma5o0b6" path="res://assets/candle_magick/sprites/blank_candle.png" id="1_lslqr"]
 
 [node name="CandleSlot" type="TextureButton" unique_id=806310310]
-offset_left = -7.0
-offset_top = -8.0
-offset_right = 9.0
-offset_bottom = 8.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("1_lslqr")
 script = ExtResource("1_8b6dk")
 
 [node name="SlotGlow" type="Sprite2D" parent="." unique_id=515826492]
-position = Vector2(7, 8)
+position = Vector2(6.9999995, 7.9999995)
 scale = Vector2(0.031636413, 0.031636413)
 texture = ExtResource("1_0s28j")
 
 [node name="SlotMarker" type="Marker2D" parent="." unique_id=682751452]
+position = Vector2(7, 8)
 
 [node name="CandleSprite" type="Sprite2D" parent="." unique_id=210456904]
+position = Vector2(8, 8)

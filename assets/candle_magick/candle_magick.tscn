@@ -57,8 +57,8 @@ offset_bottom = 283.0
 scale = Vector2(3.3486052, 3.3486052)
 
 [node name="CandleSlot5" parent="." unique_id=1630867790 groups=["candle_slots"] instance=ExtResource("3_dm615")]
-offset_left = 53.0
-offset_top = 193.0
+offset_left = 53.000004
+offset_top = 193.00002
 offset_right = 69.0
-offset_bottom = 209.0
+offset_bottom = 209.00002
 scale = Vector2(2.3698022, 2.3698022)
