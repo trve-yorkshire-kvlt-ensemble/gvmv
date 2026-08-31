@@ -1,7 +1,6 @@
-[gd_scene format=3 uid="uid://dvpd063l58ohb"]
+[gd_scene load_steps=18 format=3 uid="uid://dvpd063l58ohb"]
 
 [ext_resource type="Script" uid="uid://dhsq6pegr1mxh" path="res://assets/candle_magick/candle_magick.gd" id="1_lsdih"]
-[ext_resource type="Texture2D" uid="uid://1bur0hwafajl" path="res://assets/candle_magick/sprites/black_rose.png" id="2_fbakr"]
 [ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="2_kqbyg"]
 [ext_resource type="PackedScene" uid="uid://bk8r8egnwctxb" path="res://assets/candle_magick/candle_slot.tscn" id="3_dm615"]
 [ext_resource type="Resource" uid="uid://cvb811kejd24h" path="res://assets/candle_magick/data/fire_candle.tres" id="3_oijwu"]
@@ -10,55 +9,123 @@
 [ext_resource type="Resource" uid="uid://byjkeljbe2whi" path="res://assets/candle_magick/data/slime_candle.tres" id="6_6mrca"]
 [ext_resource type="Resource" uid="uid://ci38bvq4r537l" path="res://assets/candle_magick/data/volts_candle.tres" id="7_tep6o"]
 [ext_resource type="PackedScene" uid="uid://c8u23bfn7dba4" path="res://assets/candle_magick/candle_selector_ui.tscn" id="8_oijwu"]
+[ext_resource type="Texture2D" uid="uid://bsro3j14qr2pr" path="res://assets/candle_magick/sprites/Candle magick faded.PNG" id="8_om30t"]
+[ext_resource type="Script" uid="uid://cgr58081w5c0m" path="res://assets/candle_magick/glow_line.gd" id="11_fbirs"]
+[ext_resource type="Texture2D" uid="uid://jqmio58eawby" path="res://assets/candle_magick/sprites/Glow text small.PNG" id="11_om30t"]
+[ext_resource type="AudioStream" uid="uid://dfe2r5xpmico8" path="res://assets/candle_magick/sfx/ocen view loop.wav" id="13_6mrca"]
 
-[node name="CandleMagick" type="Node2D" unique_id=10537370 node_paths=PackedStringArray("candle_selector_ui")]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6mrca"]
+
+[sub_resource type="Animation" id="Animation_om30t"]
+resource_name = "line_pulse"
+length = 3.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLine:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.5372549), Color(1, 1, 1, 0.9877647)]
+}
+
+[sub_resource type="Animation" id="Animation_6mrca"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GlowLine:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tep6o"]
+_data = {
+&"RESET": SubResource("Animation_6mrca"),
+&"line_pulse": SubResource("Animation_om30t")
+}
+
+[node name="CandleMagick" type="Node2D" node_paths=PackedStringArray("candle_selector_ui")]
 script = ExtResource("1_lsdih")
 available_candles = Array[ExtResource("2_kqbyg")]([ExtResource("3_oijwu"), ExtResource("4_fbirs"), ExtResource("5_om30t"), ExtResource("6_6mrca"), ExtResource("7_tep6o")])
 candle_selector_ui = NodePath("CandleSelectorUI")
 
-[node name="BlackRose" type="Sprite2D" parent="." unique_id=1040182648]
+[node name="BlackRose" type="Sprite2D" parent="."]
 position = Vector2(182, 176)
 scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_fbakr")
+texture = ExtResource("8_om30t")
 
-[node name="CandleSelectorUI" parent="." unique_id=1391713472 instance=ExtResource("8_oijwu")]
+[node name="CandleSelectorUI" parent="." instance=ExtResource("8_oijwu")]
 offset_left = 330.0
 offset_top = 41.0
 offset_right = 330.0
 offset_bottom = 41.0
 scale = Vector2(0.45530134, 0.45530134)
 
-[node name="CandleSlot1" parent="." unique_id=806310310 groups=["candle_slots"] instance=ExtResource("3_dm615")]
-offset_left = 89.99997
-offset_top = 57.0
-offset_right = 105.99997
-offset_bottom = 73.0
-scale = Vector2(3.0248451, 3.0248451)
+[node name="GlowLine" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_6mrca")
+width = 8.0
+default_color = Color(0.42352942, 0.53333336, 1, 1)
+texture = ExtResource("11_om30t")
+texture_mode = 2
+joint_mode = 2
+script = ExtResource("11_fbirs")
 
-[node name="CandleSlot2" parent="." unique_id=851196032 groups=["candle_slots"] instance=ExtResource("3_dm615")]
-offset_left = 226.99998
-offset_top = 57.0
-offset_right = 242.99998
-offset_bottom = 73.0
-scale = Vector2(3.1139116, 3.1139116)
+[node name="LineContainer" type="Node2D" parent="GlowLine"]
 
-[node name="CandleSlot3" parent="." unique_id=1837804998 groups=["candle_slots"] instance=ExtResource("3_dm615")]
-offset_left = 269.00003
-offset_top = 182.00002
-offset_right = 285.00003
-offset_bottom = 198.00002
-scale = Vector2(2.946065, 2.946065)
+[node name="CandleSlot1" parent="." groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 102.0
+offset_top = 69.0
+offset_right = 118.0
+offset_bottom = 85.0
+scale = Vector2(3, 3)
 
-[node name="CandleSlot4" parent="." unique_id=1366370025 groups=["candle_slots"] instance=ExtResource("3_dm615")]
+[node name="CandleSlot2" parent="." groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 217.99998
+offset_top = 68.0
+offset_right = 233.99998
+offset_bottom = 84.0
+scale = Vector2(3, 3)
+
+[node name="CandleSlot3" parent="." groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 254.0
+offset_top = 183.0
+offset_right = 270.0
+offset_bottom = 199.0
+scale = Vector2(3, 3)
+
+[node name="CandleSlot4" parent="." groups=["candle_slots"] instance=ExtResource("3_dm615")]
 offset_left = 157.0
-offset_top = 267.0
+offset_top = 251.00003
 offset_right = 173.0
-offset_bottom = 283.0
-scale = Vector2(3.3486052, 3.3486052)
+offset_bottom = 267.00003
+scale = Vector2(3, 3)
 
-[node name="CandleSlot5" parent="." unique_id=1630867790 groups=["candle_slots"] instance=ExtResource("3_dm615")]
-offset_left = 53.000004
-offset_top = 193.00002
-offset_right = 69.0
-offset_bottom = 209.00002
-scale = Vector2(2.3698022, 2.3698022)
+[node name="CandleSlot5" parent="." groups=["candle_slots"] instance=ExtResource("3_dm615")]
+offset_left = 70.0
+offset_top = 186.0
+offset_right = 86.0
+offset_bottom = 202.0
+scale = Vector2(3, 3)
+
+[node name="Pulse" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_tep6o")
+}
+autoplay = "line_pulse"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_6mrca")
+volume_db = -1.339
+pitch_scale = 0.49
+autoplay = true

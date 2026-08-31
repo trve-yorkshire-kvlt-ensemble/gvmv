@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CandleData" format=3 uid="uid://cvb811kejd24h"]
+[gd_resource type="Resource" script_class="CandleData" load_steps=3 format=3 uid="uid://cvb811kejd24h"]
 
 [ext_resource type="Script" uid="uid://bbpr18may55gk" path="res://assets/candle_magick/data/candle_data.gd" id="1_6mt5l"]
 [ext_resource type="Texture2D" uid="uid://d0ob1g405o6sc" path="res://assets/candle_magick/sprites/fire_candle.png" id="2_m2j3h"]
